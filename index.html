@@ -56,7 +56,7 @@
         }
         .hour-label-other {
             position: absolute;
-            bottom: -20px;
+            bottom: -23px;
             font-size: 2vh;
             color: #e1e1e1;
             text-align: center;
@@ -69,8 +69,8 @@
         <div class="moving-line" id="movingLine"></div>
     </div>
     <script>
-        const timeZoneOffset = 3;  // Часовой пояс для текущего времени
-        const otherTimeZoneOffset = -5;  // Часовой пояс для другого времени (например, GMT-5)
+        const timeZoneOffset = -5;  // Часовой пояс для текущего времени
+        const otherTimeZoneOffset = -3; // Часовой пояс для другого времени (например, GMT-5)
         const stepMinutes = 10;    // Шаг маркеров (минуты)
         const stepHours = 60;      // Шаг маркеров (часы)
         
