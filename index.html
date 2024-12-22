@@ -54,6 +54,13 @@
             color: #e1e1e1;
             text-align: center;
         }
+        .hour-label-other {
+            position: absolute;
+            top: -20px;
+            font-size: 12px;
+            color: #e1e1e1;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -62,56 +69,90 @@
         <div class="moving-line" id="movingLine"></div>
     </div>
     <script>
-        const timeZoneOffset = -5;
-        const stepMinutes = 10;
-        const stepHours = 60;
+        const timeZoneOffset = 3;  // Часовой пояс для текущего времени
+        const otherTimeZoneOffset = -5;  // Часовой пояс для другого времени (например, GMT-5)
+        const stepMinutes = 10;    // Шаг маркеров (минуты)
+        const stepHours = 60;      // Шаг маркеров (часы)
+        
         const timeline = document.getElementById('timeline');
+        
         function renderTimeMarkers() {
-            const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label');
+            // Удаляем старые маркеры
+            const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
             existingMarkers.forEach(marker => marker.remove());
-            const width = timeline.offsetWidth;
-            const totalMinutesInDay = 24 * 60;
-            const totalSteps = totalMinutesInDay / stepMinutes;
+            
+            const width = timeline.offsetWidth; // Ширина линии времени
+            const totalMinutesInDay = 24 * 60;  // Количество минут в дне
+            const totalSteps = totalMinutesInDay / stepMinutes;  // Количество маркеров
+
+            // Рисуем маркеры минут для основного часового пояса
             for (let i = 0; i < totalSteps; i++) {
                 const marker = document.createElement('div');
                 marker.classList.add('marker');
-                const position = (i * (width / totalSteps));
+                const position = (i * (width / totalSteps)); // Позиция каждого маркера
                 marker.style.left = `${position}px`;
                 timeline.appendChild(marker);
             }
+
+            // Рисуем маркеры часов и подписи времени для основного часового пояса
             for (let i = 0; i < 24; i++) {
                 const hourMarker = document.createElement('div');
                 hourMarker.classList.add('hour-marker');
-                const position = (i * (width / 24));
+                const position = (i * (width / 24)); // Позиция для каждого часового маркера
                 hourMarker.style.left = `${position}px`;
+
+                // Создаем подпись времени для каждого часа для текущего часового пояса
                 const hourLabel = document.createElement('div');
                 hourLabel.classList.add('hour-label');
                 hourLabel.textContent = `${i < 10 ? '0' : ''}${i}:00`;
-                hourLabel.style.left = `${position}px`;
+                hourLabel.style.left = `${position}px`; // Подпись выравнивается с маркером
+
+                // Создаем подпись времени для каждого часа для другого часового пояса
+                const hourLabelOther = document.createElement('div');
+                hourLabelOther.classList.add('hour-label-other');
+                const adjustedHour = (i + (otherTimeZoneOffset - timeZoneOffset) + 24) % 24;
+                hourLabelOther.textContent = `${adjustedHour < 10 ? '0' : ''}${adjustedHour}:00`;
+                hourLabelOther.style.left = `${position}px`; // Подпись выравнивается с маркером
+
                 timeline.appendChild(hourMarker);
                 timeline.appendChild(hourLabel);
+                timeline.appendChild(hourLabelOther);
             }
         }
+
         const movingLine = document.getElementById('movingLine');
-        function updateMovingLine() {
+        
+        function updateMovingLines() {
             const now = new Date();
+            
+            // Время для текущего часового пояса
             const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}` }));
-            const startOfDay = new Date(localTime);
-            startOfDay.setHours(0, 0, 0, 0);
+            
+            // Время для другого часового пояса
+            const otherTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${otherTimeZoneOffset >= 0 ? '+' : '-'}${Math.abs(otherTimeZoneOffset)}` }));
+            
+            const startOfDayLocal = new Date(localTime);
+            startOfDayLocal.setHours(0, 0, 0, 0);
             const millisecondsInDay = 24 * 60 * 60 * 1000;
-            const timeSinceMidnight = localTime - startOfDay;
-            const timePercentage = timeSinceMidnight / millisecondsInDay;
+            const timeSinceMidnightLocal = localTime - startOfDayLocal;
+            const timePercentageLocal = timeSinceMidnightLocal / millisecondsInDay;
             const timelineWidth = document.querySelector('.timeline').offsetWidth;
-            const position = timePercentage * timelineWidth;
-            movingLine.style.left = `${position}px`;
+            const positionLocal = timePercentageLocal * timelineWidth;  // Позиция для красной линии текущего часового пояса
+            movingLine.style.left = `${positionLocal}px`;
         }
+
+        // Пересчитываем положение линии времени при изменении размера окна
         window.addEventListener('resize', function() {
             renderTimeMarkers();
-            updateMovingLine();
+            updateMovingLines();
         });
+
+        // Вызываем renderTimeMarkers для рисования маркеров
         renderTimeMarkers();
-        setInterval(updateMovingLine, 1000);
-        updateMovingLine();
+        
+        // Обновляем позицию красной линии каждую секунду
+        setInterval(updateMovingLines, 1000);
+        updateMovingLines();
     </script>
 </body>
 </html>
