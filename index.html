@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,11 +16,10 @@
             flex-direction: column;
         }
         .container {
-            width: 80%;
+            width: 90%; /* Используем проценты для ширины контейнера */
             position: relative;
-            height: 50px;
+            height: 5vh; /* Даем фиксированную высоту, зависящую от высоты экрана */
         }
- 
         .timeline {
             width: 100%;
             height: 2px;
@@ -41,12 +40,11 @@
             height: 10px;
             background-color: #e1e1e1;
         }
- 
         .hour-marker {
             position: absolute;
             bottom: 5px;
             text-align: center;
-            font-size: 12px;
+            font-size: 1.5vw; /* Шрифт адаптируется к ширине экрана */
             color: #e1e1e1;
             transform: translateX(-50%);
         }
@@ -57,10 +55,11 @@
         <div class="timeline" id="timeline"></div>
         <div class="moving-line" id="movingLine"></div>
     </div>
+
     <script>
-        const timeZoneOffset = -5;
-        const stepMinutes = 10;
-        const stepHours = 60;
+        const timeZoneOffset = 3;  // Часовой пояс
+        const stepMinutes = 10;    // Шаг маркеров (минуты)
+        const stepHours = 60;      // Шаг маркеров (часы)
         
         const timeline = document.getElementById('timeline');
         
@@ -69,25 +68,25 @@
             const existingMarkers = document.querySelectorAll('.marker, .hour-marker');
             existingMarkers.forEach(marker => marker.remove());
             
-            const width = timeline.offsetWidth;
-            const totalMinutesInDay = 24 * 60;
-            const totalSteps = totalMinutesInDay / stepMinutes;
-            
+            const width = timeline.offsetWidth; // Ширина линии времени
+            const totalMinutesInDay = 24 * 60;  // Количество минут в дне
+            const totalSteps = totalMinutesInDay / stepMinutes;  // Количество маркеров
+
             // Рисуем маркеры минут
             for (let i = 0; i < totalSteps; i++) {
                 const marker = document.createElement('div');
                 marker.classList.add('marker');
-                const position = (i * (width / totalSteps));
+                const position = (i * (width / totalSteps)); // Позиция каждого маркера
                 marker.style.left = `${position}px`;
                 timeline.appendChild(marker);
             }
-            
+
             // Рисуем маркеры часов
             for (let i = 0; i < 24; i++) {
                 const hourMarker = document.createElement('div');
                 hourMarker.classList.add('hour-marker');
                 hourMarker.textContent = `${i < 10 ? '0' + i : i}:00`;
-                const position = (i * (width / 24));
+                const position = (i * (width / 24)); // Позиция для каждого часового маркера
                 hourMarker.style.left = `${position}px`;
                 timeline.appendChild(hourMarker);
             }
@@ -102,9 +101,9 @@
             startOfDay.setHours(0, 0, 0, 0);
             const millisecondsInDay = 24 * 60 * 60 * 1000;
             const timeSinceMidnight = localTime - startOfDay;
-            const timePercentage = timeSinceMidnight / millisecondsInDay;
+            const timePercentage = timeSinceMidnight / millisecondsInDay;  // Процент прошедшего времени
             const timelineWidth = document.querySelector('.timeline').offsetWidth;
-            const position = timePercentage * timelineWidth;
+            const position = timePercentage * timelineWidth;  // Позиция для красной линии
             movingLine.style.left = `${position}px`;
         }
         
@@ -117,5 +116,3 @@
     </script>
 </body>
 </html>
-
-
