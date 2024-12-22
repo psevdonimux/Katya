@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+  <button id='+'>+</button>
+  <button id='-'>-</button>
+
 
 <html>
 <head>
@@ -40,76 +43,23 @@
             width: 2px;
             height: 20px;
             background-color: red;
-            top: -10px;
+            top: -10px; /* Позиция вертикальной линии относительно временной шкалы */
         }
-
-        .marker {
-           positio: absolute;
-           bottom: 5px;
-           width: 1px;
-           height: 10px;
-           background-color: green;
-           text-align: center;
-           front-size: 12px;
-           color: blue;
-           transform: translateX(-50%);
-        }
-
-        .button {
-           padding: 10px 20px;
-           font-size: 16px;
-           cursor: pointer;
-           margin: 0 10px;
-        }  
     </style>
 </head>
 <body>
-    <div class="controls">
-      <button class="button" id="zoomIn">+</button>
-      <button class="button" id="zoomOut">-</button>
-    </div>
-  
     <div class="container">
         <div class="timeline"></div>
         <div class="moving-line" id="movingLine"></div>
     </div>
 
     <script>
-        const zoomInButton = document.getElementById("zoomIn");
-        const zoomOutButton = document.getElementById("zoomOut");
-        const movingLine = document.getElementById('timeLine');
-        const timeLine = document.getElementById('movingLine');
-        const timeZoneOffset = 3;
+        // Заданный часовой пояс (например, UTC+3 для Москвы)
+        const timeZoneOffset = 3;  // Время в часах относительно UTC
 
-        let scale = 1;
-        let step = 60 * 60 * 1000;
+        // Элемент для отображения вертикальной линии
+        const movingLine = document.getElementById('movingLine');
 
-          // Функция для добавления меток времени
-        function renderTimeMarkers() {
-            // Очищаем текущие метки
-            const existingMarkers = document.querySelectorAll('.marker');
-            existingMarkers.forEach(marker => marker.remove());
-
-            const width = timeline.offsetWidth;
-            const numberOfMarkers = Math.floor(width / scale);
-
-            // Добавляем метки времени
-            for (let i = 0; i < numberOfMarkers; i++) {
-                const marker = document.createElement('div');
-                marker.classList.add('marker');
-                
-                const time = new Date();
-                time.setHours(0, 0, 0, 0); // Начало дня
-                time.setMilliseconds(time.getMilliseconds() + i * step); // Добавляем шаг времени
-
-                marker.textContent = time.getHours() < 10 ? '0' + time.getHours() : time.getHours(); // Выводим только часы
-
-                const markerPosition = (i * scale) % width;
-                marker.style.left = `${markerPosition}px`;
-                timeline.appendChild(marker);
-            }
-        }
-      
         // Функция для обновления позиции вертикальной линии
         function updateMovingLine() {
             const now = new Date();
@@ -136,17 +86,6 @@
             movingLine.style.left = `${position}px`;
         }
 
-         // Масштабирование
-        zoomInButton.addEventListener('click', () => {
-            if (scale < 500) scale += 10; // Увеличиваем масштаб, но не больше 500px на шаг
-            renderTimeMarkers();
-        });
-
-        zoomOutButton.addEventListener('click', () => {
-            if (scale > 10) scale -= 10; // Уменьшаем масштаб, но не меньше 10px на шаг
-            renderTimeMarkers();
-        });
-
         // Обновляем позицию каждую секунду
         setInterval(updateMovingLine, 1000);
 
@@ -165,3 +104,4 @@
 </html>
 
 </html>
+
