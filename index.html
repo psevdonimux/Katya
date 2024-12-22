@@ -15,11 +15,9 @@
             background-color: black;
             flex-direction: column;
         }
-
         .controls {
             margin-botton: 20px;
         }
-      
         .container {
             width: 80%;
             position: relative;
@@ -32,7 +30,6 @@
             background-color: #e1e1e1;
             position: relative;
         }
-
         .moving-line {
             position: absolute;
             width: 2px;
@@ -64,22 +61,15 @@
         <div class="moving-line" id="movingLine"></div>
     </div>
     <script>
-        // Заданный часовой пояс (например, UTC+3 для Москвы)
-        const timeZoneOffset = 3;  // Время в часах относительно UTC
-        const stepMinutes = 10; // Шаг для неподписанных меток — 10 минут
-        const stepHours = 60;   // Шаг для подписанных меток — 1 час (60 минут)
-
-        // Функция для добавления меток времени
+        const timeZoneOffset = 3;
+        const stepMinutes = 10;
+        const stepHours = 60;
         function renderTimeMarkers() {
-            // Очищаем текущие метки
             const existingMarkers = document.querySelectorAll('.marker, .hour-marker');
             existingMarkers.forEach(marker => marker.remove());
-
             const width = timeline.offsetWidth;
-            const totalMinutesInDay = 24 * 60; // Всего минут в дне
-            const totalSteps = totalMinutesInDay / stepMinutes; // Общее количество шагов (минутных интервалов)
-
-            // Добавляем неподписанные метки (каждые 10 минут)
+            const totalMinutesInDay = 24 * 60;
+            const totalSteps = totalMinutesInDay / stepMinutes;
             for (let i = 0; i < totalSteps; i++) {
                 const marker = document.createElement('div');
                 marker.classList.add('marker');
@@ -87,52 +77,29 @@
                 marker.style.left = `${position}px`;
                 timeline.appendChild(marker);
             }
-
-            // Добавляем подписанные метки (каждый час)
             for (let i = 0; i < 24; i++) {
                 const hourMarker = document.createElement('div');
                 hourMarker.classList.add('hour-marker');
                 hourMarker.textContent = `${i < 10 ? '0' + i : i}:00`;
-
-                const position = (i * (width / 24)); // Расположение меток по 1 часу
+                const position = (i * (width / 24));
                 hourMarker.style.left = `${position}px`;
                 timeline.appendChild(hourMarker);
             }
         }
-
-        // Элемент для отображения вертикальной линии
         const movingLine = document.getElementById('movingLine');
-
-        // Функция для обновления позиции вертикальной линии
         function updateMovingLine() {
             const now = new Date();
-
-            // Преобразуем текущее время в нужный часовой пояс
             const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}` }));
-
-            // Получаем количество миллисекунд с начала суток
             const startOfDay = new Date(localTime);
             startOfDay.setHours(0, 0, 0, 0);
-            const millisecondsInDay = 24 * 60 * 60 * 1000; // 24 часа в миллисекундах
-
-            // Разница во времени с начала суток в миллисекундах
+            const millisecondsInDay = 24 * 60 * 60 * 1000;
             const timeSinceMidnight = localTime - startOfDay;
-
-            // Рассчитываем процент времени, прошедшего с начала дня
             const timePercentage = timeSinceMidnight / millisecondsInDay;
-
-            // Позиция вертикальной линии, пропорциональная проценту прошедшего времени
             const timelineWidth = document.querySelector('.timeline').offsetWidth;
             const position = timePercentage * timelineWidth;
-
-            // Обновляем позицию вертикальной линии
             movingLine.style.left = `${position}px`;
         }
-
-        // Обновляем позицию каждую секунду
         setInterval(updateMovingLine, 1000);
-
-        // Вызываем сразу, чтобы линия появилась на нужной позиции при загрузке
         updateMovingLine();
     </script>
 </body>
