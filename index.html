@@ -61,13 +61,6 @@
             color: #e1e1e1;
             text-align: center;
         }
-        .controls {
-            margin-top: 20px;
-        }
-        .controls button {
-            padding: 5px 10px;
-            margin: 5px;
-        }
         @media (orientation: portrait){
      html{
       transform: scale(0.65);
@@ -89,18 +82,12 @@
         <div class="timeline" id="timeline"></div>
         <div class="moving-line" id="movingLine"></div>
     </div>
-
-    <div class="controls">
-        <button id="increaseSpacing">Увеличить расстояние между маркерами</button>
-        <button id="decreaseSpacing">Уменьшить расстояние между маркерами</button>
-    </div>
-    
     <script>
         const timeZoneOffset = -5;  // Часовой пояс для текущего времени
         const otherTimeZoneOffset = -7; // Часовой пояс для другого времени (например, GMT-5)
         const stepMinutes = 10;    // Шаг маркеров (минуты)
         const stepHours = 60;      // Шаг маркеров (часы)
-        let markerSpacing = 10;
+        
         const timeline = document.getElementById('timeline');
         
         function renderTimeMarkers() {
@@ -173,25 +160,6 @@
             renderTimeMarkers();
             updateMovingLines();
         });
-        // Обработчик увеличения расстояния между маркерами
-        increaseSpacingButton.addEventListener('click', function() {
-            markerSpacing += 10; // Увеличиваем расстояние между маркерами
-            renderTimeMarkers(); // Перерисовываем маркеры
-            updateMovingLine();  // Обновляем позицию красной линии
-        });
-
-        // Обработчик уменьшения расстояния между маркерами
-        decreaseSpacingButton.addEventListener('click', function() {
-            if (markerSpacing > 10) {
-                markerSpacing -= 10; // Уменьшаем расстояние между маркерами
-                renderTimeMarkers(); // Перерисовываем маркеры
-                updateMovingLine();  // Обновляем позицию красной линии
-            }
-        });
-
-        function renderTimeMarkers() {
-    // Логика перерисовки маркеров с учетом нового spacing
-}
 
         // Вызываем renderTimeMarkers для рисования маркеров
         renderTimeMarkers();
