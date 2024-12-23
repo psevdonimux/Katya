@@ -100,7 +100,7 @@
         const otherTimeZoneOffset = -7; // Часовой пояс для другого времени (например, GMT-5)
         const stepMinutes = 10;    // Шаг маркеров (минуты)
         const stepHours = 60;      // Шаг маркеров (часы)
-        
+        let markerSpacing = 10;
         const timeline = document.getElementById('timeline');
         
         function renderTimeMarkers() {
@@ -188,6 +188,10 @@
                 updateMovingLine();  // Обновляем позицию красной линии
             }
         });
+
+        function renderTimeMarkers() {
+    // Логика перерисовки маркеров с учетом нового spacing
+}
 
         // Вызываем renderTimeMarkers для рисования маркеров
         renderTimeMarkers();
