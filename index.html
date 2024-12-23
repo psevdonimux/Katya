@@ -97,14 +97,14 @@ function reduceWidth(className, count){
  element.style.width = (element.offsetWidth - count) + 'px';
 }
 function plus(){
- addWidth('.container', 100);
- addWidth('.timeline', 100);
+ addWidth('.container', 150);
+ addWidth('.timeline', 150);
 renderTimeMarkers();
  updateMovingLines();
 }
 function minus(){
-reduceWidth('.container', 100);
- reduceWidth('.timeline', 100);
+reduceWidth('.container', 150);
+ reduceWidth('.timeline', 150);
 renderTimeMarkers();
  updateMovingLines();
 }
@@ -192,6 +192,10 @@ renderTimeMarkers();
         // Обновляем позицию красной линии каждую секунду
         setInterval(updateMovingLines, 1000);
         updateMovingLines();
+        var plus = document.getElementById('plus');
+        var minus = document.getElementById('minus');
+        plus.style.right = 50px;
+        minus.style.right = 50px;
     </script>
 </body>
 </html>
