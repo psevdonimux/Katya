@@ -56,33 +56,58 @@
         }
         .hour-label-other {
             position: absolute;
-            bottom: -24px;
+            bottom: -23px;
             font-size: 2vh;
             color: #e1e1e1;
             text-align: center;
         }
-        @media (orientation: portrait){
+        #minus{
+          margin-bottom: 10%;
+        }
+    @media (orientation: portrait){
      html{
-      transform: scale(0.65);
+      transform: scale(0.485);
      }
      .hour-label {            
-            font-size: 0.7vh;         
+            font-size: 0.5vh;         
         }
         .hour-label-other {         
-            font-size: 0.7vh;      
+            font-size: 0.5vh;      
         }
          .container {
-        width: 150%;
+        width: 200%;
         }
     }
     </style>
 </head>
 <body>
+<button id="plus" onclick="plus()">+</button>
+<button id="minus" onclick="minus()">-</button>
     <div class="container">
         <div class="timeline" id="timeline"></div>
         <div class="moving-line" id="movingLine"></div>
     </div>
     <script>
+function addWidth(className, count){
+ let element = document.querySelector(className);
+ element.style.width = (element.offsetWidth + count) + 'px';
+}
+function reduceWidth(className, count){
+ let element = document.querySelector(className);
+ element.style.width = (element.offsetWidth - count) + 'px';
+}
+function plus(){
+ addWidth('.container', 20);
+ addWidth('.timeline', 20);
+renderTimeMarkers();
+ updateMovingLines();
+}
+function minus(){
+reduceWidth('.container', 20);
+ reduceWidth('.timeline', 20);
+renderTimeMarkers();
+ updateMovingLines();
+}
         const timeZoneOffset = -5;  // Часовой пояс для текущего времени
         const otherTimeZoneOffset = -7; // Часовой пояс для другого времени (например, GMT-5)
         const stepMinutes = 10;    // Шаг маркеров (минуты)
