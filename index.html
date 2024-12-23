@@ -88,6 +88,10 @@
         <div class="moving-line" id="movingLine"></div>
     </div>
     <script>
+        var plus = document.getElementById('plus');
+        var minus = document.getElementById('minus');
+        plus.style.right = 50px;
+        minus.style.right = 50px;
 function addWidth(className, count){
  let element = document.querySelector(className);
  element.style.width = (element.offsetWidth + count) + 'px';
@@ -192,10 +196,6 @@ renderTimeMarkers();
         // Обновляем позицию красной линии каждую секунду
         setInterval(updateMovingLines, 1000);
         updateMovingLines();
-        var plus = document.getElementById('plus');
-        var minus = document.getElementById('minus');
-        plus.style.right = 50px;
-        minus.style.right = 50px;
     </script>
 </body>
 </html>
