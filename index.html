@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="ru">
-    <button id=p>+</button>
-    <button id=m>-</button>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -156,14 +154,6 @@
             const positionLocal = timePercentageLocal * timelineWidth;  // Позиция для красной линии текущего часового пояса
             movingLine.style.left = `${positionLocal}px`;
         }
-
-        const p = document.getElementById('p');
-        const m = document.getElementById('m');
-        const position = document.getElementById('position');
-p.addEventListener('click', function() {
-    position.style.property = `position'+5;
-});
-
 
         // Пересчитываем положение линии времени при изменении размера окна
         window.addEventListener('resize', function() {
