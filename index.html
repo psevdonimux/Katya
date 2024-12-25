@@ -88,6 +88,10 @@
         <div class="moving-line" id="movingLine"></div>
     </div>
     <script>
+        const plus = document.getElementById('plus');
+        const minus = document.getElementById('minus');
+        plus.style.right = "150%";
+        minus.style.bottom = "150%";
 function addWidth(className, count){
  let element = document.querySelector(className);
  element.style.width = (element.offsetWidth + count) + 'px';
@@ -108,10 +112,6 @@ reduceWidth('.container', 150);
 renderTimeMarkers();
  updateMovingLines();
 }
-        const plus = document.getElementById('plus');
-        const minus = document.getElementById('minus');
-        plus.style.right = "150%";
-        minus.style.bottom = "150%";
         const timeZoneOffset = -5;
         const otherTimeZoneOffset = -7;
         const stepMinutes = 10;
