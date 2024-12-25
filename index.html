@@ -62,7 +62,10 @@
             text-align: center;
         }
         #min{
-          margin-bottom: 10%;
+          margin-bottom: 40%;
+        }
+        #plu{
+          margin-bottom: 20%;
         }
     @media (orientation: portrait){
      html{
@@ -92,8 +95,8 @@
         const min = document.getElementById('min');
         plu.style.position = 'absolute';
         min.style.position = 'absolute';
-        plu.style.right = "5vh";
-        min.style.bottom = "5vh";
+        plu.style.right = "0%";
+        min.style.bottom = "0%";
 function addWidth(className, count){
  let element = document.querySelector(className);
  element.style.width = (element.offsetWidth + count) + 'px';
