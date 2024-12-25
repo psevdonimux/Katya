@@ -81,17 +81,13 @@
     </style>
 </head>
 <body>
-<button id="plu" onclick="plus()">+</button>
-<button id="min" onclick="minus()">-</button>
+<button id="plus" onclick="plus()">+</button>
+<button id="minus" onclick="minus()">-</button>
     <div class="container">
         <div class="timeline" id="timeline"></div>
         <div class="moving-line" id="movingLine"></div>
     </div>
     <script>
-        const plu = document.getElementById('plu');
-        const min = document.getElementById('min');
-        plus.style.right = "150%";
-        minus.style.bottom = "150%";
 function addWidth(className, count){
  let element = document.querySelector(className);
  element.style.width = (element.offsetWidth + count) + 'px';
