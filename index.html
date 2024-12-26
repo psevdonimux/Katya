@@ -152,7 +152,7 @@ renderTimeMarkers();
          
         const eventsByDay = {
     0: [ // Воскресенье
-        { time: new Date().setHours(9, 0, 0, 0), label: 'Событие Воскресенья 1', type: 'type1' },
+        { time: new Date().setHours(9, 0, 0, 0), label: 'Событие Воскресенья 1', type: 'type1', duration: 2 * 60 * 60 * 1000},
         { time: new Date().setHours(14, 0, 0, 0), label: 'Событие Воскресенья 2', type: 'type2' }
     ],
     1: [ // Понедельник
@@ -167,8 +167,8 @@ renderTimeMarkers();
         { time: new Date().setHours(16, 0, 0, 0), label: 'Событие Среды 2', type: 'type3' }
     ],
     4: [ // Четверг
-        { time: new Date().setHours(10, 30, 0, 0), label: 'Событие Четверга 1', type: 'type2' },
-        { time: new Date().setHours(9, 30, 0, 0), label: 'Событие четверга 2', type: 'type1' }
+        { time: new Date().setHours(10, 30, 0, 0), label: 'Событие Четверга 1', type: 'type2', duration: 2 * 60 * 60 * 1000 },
+        { time: new Date().setHours(9, 30, 0, 0), label: 'Событие четверга 2', type: 'type1', duration: 40 * 60 * 1000 }
     ],
     5: [ // Пятница
         { time: new Date().setHours(9, 0, 0, 0), label: 'Событие Пятницы 1', type: 'type3' },
@@ -204,6 +204,7 @@ renderTimeMarkers();
                 const eventElement = document.createElement('div');
                 eventElement.classList.add('event');
                 eventElement.style.left = `${position}px`;
+                eventElement.style.width = `${width}px`; 
                 eventElement.textContent = event.label;
                 eventElement.classList.add(event.type); // Применяем стиль в зависимости от типа
 
