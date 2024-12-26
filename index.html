@@ -128,13 +128,36 @@ renderTimeMarkers();
         const stepMinutes = 10;
         const stepHours = 60;
         const timeline = document.getElementById('timeline');
-          const events = [
-            { time: new Date().setHours(9, 0, 0, 0), label: 'Событие 1' },
-            { time: new Date().setHours(12, 0, 0, 0), label: 'Событие 2' },
-            { time: new Date().setHours(15, 0, 0, 0), label: 'Событие 3' },
-            { time: new Date().setHours(18, 0, 0, 0), label: 'Событие 4' }
-        ];
-       function displayEvents() {
+         
+        const eventsByDay = {
+            0: [ // Воскресенье
+                { time: new Date().setHours(9, 0, 0, 0), label: 'Событие Воскресенья 1' },
+                { time: new Date().setHours(14, 0, 0, 0), label: 'Событие Воскресенья 2' }
+            ],
+            1: [ // Понедельник
+                { time: new Date().setHours(10, 0, 0, 0), label: 'Событие Понедельника 1' },
+                { time: new Date().setHours(13, 0, 0, 0), label: 'Событие Понедельника 2' }
+            ],
+            2: [ // Вторник
+                { time: new Date().setHours(11, 0, 0, 0), label: 'Событие Вторника 1' }
+            ],
+            3: [ // Среда
+                { time: new Date().setHours(9, 30, 0, 0), label: 'Событие Среды 1' },
+                { time: new Date().setHours(16, 0, 0, 0), label: 'Событие Среды 2' }
+            ],
+            4: [ // Четверг
+                { time: new Date().setHours(10, 30, 0, 0), label: 'Событие Четверга 1' }
+            ],
+            5: [ // Пятница
+                { time: new Date().setHours(9, 0, 0, 0), label: 'Событие Пятницы 1' },
+                { time: new Date().setHours(18, 0, 0, 0), label: 'Событие Пятницы 2' }
+            ],
+            6: [ // Суббота
+                { time: new Date().setHours(8, 0, 0, 0), label: 'Событие Субботы 1' }
+            ]
+        };
+
+        function displayEvents() {
             const timeline = document.querySelector('.timeline');
             const timelineWidth = timeline.offsetWidth;
             const startOfDay = new Date();
@@ -145,7 +168,11 @@ renderTimeMarkers();
             const existingEvents = timeline.querySelectorAll('.event');
             existingEvents.forEach(event => event.remove());
 
-            events.forEach(event => {
+            // Получаем текущий день недели
+            const currentDay = new Date().getDay(); // Получаем день недели (0 - Воскресенье, 1 - Понедельник и т.д.)
+
+            // Отображаем события для текущего дня недели
+            eventsByDay[currentDay].forEach(event => {
                 const eventTime = new Date(event.time);
                 const timeSinceMidnight = eventTime - startOfDay;
                 const timePercentage = timeSinceMidnight / millisecondsInDay;
