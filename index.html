@@ -140,6 +140,14 @@ renderTimeMarkers();
             const startOfDay = new Date();
             startOfDay.setHours(0, 0, 0, 0);
             const millisecondsInDay = 24 * 60 * 60 * 1000;
+            const existingEvents = timeline.querySelectorAll('.event');
+            existingEvents.forEach(event => event.remove());
+
+            events.forEach(event => {
+                const eventTime = new Date(event.time);
+                const timeSinceMidnight = eventTime - startOfDay;
+                const timePercentage = timeSinceMidnight / millisecondsInDay;
+                const position = timePercentage * timelineWidth;
 
             events.forEach(event => {
                 const eventTime = new Date(event.time);
@@ -202,10 +210,15 @@ renderTimeMarkers();
             const positionLocal = timePercentageLocal * timelineWidth;
             movingLine.style.left = `${positionLocal}px`;
         }
+        function handleResize() {
+            displayEvents();  // Перерисовываем события
+            updateMovingLine();  // Перемещаем линию времени
+        }
         window.addEventListener('resize', function() {
             renderTimeMarkers();
             updateMovingLines();
         });
+        window.addEventListener('resize', handleResize);
         displayEvents();
         renderTimeMarkers();
         setInterval(updateMovingLines, 1000);
