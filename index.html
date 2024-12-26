@@ -62,15 +62,36 @@
             text-align: center;
         }
         .event {
-            position: absolute; 
-            top: 10px; 
-            background-color: blue; 
-            color: white; 
-            padding: 5px; 
-            border-radius: 3px; 
-            text-align: center; 
-            font-size: 12px;
-        }
+    position: absolute;
+    top: 10px;
+    background-color: blue;
+    color: white;
+    padding: 5px;
+    border-radius: 3px;
+    text-align: center;
+    font-size: 12px;
+}
+
+/* Стили для типа 1 */
+.event.type1 {
+    background-color: #3498db;  /* Синий */
+    height: 30px;  /* Высота */
+    left: 10%;  /* Положение по горизонтали */
+}
+
+/* Стили для типа 2 */
+.event.type2 {
+    background-color: #e74c3c;  /* Красный */
+    height: 40px;  /* Высота */
+    left: 20%;  /* Положение по горизонтали */
+}
+
+/* Стили для типа 3 */
+.event.type3 {
+    background-color: #2ecc71;  /* Зеленый */
+    height: 50px;  /* Высота */
+    left: 30%;  /* Положение по горизонтали */
+}
         #min{
           margin-bottom: 15%;
           margin-right: -80%;
@@ -183,6 +204,8 @@ renderTimeMarkers();
                 eventElement.classList.add('event');
                 eventElement.style.left = `${position}px`;
                 eventElement.textContent = event.label;
+                eventElement.classList.add(event.type); // Применяем стиль в зависимости от типа
+
 
                 timeline.appendChild(eventElement);
             });
