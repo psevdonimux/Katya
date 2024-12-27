@@ -126,39 +126,16 @@
     </style>
 </head>
 <body>
-<button id="plu" onclick="plus()">+</button>
-<button id="min" onclick="minus()">-</button>
     <div class="container">
         <div class="timeline" id="timeline"></div>
         <div class="moving-line" id="movingLine"></div>
     </div>
     <script>
-function addWidth(className, count){
- let element = document.querySelector(className);
- element.style.width = (element.offsetWidth + count) + 'px';
-}
-function reduceWidth(className, count){
- let element = document.querySelector(className);
- element.style.width = (element.offsetWidth - count) + 'px';
-}
-function plus(){
- addWidth('.container', 150);
- addWidth('.timeline', 150);
-renderTimeMarkers();
- updateMovingLines();
-}
-function minus(){
-reduceWidth('.container', 150);
- reduceWidth('.timeline', 150);
-renderTimeMarkers();
- updateMovingLines();
-}
         const timeZoneOffset = -5;
         const otherTimeZoneOffset = -7;
         const stepMinutes = 10;
         const stepHours = 60;
         const timeline = document.getElementById('timeline');
-         
         const eventsByDay = {
     0: [ // Воскресенье
         { time: new Date().setHours(9, 0, 0, 0), label: 'Событие Воскресенья 1', type: 'type1', duration: 2 * 60 * 60 * 1000},
@@ -187,7 +164,6 @@ renderTimeMarkers();
         { time: new Date().setHours(8, 0, 0, 0), label: 'Событие Субботы 1', type: 'type2' }
     ]
 };
-
         function displayEvents() {
     const timeline = document.querySelector('.timeline');
     const timelineWidth = timeline.offsetWidth;
