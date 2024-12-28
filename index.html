@@ -132,233 +132,121 @@
     </div>
     <script>
         const timeZoneOffset = -5;
-        const otherTimeZoneOffset = -7;
-        const stepMinutes = 10;
-        const stepHours = 60;
-        const timeline = document.getElementById('timeline');
-        const eventsByDay = {
-    0: [ // Воскресенье
-    ],
-    1: [ // Понедельник
-        { time: new Date().setHours(9, 0), label: 'Разговоры', type: 'type1', duration: 30 * 60 * 1000},
-        { time: new Date().setHours(9, 45), label: 'Физ-ра', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 25), type: 'type3', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 40), label: 'География', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 30), label: 'История', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(12, 30), label: 'Алгебра', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(13, 30), label: 'Литература', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(14, 10), type: 'type3', duration: 20 * 60 * 1000},
-        { time: new Date().setHours(14, 30), label: 'Английский', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(15, 20), label: 'Россия - моя история', type: 'type1', duration: 40 * 60 * 1000},
-
-        { time: new Date().setHours(6, 30), label: 'Разговоры', type: 'type2', duration: 45 * 60 * 1000},
-        { time: new Date().setHours(7, 30), label: 'Английский', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(8, 25), label: 'Алгебра', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 20), label: 'Литература', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 00), type: 'type4', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 15), label: 'Осетинский', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 05), label: 'География', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(12, 50), label: 'Вероятность', type: 'type2', duration: 40 * 60 * 1000}
-    ],
-    2: [ // Вторник
-        { time: new Date().setHours(9, 0), label: 'Обществознание', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 55), label: 'Биология', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 35), type: 'type3', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 50), label: 'Геометрия', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 40), label: 'ОБЗР', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(12, 40), label: 'Литература', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(13, 40), label: 'Информатика', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(14, 20), type: 'type3', duration: 20 * 60 * 1000},
-        { time: new Date().setHours(14, 40), label: 'Сочинения', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(15, 30), label: 'Семьеведение', type: 'type1', duration: 40 * 60 * 1000},
-
-        { time: new Date().setHours(6, 30), label: 'Физика', type: 'type2', duration: 45 * 60 * 1000},
-        { time: new Date().setHours(7, 30), label: 'Осетинский', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(8, 25), label: 'Геометрия', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 20), label: 'Биология', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 00), type: 'type4', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 15), label: 'Литература', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 05), label: 'История', type: 'type2', duration: 40 * 60 * 1000}
-    ],
-    3: [ // Среда
-        { time: new Date().setHours(9, 0), label: 'Физика', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 55), label: 'Русский', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 35), type: 'type3', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 50), label: 'Физ-ра', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 40), label: 'Химия', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(12, 40), label: 'География', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(13, 40), label: 'Обществознание', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(14, 20), type: 'type3', duration: 20 * 60 * 1000}, 
-
-        { time: new Date().setHours(6, 30), label: 'Обществознание', type: 'type2', duration: 45 * 60 * 1000},
-        { time: new Date().setHours(7, 30), label: 'Химия', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(8, 25), label: 'Алгебра', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 20), label: 'Обществознание', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 00), type: 'type4', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 15), label: 'Русский', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 05), label: 'Физика', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 50), label: 'Допы общество', type: 'type2', duration: 40 * 60 * 1000}
-    ],
-    4: [ // Четверг
-        { time: new Date().setHours(9, 0), label: 'Литература', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 55), label: 'Обществознание', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 35), type: 'type3', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 50), label: 'История', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 40), label: 'Английский', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(12, 40), label: 'География', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(13, 40), label: 'Алгебра', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(14, 20), type: 'type3', duration: 20 * 60 * 1000},
-        { time: new Date().setHours(12, 15), label: 'Подготовка к ЕГЭ', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(13, 05), label: 'Билет в будущее', type: 'type2', duration: 40 * 60 * 1000}
-
-        { time: new Date().setHours(6, 30), label: 'Русский', type: 'type2', duration: 45 * 60 * 1000},
-        { time: new Date().setHours(7, 30), label: 'Литература', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(8, 25), label: 'Алгебра', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 20), label: 'Геометрия', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 00), type: 'type4', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 15), label: 'Химия', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 05), label: 'Обществознание', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 50), label: 'Английский', type: 'type2', duration: 40 * 60 * 1000}
-    ],
-    5: [ // Пятница
-        { time: new Date().setHours(9, 0), label: 'Английский', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 55), label: 'Физика', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 35), type: 'type3', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 50), label: 'Алгебра', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 40), label: 'Русский', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(12, 40), label: 'Обществознание', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(13, 40), label: 'Вероятность', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(14, 20), type: 'type3', duration: 20 * 60 * 1000},
-        { time: new Date().setHours(12, 15), label: 'Физ-ра', type: 'type2', duration: 40 * 60 * 1000},
-
-        { time: new Date().setHours(6, 30), label: 'Литература', type: 'type2', duration: 45 * 60 * 1000},
-        { time: new Date().setHours(7, 30), label: 'ОБЗР', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(8, 25), label: 'Физика', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 20), label: 'Обществознание', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 00), type: 'type4', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 15), label: 'Английский', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 05), label: 'Осетинский', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 50), label: 'История', type: 'type2', duration: 40 * 60 * 1000}
-    ],
-    6: [ // Суббота
-        { time: new Date().setHours(9, 0), label: 'Английский', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 55), label: 'Физика', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 35), type: 'type3', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 50), label: 'Алгебра', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 40), label: 'Русский', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(12, 40), label: 'Обществознание', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(13, 40), label: 'Вероятность', type: 'type1', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(14, 20), type: 'type3', duration: 20 * 60 * 1000},
-        { time: new Date().setHours(12, 15), label: 'Физ-ра', type: 'type2', duration: 40 * 60 * 1000},
-
-        { time: new Date().setHours(6, 30), label: 'Литература', type: 'type2', duration: 45 * 60 * 1000},
-        { time: new Date().setHours(7, 30), label: 'ОБЗР', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(8, 25), label: 'Физика', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 20), label: 'Обществознание', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 00), type: 'type4', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 15), label: 'Английский', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 05), label: 'Осетинский', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 50), label: 'История', type: 'type2', duration: 40 * 60 * 1000}
-    ]
+const otherTimeZoneOffset = -7;
+const stepMinutes = 10;
+const stepHours = 60;
+const timeline = document.getElementById('timeline');
+const eventsByDay = {
+    0: [],
+    1: [{ time: new Date().setHours(12, 50), label: 'Вероятность', type: 'type2', duration: 40 * 60 * 1000 }],
+    2: [{ time: new Date().setHours(9, 0), label: 'Обществознание', type: 'type1', duration: 40 * 60 * 1000 }],
+    3: [{ time: new Date().setHours(9, 0), label: 'Физика', type: 'type1', duration: 40 * 60 * 1000 }],
+    4: [{ time: new Date().setHours(9, 0), label: 'Литература', type: 'type1', duration: 40 * 60 * 1000 }],
+    5: [{ time: new Date().setHours(9, 0), label: 'Английский', type: 'type1', duration: 40 * 60 * 1000 }],
+    6: [{ time: new Date().setHours(9, 0), label: 'Английский', type: 'type1', duration: 40 * 60 * 1000 }]
 };
-        function displayEvents() {
-    const timeline = document.querySelector('.timeline');
+
+
+function displayEvents() {
+    if (!timeline) {
+        console.error("Ошибка: Элемент timeline не найден.");
+        return;
+    }
     const timelineWidth = timeline.offsetWidth;
     const startOfDay = new Date();
     startOfDay.setHours(0, 0, 0, 0);
     const millisecondsInDay = 24 * 60 * 60 * 1000;
 
-    // Очищаем все события перед перерисовкой
+    // Очистка существующих событий
     const existingEvents = timeline.querySelectorAll('.event');
     existingEvents.forEach(event => event.remove());
 
-    // Получаем текущий день недели
-    const currentDay = new Date().getDay(); // Получаем день недели (0 - Воскресенье, 1 - Понедельник и т.д.)
+    // Получение текущего дня недели
+    const currentDay = new Date().getDay();
 
-    // Отображаем события для текущего дня недели
+    // Отрисовка событий текущего дня
     eventsByDay[currentDay].forEach(event => {
         const eventTime = new Date(event.time);
         const timeSinceMidnight = eventTime - startOfDay;
         const timePercentage = timeSinceMidnight / millisecondsInDay;
         const position = timePercentage * timelineWidth;
-
-        // Вычисляем длительность события в процентах от длительности дня
         const eventDurationPercentage = event.duration / millisecondsInDay;
         const width = eventDurationPercentage * timelineWidth;
-
-        // Создание и стилизация события
         const eventElement = document.createElement('div');
         eventElement.classList.add('event');
-        eventElement.classList.add(event.type); // Применяем стиль в зависимости от типа
-
-        // Устанавливаем позицию и ширину события
-        eventElement.style.left = `${position}px`;
-        eventElement.style.width = `${width}px`;  // Ширина события пропорциональна его длительности
+        eventElement.classList.add(event.type);
+        eventElement.style.left = ${position}px;
+        eventElement.style.width = ${width}px;
         eventElement.textContent = event.label;
-
-        // Добавляем событие на временную шкалу
         timeline.appendChild(eventElement);
     });
 }
-        function renderTimeMarkers() {
-            const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
-            existingMarkers.forEach(marker => marker.remove());
-            const width = timeline.offsetWidth;
-            const totalMinutesInDay = 24 * 60;
-            const totalSteps = totalMinutesInDay / stepMinutes;
-            for (let i = 0; i < totalSteps; i++) {
-                const marker = document.createElement('div');
-                marker.classList.add('marker');
-                const position = (i * (width / totalSteps));
-                marker.style.left = `${position}px`;
-                timeline.appendChild(marker);
-            }
-            for (let i = 0; i < 24; i++) {
-                const hourMarker = document.createElement('div');
-                hourMarker.classList.add('hour-marker');
-                const position = (i * (width / 24));
-                hourMarker.style.left = `${position}px`;
-                const hourLabel = document.createElement('div');
-                hourLabel.classList.add('hour-label');
-                hourLabel.textContent = `${i < 10 ? '0' : ''}${i}:00`;
-                hourLabel.style.left = `${position}px`;
-                const hourLabelOther = document.createElement('div');
-                hourLabelOther.classList.add('hour-label-other');
-                const adjustedHour = (i + (otherTimeZoneOffset - timeZoneOffset) + 24) % 24;
-                hourLabelOther.textContent = `${adjustedHour < 10 ? '0' : ''}${adjustedHour}:00`;
-                hourLabelOther.style.left = `${position}px`;
-                timeline.appendChild(hourMarker);
-                timeline.appendChild(hourLabel);
-                timeline.appendChild(hourLabelOther);
-            }
-        }
-        const movingLine = document.getElementById('movingLine');
-        function updateMovingLines() {
-            const now = new Date();
-            const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}`}));
-            const otherTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${otherTimeZoneOffset >= 0 ? '+' : '-'}${Math.abs(otherTimeZoneOffset)}` }));
-            const startOfDayLocal = new Date(localTime);
-            startOfDayLocal.setHours(0, 0, 0, 0);
-            const millisecondsInDay = 24 * 60 * 60 * 1000;
-            const timeSinceMidnightLocal = localTime - startOfDayLocal;
-            const timePercentageLocal = timeSinceMidnightLocal / millisecondsInDay;
-            const timelineWidth = document.querySelector('.timeline').offsetWidth;
-            const positionLocal = timePercentageLocal * timelineWidth;
-            movingLine.style.left = `${positionLocal}px`;
-        }
-        function handleResize() {
-            displayEvents();  // Перерисовываем события
-            updateMovingLine();  // Перемещаем линию времени
-        }
-        window.addEventListener('resize', function() {
-            renderTimeMarkers();
-            updateMovingLines();
-        });
-        window.addEventListener('resize', handleResize);
-        displayEvents();
-        renderTimeMarkers();
-        setInterval(updateMovingLines, 1000);
-        updateMovingLines();
+
+
+function renderTimeMarkers() {
+    if (!timeline) {
+        console.error("Ошибка: Элемент timeline не найден.");
+        return;
+    }
+    const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
+    existingMarkers.forEach(marker => marker.remove());
+    const width = timeline.offsetWidth;
+    const totalMinutesInDay = 24 * 60;
+    const totalSteps = totalMinutesInDay / stepMinutes;
+
+    // Отрисовка минутных меток
+    for (let i = 0; i < totalSteps; i++) {
+        const marker = document.createElement('div');
+        marker.classList.add('marker');
+        const position = (i * (width / totalSteps));
+        marker.style.left = ${position}px;
+        timeline.appendChild(marker);
+    }
+    // Отрисовка часовых меток
+    for (let i = 0; i < 24; i++) {
+        const hourMarker = document.createElement('div');
+        hourMarker.classList.add('hour-marker');
+        const position = (i * (width / 24));
+        hourMarker.style.left = ${position}px;
+        const hourLabel = document.createElement('div');
+        hourLabel.classList.add('hour-label');
+        hourLabel.textContent = ${i < 10 ? '0' : ''}${i}:00;
+        hourLabel.style.left = ${position}px;
+        const hourLabelOther = document.createElement('div');
+        hourLabelOther.classList.add('hour-label-other');
+       hourLabelOther.textContent = ${i < 10 ? '0' : ''}${i}:00;
+        hourLabelOther.style.left = ${position}px;
+        timeline.appendChild(hourMarker);
+        timeline.appendChild(hourLabel);
+         timeline.appendChild(hourLabelOther);
+    }
+}
+
+// Первичная отрисовка
+document.addEventListener('DOMContentLoaded', () => {
+    renderTimeMarkers();
+    displayEvents();
+
+    window.addEventListener('resize', () => {
+      renderTimeMarkers()
+      displayEvents();
+    });
+});
+        (hourLabel);
+         timeline.appendChild(hourLabelOther);
+    }
+}
+
+// Первичная отрисовка
+document.addEventListener('DOMContentLoaded', () => {
+    renderTimeMarkers();
+    displayEvents();
+
+    window.addEventListener('resize', () => {
+      renderTimeMarkers()
+      displayEvents();
+    });
+});
     </script>
 </body>
 </html>
