@@ -62,45 +62,42 @@
             text-align: center;
         }
         .event {
-    position: absolute;
-    top: 2px;
-    background-color: blue;
-    color: white;
-    padding: 5px;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 7px;
-    opacity: 0.8;
-    z-index: 1;
-}
-
-/* Стили для уроков Кати */
-.event.type1 {
-    background-color: #3e58e5;
-    height: 6px;
-    left: 10%;
-    top: -13px
-}
-
-/* Стили для уроков Рустама */
-.event.type2 {
-    background-color: #007e5b;
-    height: 6px;
-    left: 20%;
-}
-
-/* Стили для столовой */
-.event.type3 {
-    background-color: #f5b631;
-    height: 3px;
-    left: 30%;
-}
+            position: absolute;
+            top: 2px;
+            background-color: blue;
+            color: white;
+            padding: 5px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 7px;
+            opacity: 0.8;
+            z-index: 1;
+        }
+        /* Стили для уроков Кати */
+        .event.type1 {
+            background-color: #3e58e5;
+            height: 6px;
+            left: 10%;
+            top: -13px
+        }
+        /* Стили для уроков Рустама */
+        .event.type2 {
+            background-color: #007e5b;
+            height: 6px;
+            left: 20%;
+        }
+        /* Стили для столовой */
+        .event.type3 {
+            background-color: #f5b631;
+            height: 3px;
+            left: 30%;
+        }
         .event.type4 {
-    background-color: #f5b631;
-    height: 3px;
-    left: 30%;
-    top:-13px;
-}
+            background-color: #f5b631;
+            height: 3px;
+            left: 30%;
+            top:-13px;
+        }
         #min{
           margin-bottom: 15%;
           margin-right: -80%;
@@ -109,20 +106,20 @@
           margin-bottom: 1%;
           margin-right: -80%;
         }
-    @media (orientation: portrait){
-     html{
-      transform: scale(0.485);
-     }
-     .hour-label {            
-            font-size: 0.5vh;         
+        @media (orientation: portrait){
+            html{
+                transform: scale(0.485);
+            }
+            .hour-label {
+                font-size: 0.5vh;
+            }
+            .hour-label-other {
+                font-size: 0.5vh;
+            }
+            .container {
+                width: 200%;
+            }
         }
-        .hour-label-other {         
-            font-size: 0.5vh;      
-        }
-         .container {
-        width: 200%;
-        }
-    }
     </style>
 </head>
 <body>
@@ -243,67 +240,53 @@
     6: [ // Суббота
     ]
 };
-        function displayEvents() {
+function displayEvents() {
     const timeline = document.querySelector('.timeline');
     const timelineWidth = timeline.offsetWidth;
     const startOfDay = new Date();
     startOfDay.setHours(0, 0, 0, 0);
     const millisecondsInDay = 24 * 60 * 60 * 1000;
-
-    // Очищаем все события перед перерисовкой
     const existingEvents = timeline.querySelectorAll('.event');
     existingEvents.forEach(event => event.remove());
-
-    // Получаем текущий день недели
-    const currentDay = new Date().getDay(); // Получаем день недели (0 - Воскресенье, 1 - Понедельник и т.д.)
-
-    // Отображаем события для текущего дня недели
+    const currentDay = new Date().getDay();
     eventsByDay[currentDay].forEach(event => {
         const eventTime = new Date(event.time);
         const timeSinceMidnight = eventTime - startOfDay;
         const timePercentage = timeSinceMidnight / millisecondsInDay;
         const position = timePercentage * timelineWidth;
-
-        // Вычисляем длительность события в процентах от длительности дня
         const eventDurationPercentage = event.duration / millisecondsInDay;
         const width = eventDurationPercentage * timelineWidth;
-
-        // Создание и стилизация события
         const eventElement = document.createElement('div');
         eventElement.classList.add('event');
-        eventElement.classList.add(event.type); // Применяем стиль в зависимости от типа
-
-        // Устанавливаем позицию и ширину события
+        eventElement.classList.add(event.type);
         eventElement.style.left = `${position}px`;
-        eventElement.style.width = `${width}px`;  // Ширина события пропорциональна его длительности
+        eventElement.style.width = `${width}px`;
         eventElement.textContent = event.label;
-
-        // Добавляем событие на временную шкалу
         timeline.appendChild(eventElement);
     });
 }
-        function renderTimeMarkers() {
-            const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
-            existingMarkers.forEach(marker => marker.remove());
-            const width = timeline.offsetWidth;
-            const totalMinutesInDay = 24 * 60;
-            const totalSteps = totalMinutesInDay / stepMinutes;
-            for (let i = 0; i < totalSteps; i++) {
-                const marker = document.createElement('div');
-                marker.classList.add('marker');
-                const position = (i * (width / totalSteps));
-                marker.style.left = `${position}px`;
-                timeline.appendChild(marker);
-            }
-            for (let i = 0; i < 24; i++) {
-                const hourMarker = document.createElement('div');
-                hourMarker.classList.add('hour-marker');
-                const position = (i * (width / 24));
-                hourMarker.style.left = `${position}px`;
-                const hourLabel = document.createElement('div');
-                hourLabel.classList.add('hour-label');
-                hourLabel.textContent = `${i < 10 ? '0' : ''}${i}:00`;
-                hourLabel.style.left = `${position}px`;
+function renderTimeMarkers() {
+    const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
+    existingMarkers.forEach(marker => marker.remove());
+    const width = timeline.offsetWidth;
+    const totalMinutesInDay = 24 * 60;
+    const totalSteps = totalMinutesInDay / stepMinutes;
+    for (let i = 0; i < totalSteps; i++) {
+        const marker = document.createElement('div');
+        marker.classList.add('marker');
+        const position = (i * (width / totalSteps));
+        marker.style.left = `${position}px`;
+        timeline.appendChild(marker);
+    }
+    for (let i = 0; i < 24; i++) {
+        const hourMarker = document.createElement('div');
+        hourMarker.classList.add('hour-marker');
+        const position = (i * (width / 24));
+        hourMarker.style.left = `${position}px`;
+        const hourLabel = document.createElement('div');
+        hourLabel.classList.add('hour-label');
+        hourLabel.textContent = `${i < 10 ? '0' : ''}${i}:00`;
+        hourLabel.style.left = `${position}px`;
                 const hourLabelOther = document.createElement('div');
                 hourLabelOther.classList.add('hour-label-other');
                 const adjustedHour = (i + (otherTimeZoneOffset - timeZoneOffset) + 24) % 24;
