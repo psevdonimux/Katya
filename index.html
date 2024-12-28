@@ -78,7 +78,7 @@
             background-color: #3e58e5;
             height: 6px;
             left: 10%;
-            top: -13px
+            top: -13px;
         }
         /* Стили для уроков Рустама */
         .event.type2 {
@@ -155,7 +155,7 @@
         { time: new Date().setHours(10, 00), type: 'type4', duration: 15 * 60 * 1000},
         { time: new Date().setHours(10, 15), label: 'Осетинский', type: 'type2', duration: 40 * 60 * 1000},
         { time: new Date().setHours(11, 05), label: 'География', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(12, 50), label: 'Вероятность', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(12, 50), label: 'Вероятность', type: 'type2', duration: 40 * 60 * 1000}
     ],
     2: [ // Вторник
         { time: new Date().setHours(9, 0), label: 'Обществознание', type: 'type1', duration: 40 * 60 * 1000},
@@ -238,55 +238,74 @@
         { time: new Date().setHours(11, 50), label: 'История', type: 'type2', duration: 40 * 60 * 1000}
     ],
     6: [ // Суббота
+        { time: new Date().setHours(9, 0), label: 'Разговоры', type: 'type1', duration: 30 * 60 * 1000},
+        { time: new Date().setHours(9, 45), label: 'Физ-ра', type: 'type1', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(10, 25), type: 'type3', duration: 15 * 60 * 1000},
+        { time: new Date().setHours(10, 40), label: 'География', type: 'type1', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(11, 30), label: 'История', type: 'type1', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(12, 30), label: 'Алгебра', type: 'type1', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(13, 30), label: 'Литература', type: 'type1', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(14, 10), type: 'type3', duration: 20 * 60 * 1000},
+        { time: new Date().setHours(14, 30), label: 'Английский', type: 'type1', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(15, 20), label: 'Россия - моя история', type: 'type1', duration: 40 * 60 * 1000},
+
+        { time: new Date().setHours(6, 30), label: 'Разговоры', type: 'type2', duration: 45 * 60 * 1000},
+        { time: new Date().setHours(7, 30), label: 'Английский', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(8, 25), label: 'Алгебра', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(9, 20), label: 'Литература', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(10, 00), type: 'type4', duration: 15 * 60 * 1000},
+        { time: new Date().setHours(10, 15), label: 'Осетинский', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(11, 05), label: 'География', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(12, 50), label: 'Вероятность', type: 'type2', duration: 40 * 60 * 1000}
     ]
 };
-function displayEvents() {
-    const timeline = document.querySelector('.timeline');
-    const timelineWidth = timeline.offsetWidth;
-    const startOfDay = new Date();
-    startOfDay.setHours(0, 0, 0, 0);
-    const millisecondsInDay = 24 * 60 * 60 * 1000;
-    const existingEvents = timeline.querySelectorAll('.event');
-    existingEvents.forEach(event => event.remove());
-    const currentDay = new Date().getDay();
-    eventsByDay[currentDay].forEach(event => {
-        const eventTime = new Date(event.time);
-        const timeSinceMidnight = eventTime - startOfDay;
-        const timePercentage = timeSinceMidnight / millisecondsInDay;
-        const position = timePercentage * timelineWidth;
-        const eventDurationPercentage = event.duration / millisecondsInDay;
-        const width = eventDurationPercentage * timelineWidth;
-        const eventElement = document.createElement('div');
-        eventElement.classList.add('event');
-        eventElement.classList.add(event.type);
-        eventElement.style.left = `${position}px`;
-        eventElement.style.width = `${width}px`;
-        eventElement.textContent = event.label;
-        timeline.appendChild(eventElement);
-    });
-}
-function renderTimeMarkers() {
-    const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
-    existingMarkers.forEach(marker => marker.remove());
-    const width = timeline.offsetWidth;
-    const totalMinutesInDay = 24 * 60;
-    const totalSteps = totalMinutesInDay / stepMinutes;
-    for (let i = 0; i < totalSteps; i++) {
-        const marker = document.createElement('div');
-        marker.classList.add('marker');
-        const position = (i * (width / totalSteps));
-        marker.style.left = `${position}px`;
-        timeline.appendChild(marker);
-    }
-    for (let i = 0; i < 24; i++) {
-        const hourMarker = document.createElement('div');
-        hourMarker.classList.add('hour-marker');
-        const position = (i * (width / 24));
-        hourMarker.style.left = `${position}px`;
-        const hourLabel = document.createElement('div');
-        hourLabel.classList.add('hour-label');
-        hourLabel.textContent = `${i < 10 ? '0' : ''}${i}:00`;
-        hourLabel.style.left = `${position}px`;
+        function displayEvents() {
+            const timeline = document.querySelector('.timeline');
+            const timelineWidth = timeline.offsetWidth;
+            const startOfDay = new Date();
+            startOfDay.setHours(0, 0, 0, 0);
+            const millisecondsInDay = 24 * 60 * 60 * 1000;
+            const existingEvents = timeline.querySelectorAll('.event');
+            existingEvents.forEach(event => event.remove());
+            const currentDay = new Date().getDay();
+            eventsByDay[currentDay].forEach(event => {
+                const eventTime = new Date(event.time);
+                const timeSinceMidnight = eventTime - startOfDay;
+                const timePercentage = timeSinceMidnight / millisecondsInDay;
+                const position = timePercentage * timelineWidth;
+                const eventDurationPercentage = event.duration / millisecondsInDay;
+                const width = eventDurationPercentage * timelineWidth;
+                const eventElement = document.createElement('div');
+                eventElement.classList.add('event');
+                eventElement.classList.add(event.type);
+                eventElement.style.left = `${position}px`;
+                eventElement.style.width = `${width}px`;
+                eventElement.textContent = event.label;
+                timeline.appendChild(eventElement);
+            });
+        }
+        function renderTimeMarkers() {
+            const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
+            existingMarkers.forEach(marker => marker.remove());
+            const width = timeline.offsetWidth;
+            const totalMinutesInDay = 24 * 60;
+            const totalSteps = totalMinutesInDay / stepMinutes;
+            for (let i = 0; i < totalSteps; i++) {
+                const marker = document.createElement('div');
+                marker.classList.add('marker');
+                const position = (i * (width / totalSteps));
+                marker.style.left = `${position}px`;
+                timeline.appendChild(marker);
+            }
+            for (let i = 0; i < 24; i++) {
+                const hourMarker = document.createElement('div');
+                hourMarker.classList.add('hour-marker');
+                const position = (i * (width / 24));
+                hourMarker.style.left = `${position}px`;
+                const hourLabel = document.createElement('div');
+                hourLabel.classList.add('hour-label');
+                hourLabel.textContent = `${i < 10 ? '0' : ''}${i}:00`;
+                hourLabel.style.left = `${position}px`;
                 const hourLabelOther = document.createElement('div');
                 hourLabelOther.classList.add('hour-label-other');
                 const adjustedHour = (i + (otherTimeZoneOffset - timeZoneOffset) + 24) % 24;
@@ -312,8 +331,8 @@ function renderTimeMarkers() {
             movingLine.style.left = `${positionLocal}px`;
         }
         function handleResize() {
-            displayEvents();  // Перерисовываем события
-            updateMovingLine();  // Перемещаем линию времени
+            displayEvents();
+            updateMovingLine();
         }
         window.addEventListener('resize', function() {
             renderTimeMarkers();
