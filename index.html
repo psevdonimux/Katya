@@ -65,63 +65,61 @@
             text-align: center;
         }
         .event {
-    position: absolute;
-    top: 2px;
-    background-color: blue;
-    color: white;
-    padding: 2px;
-    border-radius: 2px;
-    text-align: center;
-    font-size: 7px;
-    opacity: 0.8;
-    z-index: 1;
-}
-
+            position: absolute;
+            top: 2px;
+            background-color: blue;
+            color: white;
+            padding: 2px;
+            border-radius: 2px;
+            text-align: center;
+            font-size: 7px;
+            opacity: 0.8;
+            z-index: 1;
+        }
 /* Стили для уроков Кати */
-.event.type1 {
-    background-color: #3e58e5;
-    height: 12px;
-    left: 10%;
-    top: -14px;
-}
-
+        .event.type1 {
+            background-color: #3e58e5;
+            height: 12px;
+            left: 10%;
+            top: -14px;
+        }
 /* Стили для уроков Рустама */
-.event.type2 {
-    background-color: #007e5b;
-    height: 12px;
-    left: 20%;
-    top: 2px;
-}
+        .event.type2 {
+            background-color: #007e5b;
+            height: 12px;
+            left: 20%;
+            top: 2px;
+        }
 
 /* Стили для столовой */
-.event.type3 {
-    background-color: #f5b631;
-    height: 3px;
-    left: 30%;
-    top: -5px;
-    opacity: 0.5;
-}
-        .event.type4 {
-    background-color: #f5b631;
-    height: 3px;
-    left: 30%;
-    top: 2px;
+        .event.type3 {
+            background-color: #f5b631;
+            height: 3px;
+            left: 30%;
+            top: -5px;
             opacity: 0.5;
-}
-    @media (orientation: portrait){
-     html{
-      transform: scale(0.485);
-     }
-     .hour-label {            
-            font-size: 0.5vh;         
         }
-        .hour-label-other {         
-            font-size: 0.5vh;      
+        .event.type4 {
+            background-color: #f5b631;
+            height: 3px;
+            left: 30%;
+            top: 2px;
+            opacity: 0.5;
         }
-         .container {
-        width: 200%;
+        @media (orientation: portrait){
+            html{
+                transform: scale(0.485);
+            }
+            .hour-label {
+                font-size: 0.5vh;
+            }
+            .hour-label-other {
+                font-size: 0.5vh;
+            }
+            .container {
+                width: 200%;
+            }
         }
-    }
     </style>
 </head>
 <body>
@@ -151,14 +149,14 @@
         { time: new Date().setHours(14, 30), label: 'Английский', type: 'type1', duration: 40 * 60 * 1000},
         { time: new Date().setHours(15, 20), label: 'Россия - моя история', type: 'type1', duration: 40 * 60 * 1000},
 
-        { time: new Date().setHours(6, 30), label: 'Разговоры', type: 'type2', duration: 45 * 60 * 1000},
-        { time: new Date().setHours(7, 30), label: 'Английский', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(8, 25), label: 'Алгебра', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 20), label: 'Литература', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 00), type: 'type4', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 15), label: 'Осетинский', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 05), label: 'География', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(12, 50), label: 'Вероятность', type: 'type2', duration: 40 * 60 * 1000}
+        { time: new Date().setHours(10, 30), label: 'Разговоры', type: 'type2', duration: 45 * 60 * 1000},
+        { time: new Date().setHours(11, 30), label: 'Английский', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(12, 25), label: 'Алгебра', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(13, 20), label: 'Литература', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(14, 00), type: 'type4', duration: 15 * 60 * 1000},
+        { time: new Date().setHours(14, 15), label: 'Осетинский', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(15, 05), label: 'География', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(15, 50), label: 'Вероятность', type: 'type2', duration: 40 * 60 * 1000}
     ],
     2: [ // Вторник
         { time: new Date().setHours(9, 0), label: 'Обществознание', type: 'type1', duration: 40 * 60 * 1000},
@@ -172,13 +170,13 @@
         { time: new Date().setHours(14, 40), label: 'Сочинения', type: 'type1', duration: 40 * 60 * 1000},
         { time: new Date().setHours(15, 30), label: 'Семьеведение', type: 'type1', duration: 40 * 60 * 1000},
 
-        { time: new Date().setHours(6, 30), label: 'Физика', type: 'type2', duration: 45 * 60 * 1000},
-        { time: new Date().setHours(7, 30), label: 'Осетинский', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(8, 25), label: 'Геометрия', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 20), label: 'Биология', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 00), type: 'type4', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 15), label: 'Литература', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 05), label: 'История', type: 'type2', duration: 40 * 60 * 1000}
+        { time: new Date().setHours(10, 30), label: 'Физика', type: 'type2', duration: 45 * 60 * 1000},
+        { time: new Date().setHours(11, 30), label: 'Осетинский', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(12, 25), label: 'Геометрия', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(13, 20), label: 'Биология', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(14, 00), type: 'type4', duration: 15 * 60 * 1000},
+        { time: new Date().setHours(14, 15), label: 'Литература', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(15, 05), label: 'История', type: 'type2', duration: 40 * 60 * 1000}
     ],
     3: [ // Среда
         { time: new Date().setHours(9, 0), label: 'Физика', type: 'type1', duration: 40 * 60 * 1000},
@@ -190,14 +188,14 @@
         { time: new Date().setHours(13, 40), label: 'Обществознание', type: 'type1', duration: 40 * 60 * 1000},
         { time: new Date().setHours(14, 20), type: 'type3', duration: 20 * 60 * 1000}, 
 
-        { time: new Date().setHours(6, 30), label: 'Обществознание', type: 'type2', duration: 45 * 60 * 1000},
-        { time: new Date().setHours(7, 30), label: 'Химия', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(8, 25), label: 'Алгебра', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 20), label: 'Обществознание', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 00), type: 'type4', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 15), label: 'Русский', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 05), label: 'Физика', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 50), label: 'Допы общество', type: 'type2', duration: 40 * 60 * 1000}
+        { time: new Date().setHours(10, 30), label: 'Обществознание', type: 'type2', duration: 45 * 60 * 1000},
+        { time: new Date().setHours(11, 30), label: 'Химия', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(12, 25), label: 'Алгебра', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(13, 20), label: 'Обществознание', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(14, 00), type: 'type4', duration: 15 * 60 * 1000},
+        { time: new Date().setHours(14, 15), label: 'Русский', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(15, 05), label: 'Физика', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(15, 50), label: 'Допы общество', type: 'type2', duration: 40 * 60 * 1000}
     ],
     4: [ // Четверг
         { time: new Date().setHours(9, 0), label: 'Литература', type: 'type1', duration: 40 * 60 * 1000},
@@ -211,14 +209,14 @@
         { time: new Date().setHours(12, 15), label: 'Подготовка к ЕГЭ', type: 'type2', duration: 40 * 60 * 1000},
         { time: new Date().setHours(13, 05), label: 'Билет в будущее', type: 'type2', duration: 40 * 60 * 1000},
 
-        { time: new Date().setHours(6, 30), label: 'Русский', type: 'type2', duration: 45 * 60 * 1000},
-        { time: new Date().setHours(7, 30), label: 'Литература', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(8, 25), label: 'Алгебра', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 20), label: 'Геометрия', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 00), type: 'type4', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 15), label: 'Химия', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 05), label: 'Обществознание', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 50), label: 'Английский', type: 'type2', duration: 40 * 60 * 1000}
+        { time: new Date().setHours(10, 30), label: 'Русский', type: 'type2', duration: 45 * 60 * 1000},
+        { time: new Date().setHours(11, 30), label: 'Литература', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(12, 25), label: 'Алгебра', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(13, 20), label: 'Геометрия', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(14, 00), type: 'type4', duration: 15 * 60 * 1000},
+        { time: new Date().setHours(14, 15), label: 'Химия', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(15, 05), label: 'Обществознание', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(15, 50), label: 'Английский', type: 'type2', duration: 40 * 60 * 1000}
     ],
     5: [ // Пятница
         { time: new Date().setHours(9, 0), label: 'Английский', type: 'type1', duration: 40 * 60 * 1000},
@@ -231,14 +229,14 @@
         { time: new Date().setHours(14, 20), type: 'type3', duration: 20 * 60 * 1000},
         { time: new Date().setHours(12, 15), label: 'Физ-ра', type: 'type2', duration: 40 * 60 * 1000},
 
-        { time: new Date().setHours(6, 30), label: 'Литература', type: 'type2', duration: 45 * 60 * 1000},
-        { time: new Date().setHours(7, 30), label: 'ОБЗР', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(8, 25), label: 'Физика', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 20), label: 'Обществознание', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 00), type: 'type4', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 15), label: 'Английский', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 05), label: 'Осетинский', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 50), label: 'История', type: 'type2', duration: 40 * 60 * 1000}
+        { time: new Date().setHours(10, 30), label: 'Литература', type: 'type2', duration: 45 * 60 * 1000},
+        { time: new Date().setHours(11, 30), label: 'ОБЗР', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(12, 25), label: 'Физика', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(13, 20), label: 'Обществознание', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(14, 00), type: 'type4', duration: 15 * 60 * 1000},
+        { time: new Date().setHours(14, 15), label: 'Английский', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(15, 05), label: 'Осетинский', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(15, 50), label: 'История', type: 'type2', duration: 40 * 60 * 1000}
     ],
     6: [ // Суббота
         { time: new Date().setHours(9, 0), label: 'Английский', type: 'type1', duration: 40 * 60 * 1000},
@@ -251,14 +249,14 @@
         { time: new Date().setHours(14, 20), type: 'type3', duration: 20 * 60 * 1000},
         { time: new Date().setHours(12, 15), label: 'Физ-ра', type: 'type2', duration: 40 * 60 * 1000},
 
-        { time: new Date().setHours(6, 30), label: 'Литература', type: 'type2', duration: 45 * 60 * 1000},
-        { time: new Date().setHours(7, 30), label: 'ОБЗР', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(8, 25), label: 'Физика', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(9, 20), label: 'Обществознание', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(10, 00), type: 'type4', duration: 15 * 60 * 1000},
-        { time: new Date().setHours(10, 15), label: 'Английский', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 05), label: 'Осетинский', type: 'type2', duration: 40 * 60 * 1000},
-        { time: new Date().setHours(11, 50), label: 'История', type: 'type2', duration: 40 * 60 * 1000}
+        { time: new Date().setHours(10, 30), label: 'Литература', type: 'type2', duration: 45 * 60 * 1000},
+        { time: new Date().setHours(11, 30), label: 'ОБЗР', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(12, 25), label: 'Физика', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(13, 20), label: 'Обществознание', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(14, 00), type: 'type4', duration: 15 * 60 * 1000},
+        { time: new Date().setHours(14, 15), label: 'Английский', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(15, 05), label: 'Осетинский', type: 'type2', duration: 40 * 60 * 1000},
+        { time: new Date().setHours(15, 50), label: 'История', type: 'type2', duration: 40 * 60 * 1000}
     ]
 };
         function displayEvents() {
