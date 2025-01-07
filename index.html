@@ -82,31 +82,25 @@
 /* Стили для уроков Кати */
         .event.type1 {
             background-color: #3e58e5;
-            height: 12px;
-            left: 10%;
+            height: 9px;
             top: -14px;
-            
         }
 /* Стили для уроков Рустама */
         .event.type2 {
             background-color: #007e5b;
-            height: 12px;
-            
+            height: 9px;
             top: 2px;
         }
-
 /* Стили для столовой */
         .event.type3 {
             background-color: #f5b631;
             height: 3px;
-            left: 30%;
             top: -5px;
             opacity: 0.5;
         }
         .event.type4 {
             background-color: #f5b631;
             height: 3px;
-            left: 30%;
             top: 2px;
             opacity: 0.5;
         }
@@ -115,13 +109,13 @@
                 transform: scale(0.485);
             }
             .hour-label {
-                font-size: 0.5vh;
+                font-size: 1vh;
             }
             .hour-label-other {
-                font-size: 0.5vh;
+                font-size: 1vh;
             }
             .container {
-                width: 200%;
+                width: 220%;
             }
         }
     </style>
@@ -245,46 +239,32 @@
     6: [ // Суббота
        
     ]
-};
+        };
         function displayEvents() {
-    const timeline = document.querySelector('.timeline');
-    const timelineWidth = timeline.offsetWidth;
-    const startOfDay = new Date();
-    startOfDay.setHours(0, 0, 0, 0);
-    const millisecondsInDay = 24 * 60 * 60 * 1000;
-
-    // Очищаем все события перед перерисовкой
-    const existingEvents = timeline.querySelectorAll('.event');
-    existingEvents.forEach(event => event.remove());
-
-    // Получаем текущий день недели
-    const currentDay = new Date().getDay(); // Получаем день недели (0 - Воскресенье, 1 - Понедельник и т.д.)
-
-    // Отображаем события для текущего дня недели
-    eventsByDay[currentDay].forEach(event => {
-        const eventTime = new Date(event.time);
-        const timeSinceMidnight = eventTime - startOfDay;
-        const timePercentage = timeSinceMidnight / millisecondsInDay;
-        const position = timePercentage * timelineWidth;
-
-        // Вычисляем длительность события в процентах от длительности дня
-        const eventDurationPercentage = event.duration / millisecondsInDay;
-        const width = eventDurationPercentage * timelineWidth;
-
-        // Создание и стилизация события
-        const eventElement = document.createElement('div');
-        eventElement.classList.add('event');
-        eventElement.classList.add(event.type); // Применяем стиль в зависимости от типа
-
-        // Устанавливаем позицию и ширину события
-        eventElement.style.left = `${position}px`;
-        eventElement.style.width = (width - 3) + 'px';  // Ширина события пропорциональна его длительности
-        eventElement.textContent = event.label;
-
-        // Добавляем событие на временную шкалу
-        timeline.appendChild(eventElement);
-    });
-}
+            const timeline = document.querySelector('.timeline');
+            const timelineWidth = timeline.offsetWidth;
+            const startOfDay = new Date();
+            startOfDay.setHours(0, 0, 0, 0);
+            const millisecondsInDay = 24 * 60 * 60 * 1000;
+            const existingEvents = timeline.querySelectorAll('.event');
+            existingEvents.forEach(event => event.remove());
+            const currentDay = new Date().getDay();
+            eventsByDay[currentDay].forEach(event => {
+                const eventTime = new Date(event.time);
+                const timeSinceMidnight = eventTime - startOfDay;
+                const timePercentage = timeSinceMidnight / millisecondsInDay;
+                const position = timePercentage * timelineWidth;
+                const eventDurationPercentage = event.duration / millisecondsInDay;
+                const width = eventDurationPercentage * timelineWidth;
+                const eventElement = document.createElement('div');
+                eventElement.classList.add('event');
+                eventElement.classList.add(event.type);
+                eventElement.style.left = `${position}px`;
+                eventElement.style.width = (width - 3) + 'px';
+                eventElement.textContent = event.label;
+                timeline.appendChild(eventElement);
+            });
+        }
         function renderTimeMarkers() {
             const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
             existingMarkers.forEach(marker => marker.remove());
@@ -332,8 +312,8 @@
             movingLine.style.left = `${positionLocal}px`;
         }
         function handleResize() {
-            displayEvents();  // Перерисовываем события
-            updateMovingLine();  // Перемещаем линию времени
+            displayEvents();
+            updateMovingLine();
         }
         window.addEventListener('resize', function() {
             renderTimeMarkers();
