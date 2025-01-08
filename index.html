@@ -318,33 +318,28 @@
             movingLine.style.left = `${positionLocal}px`;
         }
         window.onload = function() {
-  const timeline = document.querySelector('.timeline');
-  const currentTimeLine = document.querySelector('.current-time');
+  const container = document.querySelector('.container');
+  const movingLine = document.querySelector('.moving-line');
   
   // Получаем текущую дату и время
   const now = new Date();
-  
-  // Задаем начальное время временной линии (например, с 1 января 2000 года)
-  const startTime = new Date('2000-01-01T00:00:00Z');
-  
-  // Расчет времени, прошедшего с начала временной линии
-  const duration = now - startTime;
-  
-  // Определяем ширину временной линии
-  const timelineWidth = timeline.offsetWidth;
-  
-  // Вычисляем позицию текущего времени на линии (например, по проценту от начала)
-  const currentPosition = (duration / (365 * 24 * 60 * 60 * 1000)) * timelineWidth; // для временной шкалы на годах
-  
-  // Устанавливаем позицию красной линии
-  currentTimeLine.style.left = `${currentPosition}px`;
+            const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}`}));
+            const otherTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${otherTimeZoneOffset >= 0 ? '+' : '-'}${Math.abs(otherTimeZoneOffset)}` }));
+            const startOfDayLocal = new Date(localTime);
+            startOfDayLocal.setHours(0, 0, 0, 0);
+            const millisecondsInDay = 24 * 60 * 60 * 1000;
+            const timeSinceMidnightLocal = localTime - startOfDayLocal;
+            const timePercentageLocal = timeSinceMidnightLocal / millisecondsInDay;
+            const timelineWidth = document.querySelector('.timeline').offsetWidth;
+            const positionLocal = timePercentageLocal * timelineWidth;
+            movingLine.style.left = `${positionLocal}px`;
   
   // Центрируем красную линию
   const timelineCenter = timelineWidth / 2;
-  const offset = currentPosition - timelineCenter;
+  const offset = positionLocal - timelineCenter;
   
   // Сдвигаем временную линию, чтобы красная линия была по центру
-  timeline.scrollLeft = offset;
+  container.scrollLeft = offset;
 };
         function handleResize() {
             displayEvents();
