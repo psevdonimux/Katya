@@ -306,8 +306,8 @@
         const movingLine = document.getElementById('movingLine');
         function updateMovingLines() {
     const now = new Date();
-    
-    // Получаем текущее местное время с учетом часового пояса
+
+    // Локальное время с учетом часового пояса
     const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}` }));
 
     // Начало дня по местному времени
@@ -326,7 +326,7 @@
     // Ширина временной шкалы
     const timelineWidth = document.querySelector('.timeline').offsetWidth;
     
-    // Позиция линии (по времени) от левого края
+    // Позиция линии (по времени)
     const positionLocal = timePercentageLocal * timelineWidth;
     
     // Центрируем красную линию относительно текущего времени
@@ -345,6 +345,11 @@
         renderTimeMarkers();
         setInterval(updateMovingLines, 1000);
         updateMovingLines();
+        // проверки
+        const timeline = document.querySelector('.timeline');
+console.log(timeline.offsetWidth); // Должно выводить положительное значение
+
+        console.log(movingLine.offsetWidth); // Должно выводить положительное значение
     </script>
 </body>
 </html>
