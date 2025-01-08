@@ -305,61 +305,18 @@
         }
         const movingLine = document.getElementById('movingLine');
         function updateMovingLines() {
-    const now = new Date();
-
-    // Локальное время с учетом часового пояса
-    const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}` }));
-
-    // Начало дня по местному времени
-    const startOfDayLocal = new Date(localTime);
-    startOfDayLocal.setHours(0, 0, 0, 0);
-
-    // Общее количество миллисекунд в дне
-    const millisecondsInDay = 24 * 60 * 60 * 1000;
-    
-    // Время с полуночи в миллисекундах
-    const timeSinceMidnightLocal = localTime - startOfDayLocal;
-    
-    // Процент времени от начала дня
-    const timePercentageLocal = timeSinceMidnightLocal / millisecondsInDay;
-    
-    // Ширина временной шкалы
-    const timelineWidth = document.querySelector('.timeline').offsetWidth;
-    
-    // Позиция линии (по времени)
-    const positionLocal = timePercentageLocal * timelineWidth;
-    
-    // Центрируем красную линию относительно текущего времени
-    movingLine.style.left = `${positionLocal - movingLine.offsetWidth / 2}px`; // Смещаем на половину ширины линии
-}
-        function setRedLineToCenter() {
-    const timeline = document.querySelector('.timeline');
-    const movingLine = document.querySelector('.moving-line');
-
-    // Получаем ширину экрана
-    const screenWidth = window.innerWidth;
-    
-    // Получаем ширину временной шкалы
-    const timelineWidth = timeline.offsetWidth;
-    
-    // Получаем положение временной шкалы относительно левого края окна
-    const timelineLeft = timeline.getBoundingClientRect().left;
-
-    // Центр экрана
-    const centerOfScreen = screenWidth / 2;
-
-    // Центр временной шкалы
-    const centerOfTimeline = timelineWidth / 2;
-
-    // Позиция красной линии, чтобы она была по центру экрана
-    const redLinePosition = centerOfScreen - (centerOfTimeline - timelineLeft);
-
-    // Устанавливаем позицию красной линии
-    movingLine.style.left = `${redLinePosition}px`;
-}
-
-// Вызовем функцию, когда страница полностью загружена
-window.addEventListener('load', setRedLineToCenter);
+            const now = new Date();
+            const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}`}));
+            const otherTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${otherTimeZoneOffset >= 0 ? '+' : '-'}${Math.abs(otherTimeZoneOffset)}` }));
+            const startOfDayLocal = new Date(localTime);
+            startOfDayLocal.setHours(0, 0, 0, 0);
+            const millisecondsInDay = 24 * 60 * 60 * 1000;
+            const timeSinceMidnightLocal = localTime - startOfDayLocal;
+            const timePercentageLocal = timeSinceMidnightLocal / millisecondsInDay;
+            const timelineWidth = document.querySelector('.timeline').offsetWidth;
+            const positionLocal = timePercentageLocal * timelineWidth;
+            movingLine.style.left = `${positionLocal}px`;
+        }
         function handleResize() {
             displayEvents();
             updateMovingLine();
