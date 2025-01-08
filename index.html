@@ -307,13 +307,13 @@
         function updateMovingLines() {
     const now = new Date();
     
-    // Локальное время с учетом часового пояса
-    const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}`}));
-    
+    // Получаем текущее местное время с учетом часового пояса
+    const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}` }));
+
     // Начало дня по местному времени
     const startOfDayLocal = new Date(localTime);
     startOfDayLocal.setHours(0, 0, 0, 0);
-    
+
     // Общее количество миллисекунд в дне
     const millisecondsInDay = 24 * 60 * 60 * 1000;
     
@@ -326,11 +326,11 @@
     // Ширина временной шкалы
     const timelineWidth = document.querySelector('.timeline').offsetWidth;
     
-    // Позиция красной линии
+    // Позиция линии (по времени) от левого края
     const positionLocal = timePercentageLocal * timelineWidth;
     
-    // Обновляем позицию красной линии
-    movingLine.style.left = `${positionLocal - movingLine.offsetWidth / 2}px`; // Центрируем относительно времени
+    // Центрируем красную линию относительно текущего времени
+    movingLine.style.left = `${positionLocal - movingLine.offsetWidth / 2}px`; // Смещаем на половину ширины линии
 }
         function handleResize() {
             displayEvents();
