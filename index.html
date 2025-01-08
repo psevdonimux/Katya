@@ -336,31 +336,30 @@
     const timeline = document.querySelector('.timeline');
     const movingLine = document.querySelector('.moving-line');
 
-    // Получаем ширину экрана и ширину временной шкалы
+    // Получаем ширину экрана
     const screenWidth = window.innerWidth;
+    
+    // Получаем ширину временной шкалы
     const timelineWidth = timeline.offsetWidth;
-
-    // Позиция временной шкалы на экране (если она не по всей ширине экрана, нужно учитывать её положение)
+    
+    // Получаем положение временной шкалы относительно левого края окна
     const timelineLeft = timeline.getBoundingClientRect().left;
 
-    // Позиция центра экрана
+    // Центр экрана
     const centerOfScreen = screenWidth / 2;
 
-    // Позиция центра временной шкалы
+    // Центр временной шкалы
     const centerOfTimeline = timelineWidth / 2;
 
-    // Позиция красной линии (чтобы она была по центру экрана)
+    // Позиция красной линии, чтобы она была по центру экрана
     const redLinePosition = centerOfScreen - (centerOfTimeline - timelineLeft);
 
-    // Устанавливаем красную линию по центру
+    // Устанавливаем позицию красной линии
     movingLine.style.left = `${redLinePosition}px`;
 }
 
 // Вызовем функцию, когда страница полностью загружена
 window.addEventListener('load', setRedLineToCenter);
-
-// Также добавим слушатель события изменения размера окна, чтобы обновить позицию красной линии, если размер экрана изменится
-window.addEventListener('resize', setRedLineToCenter);
         function handleResize() {
             displayEvents();
             updateMovingLine();
