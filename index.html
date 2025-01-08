@@ -316,7 +316,11 @@
             const timelineWidth = document.querySelector('.timeline').offsetWidth;
             const positionLocal = timePercentageLocal * timelineWidth;
             movingLine.style.left = `${positionLocal}px`;
-              // Центрируем красную линию
+        }
+        window.onload = function() {
+            const container = document.querySelector('.container');
+            const movingLine = document.getElementById('.moving-line');
+                          // Центрируем красную линию
   const timelineCenter = timelineWidth / 2;
   const offset = positionLocal - timelineCenter;
   
