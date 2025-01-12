@@ -2,10 +2,10 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         html {
-            transform: scale(0.55);
+            transform: scale(4);
         }
         body {
             font-family: Arial, sans-serif;
@@ -21,7 +21,7 @@
             width: 180%;
             position: relative;
             height: 5vh;
-            top: 16vh;
+            top: 13vh;
         }
         .timeline {
             width: 200%;
@@ -91,12 +91,6 @@
             height: 9px;
             top: 2px;
         }
-/* Стили для уроков Насти */
-        .event.type5 {
-            background-color: #ff3044;
-            height: 9px;
-            top: 6px;
-        }
 /* Стили для столовой */
         .event.type3 {
             background-color: #f5b631;
@@ -110,26 +104,24 @@
             top: 2px;
             opacity: 0.5;
         }
-        .event.type6 {
-            background-color: #f5b631;
-            height: 3px;
-            top: 2px;
-            opacity: 0.5;
-        }
         @media (orientation: portrait){
             html{
-                transform: scale(0.45);
-                margin-top: -5vh;
+                transform: scale(3.485);
             }
             .hour-label {
-                font-size: 3vw;
+                font-size: 0.8vh;
             }
             .hour-label-other {
-                font-size: 3vw;
+                font-size: 0.8vh;
             }
             .container {
                 width: 220%;
-                top: 14vh;
+                top: 11vh;
+            }
+        }
+        @media (orientation: landscape){
+            .container {
+                top: 9vh;
             }
         }
     </style>
@@ -169,8 +161,6 @@
         { time: new Date().setHours(14, 15), label: 'Осетинский', type: 'type2', duration: 40 * 60 * 1000},
         { time: new Date().setHours(15, 05), label: 'География', type: 'type2', duration: 40 * 60 * 1000},
         { time: new Date().setHours(15, 50), label: 'Вероятность', type: 'type2', duration: 40 * 60 * 1000}
-
-        
     ],
     2: [ // Вторник
         { time: new Date().setHours(9, 0), label: 'Обществознание', type: 'type1', duration: 40 * 60 * 1000},
@@ -303,7 +293,6 @@
                 hourLabel.classList.add('hour-label');
                 hourLabel.textContent = `${i < 10 ? '0' : ''}${i}:00`;
                 hourLabel.style.left = `${position}px`;
-                hourLabel.style.fontSize = (window.innerHeight / 200) + 'px';
                 const hourLabelOther = document.createElement('div');
                 hourLabelOther.classList.add('hour-label-other');
                 const adjustedHour = (i + (otherTimeZoneOffset - timeZoneOffset) + 24) % 24;
