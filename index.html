@@ -122,7 +122,6 @@
                 margin-top: -5vh;
             }
             .hour-label {
-                font-size: 3vw;
             }
             .hour-label-other {
                 font-size: 3vw;
@@ -303,6 +302,7 @@
                 hourLabel.classList.add('hour-label');
                 hourLabel.textContent = `${i < 10 ? '0' : ''}${i}:00`;
                 hourLabel.style.left = `${position}px`;
+                hourLabel.style.fontSize = (window.innerHeight / 200) + 'px';
                 const hourLabelOther = document.createElement('div');
                 hourLabelOther.classList.add('hour-label-other');
                 const adjustedHour = (i + (otherTimeZoneOffset - timeZoneOffset) + 24) % 24;
