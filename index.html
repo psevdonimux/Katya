@@ -373,6 +373,8 @@
             updateMovingLines();
         });
         window.addEventListener('resize', handleResize);
+        var scale = window.devicePixelRatio * 3; // Масштабируем с учётом плотности пикселей
+document.body.style.transform = "scale(" + scale + ")";
         displayEvents();
         renderTimeMarkers();
         setInterval(updateMovingLines, 1000);
