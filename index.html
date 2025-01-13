@@ -17,12 +17,14 @@
             align-items: center;
             background-color: black;
             flex-direction: column;
+            overflow: scroll;
         }
         .container {
             width: 180%;
             position: relative;
             height: 5vh;
             top: 13vh;
+            overflow: scroll;
         }
         .timeline {
             width: 200%;
@@ -117,7 +119,7 @@
         }
         @media (orientation: portrait){
             html{
-                transform: scale(0.33);
+                transform: scale(3.33);
                 margin-top: -5vh;
             }
             .hour-label {
