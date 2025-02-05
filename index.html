@@ -24,6 +24,7 @@
             height: 5vh;
             top: 13vh;
         }
+        buttons-container
         .timeline {
             width: 200%;
             height: 4px;
@@ -134,6 +135,15 @@
     </style>
 </head>з
 <body>
+    <div id="buttons-container">
+    <button class="day-button" data-day="0">Воскресенье</button>
+    <button class="day-button" data-day="1">Понедельник</button>
+    <button class="day-button" data-day="2">Вторник</button>
+    <button class="day-button" data-day="3">Среда</button>
+    <button class="day-button" data-day="4">Четверг</button>
+    <button class="day-button" data-day="5">Пятница</button>
+    <button class="day-button" data-day="6">Суббота</button>
+</div>
     <div class="container">
         <div class="timeline" id="timeline"></div>
         <div class="moving-line" id="movingLine"></div>
@@ -144,6 +154,7 @@
         const stepMinutes = 10;
         const stepHours = 60;
         const timeline = document.getElementById('timeline');
+        const buttons = document.querySelectorAll('.day-button');
         const eventsByDay = {
     0: [ // Воскресенье
     
@@ -365,6 +376,48 @@
             const positionLocal = timePercentageLocal * timelineWidth;
             movingLine.style.left = `${positionLocal}px`;
         }
+        // Функция для отображения событий для выбранного дня
+function displayEvents(dayIndex) {
+    // Очистить текущие события на временной шкале
+    const existingEvents = timeline.querySelectorAll('.event');
+    existingEvents.forEach(event => event.remove());
+
+    // Получить список событий для выбранного дня
+    const events = eventsByDay[dayIndex];
+
+    // Вычисление ширины временной шкалы
+    const timelineWidth = timeline.offsetWidth;
+    const startOfDay = new Date();
+    startOfDay.setHours(0, 0, 0, 0);
+    const millisecondsInDay = 24 * 60 * 60 * 1000;
+
+    // Отображение событий
+    events.forEach(event => {
+        const eventTime = new Date(event.time);
+        const timeSinceMidnight = eventTime - startOfDay;
+        const timePercentage = timeSinceMidnight / millisecondsInDay;
+        const position = timePercentage * timelineWidth;
+        const eventDurationPercentage = event.duration / millisecondsInDay;
+        const width = eventDurationPercentage * timelineWidth;
+
+        const eventElement = document.createElement('div');
+        eventElement.classList.add('event');
+        eventElement.classList.add(event.type);
+        eventElement.style.left = `${position}px`;
+        eventElement.style.width = (width - 4) + 'px'; // Немного уменьшить ширину
+        eventElement.textContent = event.label;
+
+        timeline.appendChild(eventElement);
+    });
+}
+        // Добавляем обработчики событий для кнопок
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        const dayIndex = parseInt(button.getAttribute('data-day'));
+        displayEvents(dayIndex); // Показать события для выбранного дня
+    });
+});
+
         function handleResize() {
             displayEvents();
             updateMovingLine();
