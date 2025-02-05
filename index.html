@@ -394,23 +394,23 @@ function displayEvents(dayIndex) {
     const millisecondsInDay = 24 * 60 * 60 * 1000;
 
     // Отображение событий
-    events.forEach(event => {
-        const eventTime = new Date(event.time);
-        const timeSinceMidnight = eventTime - startOfDay;
-        const timePercentage = timeSinceMidnight / millisecondsInDay;
-        const position = timePercentage * timelineWidth;
-        const eventDurationPercentage = event.duration / millisecondsInDay;
-        const width = eventDurationPercentage * timelineWidth;
+    for (let i = 0; i < events.length; i++) {
+    const event = events[i];
+    const eventTime = new Date(event.time);
+    const timeSinceMidnight = eventTime - startOfDay;
+    const timePercentage = timeSinceMidnight / millisecondsInDay;
+    const position = timePercentage * timelineWidth;
+    const eventDurationPercentage = event.duration / millisecondsInDay;
+    const width = eventDurationPercentage * timelineWidth;
 
-        const eventElement = document.createElement('div');
-        eventElement.classList.add('event');
-        eventElement.classList.add(event.type);
-        eventElement.style.left = `${position}px`;
-        eventElement.style.width = (width - 4) + 'px'; // Немного уменьшить ширину
-        eventElement.textContent = event.label;
+    const eventElement = document.createElement('div');
+    eventElement.classList.add('event');
+    eventElement.classList.add(event.type);
+    eventElement.style.left = `${position}px`;
+    eventElement.style.width = (width - 4) + 'px'; // Немного уменьшить ширину
+    eventElement.textContent = event.label;
 
-        timeline.appendChild(eventElement);
-    });
+    timeline.appendChild(eventElement);
 }
         // Добавляем обработчики событий для кнопок
 buttons.forEach(button => {
