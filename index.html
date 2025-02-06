@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -468,19 +469,11 @@
     height: 10vh;    
    `;
     content.prepend(close); 
-  let el = document.getElementById(modalId).style;     
+  let el = document.getElementById(modalId).style;         
+    window.onclick = function(event){       
     el.display = 'block';
-    window.onclick = function(event){   
-    
-    el.display = 'block';
-    if(window.innerWidth > window.innerHeight){
-    el.left = (event.clientX * 1.3) + 'px';
-    el.top = event.clientY + 'px';
-    }
-    else{
-     el.left = (event.clientX * 2) + 'px';
-     el.top = (event.clientY * 3) + 'px';
-    }
+    el.left = event.offsetX + 'px';
+    el.top = event.offsetY + 'px';
     };
     document.getElementById('close').onclick = function(){   
     document.getElementById(modalId).style.display = 'none';
