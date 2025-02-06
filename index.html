@@ -430,16 +430,16 @@ const startOfDay = new Date().setHours(0, 0, 0, 0);
      background-color: #323338;
      margin: auto;
      padding: 20px;
-     width: 20vw;
-     height: 10vh;
+     width: 3000vw;
+     height: 600vh;
      border-radius: 25px;
      text-align: center;
      `;
     }
     else{
     content.style.cssText = `
-     width: 30vw;
-     height: 6vh;
+     width: 3000vw;
+     height: 600vh;
      background-color: #323338;
      margin: auto;
      padding: 20px;  
@@ -456,7 +456,9 @@ const startOfDay = new Date().setHours(0, 0, 0, 0);
     height: 10vh;    
    `;
     content.prepend(close); 
-  let el = document.getElementById(modalId).style;         
+           
+  let el = document.getElementById(modalId).style;   
+           el.display = 'block';
     window.onclick = function(event){       
     el.display = 'block';
     el.left = event.offsetX + 'px';
