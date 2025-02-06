@@ -468,7 +468,7 @@
     height: 10vh;    
    `;
     content.prepend(close);
-    window.ondblclick = function(event){   
+    window.onclick = function(event){   
     let el = document.getElementById(modalId).style;
     el.display = 'block';
     if(window.innerWidth > window.innerHeight){
