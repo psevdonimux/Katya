@@ -460,8 +460,8 @@ const startOfDay = new Date().setHours(0, 0, 0, 0);
   let el = document.getElementById(modalId).style;         
     window.onclick = function(event){       
     el.display = 'block';
-    el.left = event.offsetX + 'px';
-    el.top = event.offsetY + 'px';
+    el.left = 50%;
+    el.top = 50%;
     };
     document.getElementById('close').onclick = function(){   
     document.getElementById(modalId).style.display = 'none';
