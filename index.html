@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -131,7 +132,12 @@
             }
         }
     </style>
-</head>з
+</head>
+<button onclick="setDay(1);">Понедельник</button>
+<button onclick="setDay(2);">Вторник</button>
+<button onclick="setDay(3);">Среда</button>
+<button onclick="setDay(4);">Четверг</button>
+<button onclick="setDay(5);">Пятница</button>
 <body>
     <div class="container">
         <div class="timeline" id="timeline"></div>
@@ -293,7 +299,7 @@
        
     ]
         };
-        function displayEvents() {
+        function displayEvents(day = 0) {
             const timeline = document.querySelector('.timeline');
             const timelineWidth = timeline.offsetWidth;
             const startOfDay = new Date();
@@ -301,7 +307,7 @@
             const millisecondsInDay = 24 * 60 * 60 * 1000;
             const existingEvents = timeline.querySelectorAll('.event');
             existingEvents.forEach(event => event.remove());
-            const currentDay = new Date().getDay();
+            const currentDay = day == 0 ? new Date().getDay() : day;
             eventsByDay[currentDay].forEach(event => {
                 const eventTime = new Date(event.time);
                 const timeSinceMidnight = eventTime - startOfDay;
@@ -366,6 +372,11 @@
         }
         function handleResize() {
             displayEvents();
+            updateMovingLine();
+        }
+        function setDay(day){
+           renderTimeMarkers();
+           displayEvents(day);
             updateMovingLine();
         }
         window.addEventListener('resize', function() {
