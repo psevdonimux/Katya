@@ -456,8 +456,8 @@ const startOfDay = new Date().setHours(0, 0, 0, 0);
   let el = document.getElementById(modalId).style;         
     window.onclick = function(event){       
     el.display = 'block';
-    el.left = event.offsetX + 'vw';
-    el.top = event.offsetY + 'vh';
+    el.left = event.offsetX + '1vw';
+    el.top = event.offsetY + '1vh';
     };
     document.getElementById('close').onclick = function(){   
     document.getElementById(modalId).style.display = 'none';
