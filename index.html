@@ -46,7 +46,10 @@
             position: absolute;
             width: 2px;
             height: 20px;
-            background-color: red;
+            background: linear-gradient(
+                rgba(0, 0, 0, 0),
+                red,
+                rgba(0, 0, 0, 0));
             top: -8px;
             z-index: 3;
             opacity: 0.6;
@@ -56,24 +59,32 @@
             bottom: -5px;
             width: 1px;
             height: 15px;
-            background-color: #5c5c5c;
+            background: linear-gradient(
+                rgba(0, 0, 0, 0),
+                #5c5c5c,
+                rgba(0, 0, 0, 0));
         }
         .hour-marker {
             position: absolute;
             bottom: -15px;
             width: 1px;
             height: 35px;
-            background-color: #707070;
+            background: linear-gradient(
+                rgba(0, 0, 0, 0),
+                #707070,
+                rgba(0, 0, 0, 0));
         }
         .hour-label {
             position: absolute;
             bottom: 22px;
+            right: 3px;
             font-size: 7px;
             color: #e1e1e1;
             text-align: center;
         }
         .hour-label-other {
             position: absolute;
+            right: 3px;
             bottom: -27px;
             font-size: 7px;
             color: #e1e1e1;
