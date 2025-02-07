@@ -18,9 +18,9 @@
             flex-direction: column;
         }
         .container {
-            width: 180%;
+            wigth: 180%;
             position: relative;
-            height: 5vh;
+            width: 20vh;
             top: 13vh;
         }
         #buttons-container {
@@ -36,15 +36,15 @@
             color: #e1e1e1;
         }
         .timeline {
-            width: 200%;
-            height: 4px;
+            height: 200%;
+            width: 4px;
             background-color: #5c5c5c;
             position: relative;
         }
         .moving-line {
             position: absolute;
-            width: 2px;
-            height: 20px;
+            height: 2px;
+            width: 20px;
             background-color: red;
             top: -8px;
             z-index: 3;
@@ -53,15 +53,15 @@
         .marker {
             position: absolute;
             bottom: -5px;
-            width: 1px;
-            height: 15px;
+            heigth: 1px;
+            width: 15px;
             background-color: #5c5c5c;
         }
         .hour-marker {
             position: absolute;
             bottom: -15px;
-            width: 1px;
-            height: 35px;
+            height: 1px;
+            width: 35px;
             background-color: #707070;
         }
         .hour-label {
@@ -91,38 +91,38 @@
 /* Стили для уроков Кати */
         .event.type1 {
             background-color: rgba(62, 88, 229, 0.6);
-            height: 7px;
+            width: 7px;
             top: -15px;
         }
 /* Стили для уроков Рустама */
         .event.type2 {
             background-color: rgba(0, 126, 91, 0.6);
-            height: 7px;
+            width: 7px;
             top: -4px;
         }
 /* Стили для уроков Насти */
         .event.type5 {
             background-color: rgba(232, 80, 87, 0.6);
             -color: #e85057;
-            height: 7px;
+            width: 7px;
             top: 7px;
         }
 /* Стили для столовой */
         .event.type3 {
             background-color: #f5b631;
-            height: 7px;
+            width: 7px;
             top: -15px;
             opacity: 0.4;
         }
         .event.type4 {
             background-color: #f5b631;
-            height: 7px;
+            width: 7px;
             top: -4px;
             opacity: 0.4;
         }
         .event.type6 {
             background-color: #f5b631;
-            height: 7px;
+            width: 7px;
             top: 7px;
             opacity: 0.4;
         }
@@ -321,7 +321,7 @@ const millisecondsInDay = 24 * 60 * 60 * 1000;
 const startOfDay = new Date().setHours(0, 0, 0, 0);         
         function displayEvents(day = 0) {
             const timeline = document.querySelector('.timeline');
-            const timelineWidth = timeline.offsetWidth;
+            const timelineHeight = timeline.offsetHeight;
              
             const existingEvents = timeline.querySelectorAll('.event');
             existingEvents.forEach(event => event.remove());
@@ -330,8 +330,8 @@ const startOfDay = new Date().setHours(0, 0, 0, 0);
                 const eventElement = document.createElement('div');
                 eventElement.classList.add('event');
                 eventElement.classList.add(event.type);
-                eventElement.style.left = ((((new Date(event.time)) - startOfDay) / millisecondsInDay) * timelineWidth) + 'px';                               
-                eventElement.style.width = (((event.duration / millisecondsInDay) * timelineWidth) - 4) + 'px';
+                eventElement.style.left = ((((new Date(event.time)) - startOfDay) / millisecondsInDay) * timelineHeight) + 'px';                               
+                eventElement.style.width = (((event.duration / millisecondsInDay) * timelineHeight) - 4) + 'px';
                 eventElement.textContent = event.label;
                 timeline.appendChild(eventElement);
             });
@@ -339,18 +339,18 @@ const startOfDay = new Date().setHours(0, 0, 0, 0);
         function renderTimeMarkers() {
             const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
             existingMarkers.forEach(marker => marker.remove());
-            const width = timeline.offsetWidth;            
+            const height = timeline.offsetHeight;            
             const totalSteps = (24 * 60) / stepMinutes;
             for (let i = 0; i < totalSteps; i++) {
                 const marker = document.createElement('div');
                 marker.classList.add('marker');
-                marker.style.left = (i * (width / totalSteps)) + 'px';
+                marker.style.left = (i * (height / totalSteps)) + 'px';
                 timeline.appendChild(marker);
             }
             for (let i = 0; i < 24; i++) {
                 const hourMarker = document.createElement('div');
                 hourMarker.classList.add('hour-marker');
-                const position = (i * (width / 24));
+                const position = (i * (height / 24));
                 hourMarker.style.left = `${position}px`;
                 const hourLabel = document.createElement('div');
                 hourLabel.classList.add('hour-label');
@@ -372,7 +372,7 @@ const startOfDay = new Date().setHours(0, 0, 0, 0);
             const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}`}));
             const otherTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${otherTimeZoneOffset >= 0 ? '+' : '-'}${Math.abs(otherTimeZoneOffset)}` }));
             const startOfDayLocal = new Date(localTime).setHours(0, 0, 0, 0);           
-            movingLine.style.left = (((localTime - startOfDayLocal) / millisecondsInDay) * (document.querySelector('.timeline').offsetWidth)) + 'px';
+            movingLine.style.top = (((localTime - startOfDayLocal) / millisecondsInDay) * (document.querySelector('.timeline').offsetWidth)) + 'px';
         }
         function handleResize() {
             displayEvents();
