@@ -329,8 +329,8 @@ const startOfDay = new Date().setHours(0, 0, 0, 0);
                 const eventElement = document.createElement('div');
                 eventElement.classList.add('event');
                 eventElement.classList.add(event.type);
-                eventElement.style.left = ((((new Date(event.time)) - startOfDay) / millisecondsInDay) * timelineHeight) + 'px';                               
-                eventElement.style.width = (((event.duration / millisecondsInDay) * timelineHeight) - 4) + 'px';
+                eventElement.style.top = ((((new Date(event.time)) - startOfDay) / millisecondsInDay) * timelineHeight) + 'px';                               
+                eventElement.style.height = (((event.duration / millisecondsInDay) * timelineHeight) - 4) + 'px';
                 eventElement.textContent = event.label;
                 timeline.appendChild(eventElement);
             });
@@ -343,23 +343,23 @@ const startOfDay = new Date().setHours(0, 0, 0, 0);
             for (let i = 0; i < totalSteps; i++) {
                 const marker = document.createElement('div');
                 marker.classList.add('marker');
-                marker.style.left = (i * (height / totalSteps)) + 'px';
+                marker.style.top = (i * (height / totalSteps)) + 'px';
                 timeline.appendChild(marker);
             }
             for (let i = 0; i < 24; i++) {
                 const hourMarker = document.createElement('div');
                 hourMarker.classList.add('hour-marker');
                 const position = (i * (height / 24));
-                hourMarker.style.left = `${position}px`;
+                hourMarker.style.top = `${position}px`;
                 const hourLabel = document.createElement('div');
                 hourLabel.classList.add('hour-label');
                 hourLabel.textContent = `${i < 10 ? '0' : ''}${i}:00`;
-                hourLabel.style.left = `${position}px`;
+                hourLabel.style.top = `${position}px`;
                 const hourLabelOther = document.createElement('div');
                 hourLabelOther.classList.add('hour-label-other');
                 const adjustedHour = (i + (otherTimeZoneOffset - timeZoneOffset) + 24) % 24;
                 hourLabelOther.textContent = `${adjustedHour < 10 ? '0' : ''}${adjustedHour}:00`;
-                hourLabelOther.style.left = `${position}px`;
+                hourLabelOther.style.top = `${position}px`;
                 timeline.appendChild(hourMarker);
                 timeline.appendChild(hourLabel);
                 timeline.appendChild(hourLabelOther);
