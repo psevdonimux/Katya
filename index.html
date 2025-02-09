@@ -6,6 +6,8 @@
     <style>
         html {
             transform: scale(3);
+            height: 100%;
+            overflow: hidden;
         }
         body {
             font-family: Arial, sans-serif;
@@ -16,22 +18,9 @@
             align-items: center;
             background-color: black;
             flex-direction: column;
+            height: 100%;
             overflow: hidden;
         }
-        .container1 {
-    display: flex;
-}
-
-.sidebar {
-    position: sticky;
-    top: 0;
-    left: 0;
-    width: 200px;
-    height: 100%;
-    background-color: #f4f4f4;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-}
         .container {
             width: 180%;
             position: relative;
@@ -50,6 +39,12 @@
             text-align: center;
             font-size: 8px;
             color: #e1e1e1;
+        }
+        .sticky-element {
+            position: sticky;
+            width: 20px;
+            height: 20px;
+            backgroubnd-color: white;
         }
         .timeline {
             width: 200%;
@@ -181,19 +176,14 @@
         <button class="button" onclick="setDay(0);">вс</button>
     </div>
      </div>
+    <div id='f'>
+        <button class='sticky-element'></button>
+    </div>
 <body>
-    <div class="container1">
-        <div class="sidebar">
-            <h2>Содержание</h2>
-            <ul>
-            </ul>
-        </div>
-        
     <div class="container">
         <div class="timeline" id="timeline"></div>
         <div class="moving-line" id="movingLine"></div>
     </div>
-        </div>
     <script>
         const timeZoneOffset = -5;
         const otherTimeZoneOffset = -7;
