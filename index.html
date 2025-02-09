@@ -6,7 +6,6 @@
     <style>
         html {
             transform: scale(3);
-            overflow: auto;
         }
         body {
             font-family: Arial, sans-serif;
@@ -17,7 +16,6 @@
             align-items: center;
             background-color: black;
             flex-direction: column;
-            overflow: auto;
         }
         .container {
             width: 180%;
@@ -37,12 +35,6 @@
             text-align: center;
             font-size: 8px;
             color: #e1e1e1;
-        }
-        .sticky-element {
-            position: sticky;
-            width: 20px;
-            height: 20px;
-            backgroubnd-color: white;
         }
         .timeline {
             width: 200%;
@@ -174,9 +166,6 @@
         <button class="button" onclick="setDay(0);">вс</button>
     </div>
      </div>
-    <div id='f'>
-        <button class='sticky-element'></button>
-    </div>
 <body>
     <div class="container">
         <div class="timeline" id="timeline"></div>
