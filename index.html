@@ -169,17 +169,6 @@
       }
     </style>
   </head>
-  <div id="modal">
-    <div id="buttons-container">
-      <button class="button" onclick="setDay(1);">пн</button>
-      <button class="button" onclick="setDay(2);">вт</button>
-      <button class="button" onclick="setDay(3);">ср</button>
-      <button class="button" onclick="setDay(4);">чт</button>
-      <button class="button" onclick="setDay(5);">пт</button>
-      <button class="button" onclick="setDay(6);">сб</button>
-      <button class="button" onclick="setDay(0);">вс</button>
-    </div>
-  </div>
   <body>
     <div class="fixed-nav">
       <button id="one" class="button" onclick="setDay(1);">пн</button>
@@ -206,135 +195,72 @@
       const stepMinutes = 10;
       const stepHours = 60;
       const timeline = document.getElementById('timeline');
-      createModal('modal', 'buttons-container');
+      const millisecondsInDay = 24 * 60 * 60 * 1000;
+      const startOfDay = new Date().setHours(0, 0, 0, 0);
+      function displayEvents(day = 0) {
+        const timeline = document.querySelector('.timeline');
+        const timelineWidth = timeline.offsetWidth;
+        const existingEvents = timeline.querySelectorAll('.event');
+        existingEvents.forEach(event => event.remove());
+        const currentDay = day == 0 ? new Date().getDay() : day;
+        eventsByDay[currentDay].forEach(event => {
+          const eventElement = document.createElement('div');
+          eventElement.classList.add('event');
+          eventElement.classList.add(event.type);
+          eventElement.style.left = ((((new Date(event.time)) - startOfDay) / millisecondsInDay) * timelineWidth) + 'px';                               
+          eventElement.style.width = ((event.duration / millisecondsInDay) * timelineWidth) + 'px';
+          eventElement.textContent = event.label;
+          timeline.appendChild(eventElement);
+        });
+      }
+      function renderTimeMarkers() {
+        const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
+        existingMarkers.forEach(marker => marker.remove());
+        const width = timeline.offsetWidth;            
+        const totalSteps = (24 * 60) / stepMinutes;
+        for (let i = 0; i < totalSteps; i++) {
+          const marker = document.createElement('div');
+          marker.classList.add('marker');
+          marker.style.left = (i * (width / totalSteps)) + 'px';
+          timeline.appendChild(marker);
+        }
+        for (let i = 0; i < 24; i++) {
+          const hourMarker = document.createElement('div');
+          hourMarker.classList.add('hour-marker');
+          const position = (i * (width / 24));
+          hourMarker.style.left = `${position}px`;
+          const hourLabel = document.createElement('div');
+          hourLabel.classList.add('hour-label');
+          hourLabel.textContent = `${i < 10 ? '0' : ''}${i}:00`;
+          hourLabel.style.left = `${position}px`;
+          const hourLabelOther = document.createElement('div');
+          hourLabelOther.classList.add('hour-label-other');
+          const adjustedHour = (i + (otherTimeZoneOffset - timeZoneOffset) + 24) % 24;
+          hourLabelOther.textContent = `${adjustedHour < 10 ? '0' : ''}${adjustedHour}:00`;
+          hourLabelOther.style.left = `${position}px`;
+          timeline.appendChild(hourMarker);
+          timeline.appendChild(hourLabel);
+          timeline.appendChild(hourLabelOther);
+        }
+      }
+      const movingLine = document.getElementById('movingLine');
+      function updateMovingLines() {
+        const now = new Date();
+        const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}`}));
+        const otherTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${otherTimeZoneOffset >= 0 ? '+' : '-'}${Math.abs(otherTimeZoneOffset)}` }));
+        const startOfDayLocal = new Date(localTime).setHours(0, 0, 0, 0);           
+        movingLine.style.left = (((localTime - startOfDayLocal) / millisecondsInDay) * (document.querySelector('.timeline').offsetWidth)) + 'px';
+      }
+      function handleResize() {
+        displayEvents();
+        updateMovingLine();
+      }
+      function setDay(day){
+        renderTimeMarkers();
+        displayEvents(day);
+        updateMovingLine();
+      }
       
-const millisecondsInDay = 24 * 60 * 60 * 1000;
-const startOfDay = new Date().setHours(0, 0, 0, 0);         
-        function displayEvents(day = 0) {
-            const timeline = document.querySelector('.timeline');
-            const timelineWidth = timeline.offsetWidth;
-             
-            const existingEvents = timeline.querySelectorAll('.event');
-            existingEvents.forEach(event => event.remove());
-            const currentDay = day == 0 ? new Date().getDay() : day;
-            eventsByDay[currentDay].forEach(event => {                
-                const eventElement = document.createElement('div');
-                eventElement.classList.add('event');
-                eventElement.classList.add(event.type);
-                eventElement.style.left = ((((new Date(event.time)) - startOfDay) / millisecondsInDay) * timelineWidth) + 'px';                               
-                eventElement.style.width = ((event.duration / millisecondsInDay) * timelineWidth) + 'px';
-                eventElement.textContent = event.label;
-                timeline.appendChild(eventElement);
-            });
-        }
-        function renderTimeMarkers() {
-            const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
-            existingMarkers.forEach(marker => marker.remove());
-            const width = timeline.offsetWidth;            
-            const totalSteps = (24 * 60) / stepMinutes;
-            for (let i = 0; i < totalSteps; i++) {
-                const marker = document.createElement('div');
-                marker.classList.add('marker');
-                marker.style.left = (i * (width / totalSteps)) + 'px';
-                timeline.appendChild(marker);
-            }
-            for (let i = 0; i < 24; i++) {
-                const hourMarker = document.createElement('div');
-                hourMarker.classList.add('hour-marker');
-                const position = (i * (width / 24));
-                hourMarker.style.left = `${position}px`;
-                const hourLabel = document.createElement('div');
-                hourLabel.classList.add('hour-label');
-                hourLabel.textContent = `${i < 10 ? '0' : ''}${i}:00`;
-                hourLabel.style.left = `${position}px`;
-                const hourLabelOther = document.createElement('div');
-                hourLabelOther.classList.add('hour-label-other');
-                const adjustedHour = (i + (otherTimeZoneOffset - timeZoneOffset) + 24) % 24;
-                hourLabelOther.textContent = `${adjustedHour < 10 ? '0' : ''}${adjustedHour}:00`;
-                hourLabelOther.style.left = `${position}px`;
-                timeline.appendChild(hourMarker);
-                timeline.appendChild(hourLabel);
-                timeline.appendChild(hourLabelOther);
-            }
-        }
-        const movingLine = document.getElementById('movingLine');
-        function updateMovingLines() {
-            const now = new Date();
-            const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}`}));
-            const otherTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${otherTimeZoneOffset >= 0 ? '+' : '-'}${Math.abs(otherTimeZoneOffset)}` }));
-            const startOfDayLocal = new Date(localTime).setHours(0, 0, 0, 0);           
-            movingLine.style.left = (((localTime - startOfDayLocal) / millisecondsInDay) * (document.querySelector('.timeline').offsetWidth)) + 'px';
-        }
-        function handleResize() {
-            displayEvents();
-            updateMovingLine();
-        }
-        function setDay(day){
-           renderTimeMarkers();
-           displayEvents(day);
-            updateMovingLine();
-        }
-           function createModal(modalId, contentId){
-  var modalStatusClick = function(modal, modalId){
-   };
-   var content = document.getElementById(contentId); 
-   var modal = document.getElementById(modalId);
-   var close = document.createElement('span');
-   close.id = 'close';
-   close.textContent = '×';  
-   close.style.cssText = `
-    color: #B00000;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    margin-top: -2%;
-   `;
-   const setContentSize = function(){
-    if(window.innerWidth > window.innerHeight){
-     content.style.cssText = `
-     background-color: #323338;
-     margin: auto;
-     padding: 20px;
-     width: 20vw;
-     height: 10vh;
-     border-radius: 25px;
-     text-align: center;
-     `;
-    }
-    else{
-    content.style.cssText = `
-     width: 30vw;
-     height: 6vh;
-     background-color: #323338;
-     margin: auto;
-     padding: 20px;  
-     border-radius: 25px;
-     text-align: center;
-    `;
-    }
-   };
-   setContentSize();
-   window.onresize = function(){
-     setContentSize();
-  };
-   modal.style.cssText = `
-    display: none; 
-    position: fixed;
-    z-index: 1000;
-    width: 10vw;
-    height: 10vh;    
-   `;
-    content.prepend(close);           
-  let el = document.getElementById(modalId).style;   
-    document.onclick = function(event){       
-    el.display = 'block';
-    el.left = event.offsetX + 'px';
-    el.top = event.offsetY + 'px';
-    };
-    document.getElementById('close').onclick = function(){   
-    document.getElementById(modalId).style.display = 'none';
-    };
- }
     function setFont(setDay) {
       const oneElement = document.getElementById('1')
       const twoElement = document.getElementById('2')
