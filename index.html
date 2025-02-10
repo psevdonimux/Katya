@@ -375,7 +375,7 @@ const startOfDay = new Date().setHours(0, 0, 0, 0);
                 eventElement.classList.add('event');
                 eventElement.classList.add(event.type);
                 eventElement.style.left = ((((new Date(event.time)) - startOfDay) / millisecondsInDay) * timelineWidth) + 'px';                               
-                eventElement.style.width = (((event.duration / millisecondsInDay) * timelineWidth) - 4) + 'px';
+                eventElement.style.width = ((event.duration / millisecondsInDay) * timelineWidth) + 'px';
                 eventElement.textContent = event.label;
                 timeline.appendChild(eventElement);
             });
