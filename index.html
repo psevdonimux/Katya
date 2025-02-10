@@ -10,6 +10,7 @@
         padding: 0;
         font-family: Arial, sans-serif;
         background-color: black;
+        overflow-y: hidden
       }
       .scroll-container {
         width: 100vw;
@@ -58,7 +59,7 @@
           rgba(0, 0, 0, 0),
           red,
           rgba(0, 0, 0, 0));
-        bottow: 51px;
+        top: -51px;
         z-index: 3;
         opacity: 0.6;
       }
@@ -70,7 +71,7 @@
       }
       .marker {
         position: absolute;
-        top: 37px;
+        bottom: -37px;
         width: 2px;
         height: 80px;
         background: linear-gradient(
@@ -80,7 +81,7 @@
       }
       .hour-marker {
         position: absolute;
-        top: 83px;
+        bottom: -83px;
         width: 2px;
         height: 180px;
         background: linear-gradient(
@@ -98,7 +99,7 @@
       }
       .hour-label-other {
         position: absolute;
-        top: 81px;
+        bottom: -81px;
         font-size: 18px;
         color: #e1e1e1;
         text-align: center;
@@ -117,12 +118,12 @@
 /* Стили для уроков Кати */
       .event.type1 {
         background-color: rgba(62, 88, 229, 0.6);
-        bottom: 43px;
+        top: -43px;
       }
 /* Стили для уроков Рустама */
       .event.type2 {
         background-color: rgba(0, 126, 91, 0.6);
-        bottom: 12px;
+        top: -12px;
       }
 /* Стили для уроков Насти */
       .event.type5 {
@@ -132,17 +133,17 @@
 /* Стили для столовой */
       .event.type3 {
         background-color: rgba(245, 182, 31, 0.4);
-        height: 20px;
-        bottom: 43px;
+        height: 19px;
+        top: -43px;
       }
       .event.type4 {
         background-color: rgba(245, 182, 31, 0.4);;
-        height: 20px;
-        bottom: 12px;
+        height: 19px;
+        top: -12px;
       }
       .event.type6 {
-        height: 20px;
         background-color: rgba(245, 182, 31, 0.4);
+        height: 19px;
         top: 21px;
         }
       @media (orientation: portrait) {
