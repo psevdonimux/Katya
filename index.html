@@ -197,6 +197,8 @@
       const timeline = document.getElementById('timeline');
       const millisecondsInDay = 24 * 60 * 60 * 1000;
       const startOfDay = new Date().setHours(0, 0, 0, 0);
+      const movingLine = document.getElementById('movingLine');
+      
       function displayEvents(day = 0) {
         const timeline = document.querySelector('.timeline');
         const timelineWidth = timeline.offsetWidth;
@@ -243,7 +245,6 @@
           timeline.appendChild(hourLabelOther);
         }
       }
-      const movingLine = document.getElementById('movingLine');
       function updateMovingLines() {
         const now = new Date();
         const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}`}));
@@ -261,60 +262,25 @@
         updateMovingLine();
       }
       
-    function setFont(setDay) {
-      const oneElement = document.getElementById('1')
-      const twoElement = document.getElementById('2')
-      const threeElement = document.getElementById('3')
-      const fourElement = document.getElementById('4')
-      const fiveElement = document.getElementById('5')
-      const sixElement = document.getElementById('6')
-      const zeroElement = document.getElementById('0')
-      if (setDay === 1) {
-        oneElement.style.fontWeight = 'bold';
-      } else {
-        oneElement.style.fontWeight = 'normal';
-      }
-      if (setDay === 2) {
-        twoElement.style.fontWeight = 'bold';
-      } else {
-        twoElement.style.fontWeight = 'normal';
-      }
-      if (setDay === 3) {
-        threeElement.style.fontWeight = 'bold';
-      } else {
-        threeElement.style.fontWeight = 'normal';
-      }
-      if (setDay === 4) {
-        fourElement.style.fontWeight = 'bold';
-      } else {
-        fourElement.style.fontWeight = 'normal';
-      }
-      if (setDay === 5) {
-        fiveElement.style.fontWeight = 'bold';
-      } else {
-        fiveElement.style.fontWeight = 'normal';
-      }
-      if (setDay === 6) {
-        sixElement.style.fontWeight = 'bold';
-      } else {
-        sixElement.style.fontWeight = 'normal';
-      }
-      if (setDay === 0) {
-        zeroElement.style.fontWeight = 'bold';
-      } else {
-        zeroElement.style.fontWeight = 'normal';
-      }
+    function setFontWeight(setDay) {
+      const buttonElement = document.getSelectorAll('.button')
+      buttonElements.forEach((element, index) => {
+        if (index === setDay) {
+          element.style.fontWeight = 'bold';
+        } else {
+          oneElement.style.fontWeight = 'normal';
+        }
+      });
     }
-      
-        window.addEventListener('resize', function() {
-            renderTimeMarkers();
-            updateMovingLines();
-        });
-        window.addEventListener('resize', handleResize);
-        displayEvents();
+      window.addEventListener('resize', function() {
         renderTimeMarkers();
-        setInterval(updateMovingLines, 1000);
         updateMovingLines();
+      });
+      window.addEventListener('resize', handleResize);
+      displayEvents();
+      renderTimeMarkers();
+      setInterval(updateMovingLines, 1000);
+      updateMovingLines();
     </script>
-</body>
+  </body>
 </html>
