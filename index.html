@@ -281,7 +281,7 @@ function updateFontWeight() {
 
   // Если была последняя нажатая кнопка, делаем её жирной
   if (lastClickedButton) {
-    lastClickedButton.style.fontWeight = '900';
+    lastClickedButton.style.fontWeight = '400';
   }
 }
 
@@ -295,7 +295,7 @@ buttons.forEach(button => {
       }
       lastClickedButton = button; // Обновляем ссылку на последнюю нажатую кнопку
     }
-    button.style.fontWeight = '900'; // Делаем текущую кнопку жирной
+    button.style.fontWeight = '400'; // Делаем текущую кнопку жирной
 
     // Обновляем font-weight для всех кнопок
     updateFontWeight();
