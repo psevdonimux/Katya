@@ -36,7 +36,9 @@
       top: 0;
       left: 0;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0);
+      background: linear-gradient(
+                rgba(255, 255, 255, 0.4),
+                rgba(0, 0, 0, 0));
       padding: 0;
       text-align: center;
       z-index: 10;
@@ -47,13 +49,11 @@
       margin: 0;
       padding: 20px;
       bottom: 60px;
-      width: 60px;
+      width: 8vw;
       height: 70px;
       color: white;
       border: none;
-      background: linear-gradient(
-                rgba(255, 255, 255, 0.6),
-                rgba(0, 0, 0, 0));
+      background: transparent;
       font-size: 16px;
     }
     .timeline {
@@ -118,49 +118,43 @@
         }
         .event {
             position: absolute;
+          height: 25px;
             padding: 2px;
             border-radius: 3px;
             text-align: center;
             font-size: 15px;
             z-index: 1;
             width: 150%;
+          color: white;
         }
 /* Стили для уроков Кати */
         .event.type1 {
             background-color: rgba(62, 88, 229, 0.6);
-            height: 21px;
             top: -45px;
-            color: #D1D8FF;
         }
 /* Стили для уроков Рустама */
         .event.type2 {
             background-color: rgba(0, 126, 91, 0.6);
-            height: 21px;
             top: -12px;
-            color: #C1FFED;
         }
 /* Стили для уроков Насти */
         .event.type5 {
             background-color: rgba(232, 80, 87, 0.6);
-            height: 21px;
             top: 21px;
-            color: #FFE2E3;
         }
 /* Стили для столовой */
         .event.type3 {
             background-color: rgba(245, 182, 31, 0.4);
-            height: 21px;
             top: -45px;
+          opacity: 0.4;
         }
         .event.type4 {
             background-color: #f5b631;
-            height: 21px;
             top: -12px;
             opacity: 0.4;
         }
         .event.type6 {
             background-color: rgba(245, 182, 31, 0.4);
-            height: 21px;
             top: 21px;
         }
             @media (orientation: portrait){
