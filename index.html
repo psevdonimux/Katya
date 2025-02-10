@@ -217,13 +217,13 @@
         existingMarkers.forEach(marker => marker.remove());
         const width = timeline.offsetWidth;            
         const totalSteps = (24 * 60) / stepMinutes;
-        for (let i = 0; i < totalSteps; i++) {
+        for (let i = 0; i <= totalSteps; i++) {
           const marker = document.createElement('div');
           marker.classList.add('marker');
           marker.style.left = (i * (width / totalSteps)) + 'px';
           timeline.appendChild(marker);
         }
-        for (let i = 0; i < 24; i++) {
+        for (let i = 0; i <= 24; i++) {
           const hourMarker = document.createElement('div');
           hourMarker.classList.add('hour-marker');
           const position = (i * (width / 24));
