@@ -1,64 +1,91 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        html {
-            transform: scale(3);
-        }
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: black;
-            flex-direction: column;
-        }
-        .container {
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Расписание</title>
+  <style>
+    /* Стили для страницы */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: black;
+      overflow-y: hidden
+    }
+
+    /* Стили для контейнера с горизонтальной прокруткой */
+    .scroll-container {
+      width: 100vw;
+      height: 100vh;
+      overflow-x: auto;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    /* Стили для содержимого страницы */
+    .content {
+      display: inline-block;
+      width: 300vw; /* Делаем контент шире для прокрутки */
+      height: 100%;
+    }
+
+    /* Стили для фиксированного меню */
+    .fixed-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0);
+      padding: 0;
+      text-align: center;
+      z-index: 10;
+    }
+
+    /* Стили для кнопок навигации */
+    .button {
+      margin: 0;
+      padding: 20px;
+      bottom: 60px;
+      width: 60px;
+      height: 70px;
+      color: white;
+      border: none;
+      background: linear-gradient(
+                rgba(255, 255, 255, 0.6),
+                rgba(0, 0, 0, 0));
+      font-size: 16px;
+    }
+    .timeline {
             width: 180%;
-            position: relative;
-            height: 5vh;
-            top: 15vh;
-            left: 74vw;
-        }
-        #buttons-container {
-            display:block;
-            margin-top:4px;
-        }
-        .button {
-            width: 30px;
-            height: 15px;
-            background-color: #5c5c5c;
-            text-align: center;
-            font-size: 8px;
-            color: #e1e1e1;
-        }
-        .timeline {
-            width: 200%;
-            height: 4px;
+            height: 12px;
             background-color: #5c5c5c;
             position: relative;
+      left: 1vw;
         }
         .moving-line {
             position: absolute;
-            width: 2px;
-            height: 40px;
+            width: 6px;
+            height: 120px;
             background: linear-gradient(
                 rgba(0, 0, 0, 0),
                 red,
                 rgba(0, 0, 0, 0));
-            top: -17px;
+            top: -51px;
             z-index: 3;
             opacity: 0.6;
         }
-        .marker {
+    .container {
+            width: 180%;
+            position: relative;
+            height: 15vh;
+            top: 45vh;
+        }
+    .marker {
             position: absolute;
-            bottom: -17px;
-            width: 1px;
-            height: 40px;
+            bottom: -31px;
+            width: 2px;
+            height: 80px;
             background: linear-gradient(
                 rgba(0, 0, 0, 0),
                 #5c5c5c,
@@ -66,9 +93,9 @@
         }
         .hour-marker {
             position: absolute;
-            bottom: -25px;
-            width: 1px;
-            height: 60px;
+            bottom: -75px;
+            width: 3px;
+            height: 180px;
             background: linear-gradient(
                 rgba(0, 0, 0, 0),
                 #707070,
@@ -76,86 +103,82 @@
         }
         .hour-label {
             position: absolute;
-            bottom: 22px;
-            left: 1vw;
-            font-size: 7px;
+            bottom: 66px;
+            left: 3vw;
+            font-size: 21px;
             color: #e1e1e1;
             text-align: center;
         }
         .hour-label-other {
             position: absolute;
-            bottom: -27px;
-            font-size: 7px;
+            bottom: -81px;
+            font-size: 21px;
             color: #e1e1e1;
             text-align: center;
         }
         .event {
             position: absolute;
             padding: 2px;
-            border-radius: 2px;
+            border-radius: 3px;
             text-align: center;
-            font-size: 5px;
+            font-size: 15px;
             z-index: 1;
-            width: 50%;
+            width: 150%;
         }
 /* Стили для уроков Кати */
         .event.type1 {
             background-color: rgba(62, 88, 229, 0.6);
-            height: 7px;
-            top: -15px;
+            height: 21px;
+            top: -45px;
             color: #D1D8FF;
         }
 /* Стили для уроков Рустама */
         .event.type2 {
             background-color: rgba(0, 126, 91, 0.6);
-            height: 7px;
-            top: -4px;
+            height: 21px;
+            top: -12px;
             color: #C1FFED;
         }
 /* Стили для уроков Насти */
         .event.type5 {
             background-color: rgba(232, 80, 87, 0.6);
-            height: 7px;
-            top: 7px;
+            height: 21px;
+            top: 21px;
             color: #FFE2E3;
         }
 /* Стили для столовой */
         .event.type3 {
             background-color: rgba(245, 182, 31, 0.4);
-            height: 7px;
-            top: -15px;
+            height: 21px;
+            top: -45px;
         }
         .event.type4 {
             background-color: #f5b631;
-            height: 7px;
-            top: -4px;
+            height: 21px;
+            top: -12px;
             opacity: 0.4;
         }
         .event.type6 {
             background-color: rgba(245, 182, 31, 0.4);
-            height: 7px;
-            top: 7px;
+            height: 21px;
+            top: 21px;
         }
-        @media (orientation: portrait){
-            html{
-                transform: scale(2.2);
-                margin-top: -5vh;
-            }
+            @media (orientation: portrait){
             .hour-label {
-                font-size: 0.8vh;
+                font-size: 15px;
             }
             .hour-label-other {
-                font-size: 0.8vh;
+                font-size: 15px;
             }
             .container {
-                width: 300%;
-                top: 20vh;
-                left: 129vw;
+                width: 280%;
             }
         }
-    </style>
+
+  </style>
 </head>
-     <div id="modal">
+  <!-- это надо?.. -->
+       <div id="modal">
     <div id="buttons-container">
         <button class="button" onclick="setDay(1);">пн</button>
         <button class="button" onclick="setDay(2);">вт</button>
@@ -167,11 +190,25 @@
     </div>
      </div>
 <body>
-    <div class="container">
+
+  <div class="fixed-nav">
+        <button class="button" onclick="setDay(1);">пн</button>
+        <button class="button" onclick="setDay(2);">вт</button>
+        <button class="button" onclick="setDay(3);">ср</button>
+        <button class="button" onclick="setDay(4);">чт</button>
+        <button class="button" onclick="setDay(5);">пт</button>
+        <button class="button" onclick="setDay(6);">сб</button>
+        <button class="button" onclick="setDay(0);">вс</button>
+  </div>
+  <div class="scroll-container">
+    <div class="content">
+      <div class="container">
         <div class="timeline" id="timeline"></div>
         <div class="moving-line" id="movingLine"></div>
     </div>
-    <script>
+    </div>
+  </div>
+  <script>
         const timeZoneOffset = -5;
         const otherTimeZoneOffset = -7;
         const stepMinutes = 10;
@@ -394,7 +431,7 @@ const startOfDay = new Date().setHours(0, 0, 0, 0);
            displayEvents(day);
             updateMovingLine();
         }
-       function createModal(modalId, contentId){
+           function createModal(modalId, contentId){
   var modalStatusClick = function(modal, modalId){
    };
    var content = document.getElementById(contentId); 
@@ -465,5 +502,3 @@ const startOfDay = new Date().setHours(0, 0, 0, 0);
         setInterval(updateMovingLines, 1000);
         updateMovingLines();
     </script>
-</body>
-</html>
