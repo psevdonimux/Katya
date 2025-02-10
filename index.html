@@ -42,6 +42,7 @@
         border: none;
         background: transparent;
         font-size: 16px;
+        font-weight: normal;
       }
       .timeline {
         width: 180%;
@@ -167,13 +168,13 @@
   </head>
   <body>
     <div class="fixed-nav">
-      <button class="button" id="button1" onclick="setDay(1);">пн</button>
-      <button class="button" id="button2" onclick="setDay(2);">вт</button>
-      <button class="button" id="button3" onclick="setDay(3);">ср</button>
-      <button class="button" id="button4" onclick="setDay(4);">чт</button>
-      <button class="button" id="button5" onclick="setDay(5);">пт</button>
-      <button class="button" id="button6" onclick="setDay(6);">сб</button>
-      <button class="button" id="button7" onclick="setDay(0);">вс</button>
+      <button class="button" data-day="1" onclick="setDay(1);">пн</button>
+      <button class="button" data-day="2" onclick="setDay(2);">вт</button>
+      <button class="button" data-day="3" onclick="setDay(3);">ср</button>
+      <button class="button" data-day="4" onclick="setDay(4);">чт</button>
+      <button class="button" data-day="5" onclick="setDay(5);">пт</button>
+      <button class="button" data-day="6" onclick="setDay(6);">сб</button>
+      <button class="button" data-day="0" onclick="setDay(0);">вс</button>
     </div>
     
     <div class="scroll-container">
@@ -257,16 +258,35 @@
         displayEvents(day);
         updateMovingLine();
       }
-    function setFontWeight(setDay) {
-      const buttonElement = document.getSelectorAll('.button')
-      buttonElements.forEach((element, index) => {
-        if (index === setDay) {
-          element.style.fontWeight = 'bold';
+    // Получаем все кнопки
+    const buttons = document.querySelectorAll('.button');
+
+    // Функция для обновления font-weight
+    function updateFontWeight() {
+      // Получаем значение day (можно заменить на логику получения текущего дня)
+      const day = new Date().getDay(); // Получаем текущий день недели (0 - воскресенье, 6 - суббота)
+
+      // Для каждой кнопки меняем font-weight в зависимости от day
+      buttons.forEach(button => {
+        const buttonDay = parseInt(button.getAttribute('data-day')); // Читаем значение дня для каждой кнопки
+        if (buttonDay === day) {
+          button.style.fontWeight = 'bold'; // Если это тот день, ставим жирный шрифт
         } else {
-          oneElement.style.fontWeight = 'normal';
+          button.style.fontWeight = 'normal'; // В противном случае оставляем обычный шрифт
         }
       });
     }
+
+    // Обработчик для кликов по кнопкам
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Обновляем font-weight при клике на кнопку
+        updateFontWeight();
+      });
+    });
+
+    // Вызываем функцию при загрузке страницы
+    window.addEventListener('load', updateFontWeight);
       window.addEventListener('resize', function() {
         renderTimeMarkers();
         updateMovingLines();
