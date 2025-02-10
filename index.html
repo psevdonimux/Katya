@@ -259,34 +259,51 @@
         updateMovingLine();
       }
     // Получаем все кнопки
-    const buttons = document.querySelectorAll('.button');
+const buttons = document.querySelectorAll('.button');
 
-    // Функция для обновления font-weight
-    function updateFontWeight() {
-      // Получаем значение day (можно заменить на логику получения текущего дня)
-      const day = new Date().getDay(); // Получаем текущий день недели (0 - воскресенье, 6 - суббота)
+// Переменная для хранения последней нажатой кнопки
+let lastClickedButton = null;
 
-      // Для каждой кнопки меняем font-weight в зависимости от day
-      buttons.forEach(button => {
-        const buttonDay = parseInt(button.getAttribute('data-day')); // Читаем значение дня для каждой кнопки
-        if (buttonDay === day) {
-          button.style.fontWeight = '900'; // Если это тот день, ставим жирный шрифт
-        } else {
-          button.style.fontWeight = '100'; // В противном случае оставляем обычный шрифт
-        }
-      });
+// Функция для обновления font-weight
+function updateFontWeight() {
+  // Получаем значение day (можно заменить на логику получения текущего дня)
+  const day = new Date().getDay(); // Получаем текущий день недели (0 - воскресенье, 6 - суббота)
+
+  // Для каждой кнопки меняем font-weight в зависимости от day
+  buttons.forEach(button => {
+    const buttonDay = parseInt(button.getAttribute('data-day')); // Читаем значение дня для каждой кнопки
+    if (buttonDay === day) {
+      button.style.fontWeight = '900'; // Если это тот день, ставим жирный шрифт
+    } else {
+      button.style.fontWeight = '100'; // В противном случае оставляем обычный шрифт
     }
+  });
 
-    // Обработчик для кликов по кнопкам
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Обновляем font-weight при клике на кнопку
-        updateFontWeight();
-      });
-    });
+  // Если была последняя нажатая кнопка, делаем её жирной
+  if (lastClickedButton) {
+    lastClickedButton.style.fontWeight = '900';
+  }
+}
 
-    // Вызываем функцию при загрузке страницы
-    window.addEventListener('load', updateFontWeight);
+// Обработчик для кликов по кнопкам
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    // Обновляем стиль только для последней нажатой кнопки
+    if (lastClickedButton !== button) {
+      if (lastClickedButton) {
+        lastClickedButton.style.fontWeight = '100'; // Убираем жирный шрифт с предыдущей кнопки
+      }
+      lastClickedButton = button; // Обновляем ссылку на последнюю нажатую кнопку
+    }
+    button.style.fontWeight = '900'; // Делаем текущую кнопку жирной
+
+    // Обновляем font-weight для всех кнопок
+    updateFontWeight();
+  });
+});
+
+// Вызываем функцию при загрузке страницы
+window.addEventListener('load', updateFontWeight);
       window.addEventListener('resize', function() {
         renderTimeMarkers();
         updateMovingLines();
