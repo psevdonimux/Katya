@@ -197,13 +197,13 @@
 <body>
 
   <div class="fixed-nav">
-        <button class="button" onclick="setDay(1);">пн</button>
-        <button class="button" onclick="setDay(2);">вт</button>
-        <button class="button" onclick="setDay(3);">ср</button>
-        <button class="button" onclick="setDay(4);">чт</button>
-        <button class="button" onclick="setDay(5);">пт</button>
-        <button class="button" onclick="setDay(6);">сб</button>
-        <button class="button" onclick="setDay(0);">вс</button>
+        <button id="1" class="button" onclick="setDay(1);">пн</button>
+        <button id="2" class="button" onclick="setDay(2);">вт</button>
+        <button id="3" class="button" onclick="setDay(3);">ср</button>
+        <button id="4" class="button" onclick="setDay(4);">чт</button>
+        <button id="5" class="button" onclick="setDay(5);">пт</button>
+        <button id="6" class="button" onclick="setDay(6);">сб</button>
+        <button id="0" class="button" onclick="setDay(0);">вс</button>
   </div>
   <div class="scroll-container">
     <div class="content">
@@ -497,6 +497,51 @@ const startOfDay = new Date().setHours(0, 0, 0, 0);
     document.getElementById(modalId).style.display = 'none';
     };
  }
+    function setFont(setDay) {
+      const 1Element = document.getElementById('1')
+      const 2Element = document.getElementById('2')
+      const 3Element = document.getElementById('3')
+      const 4Element = document.getElementById('4')
+      const 5Element = document.getElementById('5')
+      const 6Element = document.getElementById('6')
+      const 0Element = document.getElementById('0')
+      if (setDay === 1) {
+        1Element.style.fontWeight = 'bold';
+      } else {
+        1Element.style.fontWeight = 'normal';
+      }
+      if (setDay === 2) {
+        2Element.style.fontWeight = 'bold';
+      } else {
+        2Element.style.fontWeight = 'normal';
+      }
+      if (setDay === 3) {
+        3Element.style.fontWeight = 'bold';
+      } else {
+        3Element.style.fontWeight = 'normal';
+      }
+      if (setDay === 4) {
+        4Element.style.fontWeight = 'bold';
+      } else {
+        4Element.style.fontWeight = 'normal';
+      }
+      if (setDay === 5) {
+        5Element.style.fontWeight = 'bold';
+      } else {
+        5Element.style.fontWeight = 'normal';
+      }
+      if (setDay === 6) {
+        6Element.style.fontWeight = 'bold';
+      } else {
+        6Element.style.fontWeight = 'normal';
+      }
+      if (setDay === 0) {
+        0Element.style.fontWeight = 'bold';
+      } else {
+        0Element.style.fontWeight = 'normal';
+      }
+    }
+      
         window.addEventListener('resize', function() {
             renderTimeMarkers();
             updateMovingLines();
