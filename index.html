@@ -264,24 +264,27 @@ const buttons = document.querySelectorAll('.button');
 // Переменная для хранения последней нажатой кнопки
 let lastClickedButton = null;
 
-// Функция для обновления font-weight
-function updateFontWeight() {
+// Функция для обновления font-weight и font-size
+function updateFontWeightAndSize() {
   // Получаем значение day (можно заменить на логику получения текущего дня)
   const day = new Date().getDay(); // Получаем текущий день недели (0 - воскресенье, 6 - суббота)
 
-  // Для каждой кнопки меняем font-weight в зависимости от day
+  // Для каждой кнопки меняем font-weight и font-size в зависимости от day
   buttons.forEach(button => {
     const buttonDay = parseInt(button.getAttribute('data-day')); // Читаем значение дня для каждой кнопки
     
     if (buttonDay === day) {
       button.style.fontWeight = '900'; // Если это тот день, ставим жирный шрифт
+      button.style.fontSize = '20px'; // Увеличиваем размер шрифта для кнопки текущего дня
     } else {
       button.style.fontWeight = '100'; // В противном случае оставляем обычный шрифт
+      button.style.fontSize = '16px'; // Обычный размер шрифта для остальных кнопок
     }
 
     // Если это последняя нажатая кнопка и она не соответствует текущему дню
     if (lastClickedButton === button && buttonDay !== day) {
       button.style.fontWeight = '400'; // Убираем жирный шрифт для последней нажатой кнопки
+      button.style.fontSize = '16px'; // Восстанавливаем нормальный размер шрифта
     }
   });
 }
@@ -293,25 +296,28 @@ buttons.forEach(button => {
     if (lastClickedButton !== button) {
       if (lastClickedButton) {
         lastClickedButton.style.fontWeight = '100'; // Убираем жирный шрифт с предыдущей кнопки
+        lastClickedButton.style.fontSize = '16px'; // Восстанавливаем нормальный размер шрифта
       }
       lastClickedButton = button; // Обновляем ссылку на последнюю нажатую кнопку
     }
-    // Если кнопка текущего дня, то оставляем ее жирной
+    // Если кнопка текущего дня, то оставляем ее жирной и увеличиваем размер
     const day = new Date().getDay();
     const buttonDay = parseInt(button.getAttribute('data-day'));
     if (buttonDay === day) {
       button.style.fontWeight = '900'; // Если это кнопка текущего дня, оставляем жирный шрифт
+      button.style.fontSize = '20px'; // Увеличиваем размер шрифта
     } else {
       button.style.fontWeight = '400'; // В противном случае ставим нормальный шрифт
+      button.style.fontSize = '16px'; // Обычный размер шрифта для других кнопок
     }
 
-    // Обновляем font-weight для всех кнопок
-    updateFontWeight();
+    // Обновляем font-weight и font-size для всех кнопок
+    updateFontWeightAndSize();
   });
 });
 
 // Вызываем функцию при загрузке страницы
-window.addEventListener('load', updateFontWeight);
+window.addEventListener('load', updateFontWeightAndSize);
       window.addEventListener('resize', function() {
         renderTimeMarkers();
         updateMovingLines();
