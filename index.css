@@ -1,156 +1,156 @@
-      html, body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: black;
-      }
-      .scroll-container {
-        width: 100vw;
-        height: 100vh;
-        overflow-x: auto;
-        white-space: nowrap;
-        position: relative;
-      }
-      .content {
-        display: inline-block;
-        width: 300vw;
-        height: 100%;
-      }
-      .fixed-nav {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: rgba(255, 255, 255, 0.1);
-        padding-top: 3vh;
-        padding-bottom: 3vh;
-        text-align: center;
-        z-index: 10;
-      }
-      .button {
-        margin: 0;
-        padding: 0;
-        width: 8vw;
-        color: white;
-        border: none;
-        background: transparent;
-      }
-      .timeline {
-        width: 180%;
-        height: 8px;
-        background-color: rgba(255, 255, 255, 0.3);
-        position: relative;
-      }
-      .moving-line {
-        position: absolute;
-        width: 3px;
-        height: 120px;
-        background: linear-gradient(
-          rgba(0, 0, 0, 0),
-          rgba(255, 0, 0, 0.8),
-          rgba(0, 0, 0, 0));
-        top: -56px;
-        z-index: 3;
-      }
-      .container {
-        width: 180%;
-        position: relative;
-        height: 15vh;
-        top: 45vh;
-        left: 20px;
-      }
-      .marker {
-        position: absolute;
-        bottom: -37px;
-        width: 2px;
-        height: 80px;
-        background: linear-gradient(
-          rgba(0, 0, 0, 0),
-          rgba(255, 255, 255, 0.4),
-          rgba(0, 0, 0, 0));
-      }
-      .hour-marker {
-        position: absolute;
-        bottom: -83px;
-        width: 2px;
-        height: 180px;
-        background: linear-gradient(
-          rgba(0, 0, 0, 0),
-          rgba(255, 255, 255, 0.4),
-          rgba(0, 0, 0, 0));
-      }
+html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: black;
+}
+.scroll-container {
+      width: 100vw;
+      height: 100vh;
+      overflow-x: auto;
+      white-space: nowrap;
+      position: relative;
+}
+.content {
+      display: inline-block;
+      width: 300vw;
+      height: 100%;
+}
+.fixed-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding-top: 3vh;
+      padding-bottom: 3vh;
+      text-align: center;
+      z-index: 10;
+}
+.button {
+      margin: 0;
+      padding: 0;
+      width: 8vw;
+      color: white;
+      border: none;
+      background: transparent;
+}
+.timeline {
+      width: 180%;
+      height: 8px;
+      background-color: rgba(255, 255, 255, 0.3);
+      position: relative;
+}
+.moving-line {
+      position: absolute;
+      width: 3px;
+      height: 120px;
+      background: linear-gradient(
+            rgba(0, 0, 0, 0),
+            rgba(255, 0, 0, 0.8),
+            rgba(0, 0, 0, 0));
+      top: -56px;
+      z-index: 3;
+}
+.container {
+      width: 180%;
+      position: relative;
+      height: 15vh;
+      top: 45vh;
+      left: 20px;
+}
+.marker {
+      position: absolute;
+      bottom: -37px;
+      width: 2px;
+      height: 80px;
+      background: linear-gradient(
+            rgba(0, 0, 0, 0),
+            rgba(255, 255, 255, 0.4),
+            rgba(0, 0, 0, 0));
+}
+.hour-marker {
+      position: absolute;
+      bottom: -83px;
+      width: 2px;
+      height: 180px;
+      background: linear-gradient(
+            rgba(0, 0, 0, 0),
+            rgba(255, 255, 255, 0.4),
+            rgba(0, 0, 0, 0));
+}
+.hour-label {
+      position: absolute;
+      bottom: 66px;
+      left: 3vw;
+      font-size: 18px;
+      color: #e1e1e1;
+      text-align: center;
+}
+.hour-label-other {
+      position: absolute;
+      bottom: -81px;
+      font-size: 18px;
+      color: #e1e1e1;
+      text-align: center;
+}
+.event {
+      position: absolute;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      border-radius: 5px;
+      text-align: center;
+      font-size: 15px;
+      z-index: 1;
+      width: 150%;
+      color: white;
+}
+/* Стили для уроков Кати */
+.event.type1 {
+      background-color: rgba(62, 88, 229, 0.6);
+      top: -43px;
+}
+/* Стили для уроков Рустама */
+.event.type2 {
+      background-color: rgba(0, 126, 91, 0.6);
+      top: -12px;
+}
+/* Стили для уроков Насти */
+.event.type5 {
+      background-color: rgba(232, 80, 87, 0.6);
+      top: 19px;
+}
+/* Стили для столовой */
+.event.type3 {
+      background-color: rgba(245, 182, 31, 0.4);
+      height: 19px;
+      top: -43px;
+}
+.event.type4 {
+      background-color: rgba(245, 182, 31, 0.4);
+      height: 19px;
+      top: -12px;
+}
+.event.type6 {
+      background-color: rgba(245, 182, 31, 0.4);
+      height: 19px;
+      top: 21px;
+}
+@media (orientation: portrait) {
       .hour-label {
-        position: absolute;
-        bottom: 66px;
-        left: 3vw;
-        font-size: 18px;
-        color: #e1e1e1;
-        text-align: center;
+            font-size: 15px;
       }
       .hour-label-other {
-        position: absolute;
-        bottom: -81px;
-        font-size: 18px;
-        color: #e1e1e1;
-        text-align: center;
+            font-size: 15px;
       }
-      .event {
-        position: absolute;
-        padding-top: 6px;
-        padding-bottom: 6px;
-        border-radius: 5px;
-        text-align: center;
-        font-size: 15px;
-        z-index: 1;
-        width: 150%;
-        color: white;
+      .container {
+            width: 280%;
       }
-/* Стили для уроков Кати */
-      .event.type1 {
-        background-color: rgba(62, 88, 229, 0.6);
-        top: -43px;
+      .fixed-nav {
+            padding-top: 3vh;
+            padding-bottom: 3vh;
       }
-/* Стили для уроков Рустама */
-      .event.type2 {
-        background-color: rgba(0, 126, 91, 0.6);
-        top: -12px;
+      .button {
+            width: 10vw;
       }
-/* Стили для уроков Насти */
-      .event.type5 {
-        background-color: rgba(232, 80, 87, 0.6);
-        top: 19px;
-      }
-/* Стили для столовой */
-      .event.type3 {
-        background-color: rgba(245, 182, 31, 0.4);
-        height: 19px;
-        top: -43px;
-      }
-      .event.type4 {
-        background-color: rgba(245, 182, 31, 0.4);
-        height: 19px;
-        top: -12px;
-      }
-      .event.type6 {
-        background-color: rgba(245, 182, 31, 0.4);
-        height: 19px;
-        top: 21px;
-        }
-      @media (orientation: portrait) {
-        .hour-label {
-          font-size: 15px;
-        }
-        .hour-label-other {
-          font-size: 15px;
-        }
-        .container {
-          width: 280%;
-        }
-        .fixed-nav {
-          padding-top: 3vh;
-          padding-bottom: 3vh;
-        }
-        .button {
-          width: 10vw;
-        }
-      }
+}
