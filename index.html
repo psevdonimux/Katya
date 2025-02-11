@@ -274,8 +274,8 @@ function updateFontWeightAndSize() {
     const buttonDay = parseInt(button.getAttribute('data-day')); // Читаем значение дня для каждой кнопки
     
     if (buttonDay === day) {
-      button.style.fontWeight = '900'; // Если это тот день, ставим жирный шрифт
-      button.style.fontSize = '18px'; // Увеличиваем размер шрифта для кнопки текущего дня
+      button.style.fontWeight = '1000'; // Если это тот день, ставим жирный шрифт
+      button.style.fontSize = '17px'; // Увеличиваем размер шрифта для кнопки текущего дня
     } else {
       button.style.fontWeight = '100'; // В противном случае оставляем обычный шрифт
       button.style.fontSize = '16px'; // Обычный размер шрифта для остальных кнопок
@@ -283,7 +283,7 @@ function updateFontWeightAndSize() {
 
     // Если это последняя нажатая кнопка и она не соответствует текущему дню
     if (lastClickedButton === button && buttonDay !== day) {
-      button.style.fontWeight = '400'; // Убираем жирный шрифт для последней нажатой кнопки
+      button.style.fontWeight = '100'; // Убираем жирный шрифт для последней нажатой кнопки
       button.style.fontSize = '16px'; // Восстанавливаем нормальный размер шрифта
     }
   });
@@ -304,8 +304,8 @@ buttons.forEach(button => {
     const day = new Date().getDay();
     const buttonDay = parseInt(button.getAttribute('data-day'));
     if (buttonDay === day) {
-      button.style.fontWeight = '900'; // Если это кнопка текущего дня, оставляем жирный шрифт
-      button.style.fontSize = '18px'; // Увеличиваем размер шрифта
+      button.style.fontWeight = '1000'; // Если это кнопка текущего дня, оставляем жирный шрифт
+      button.style.fontSize = '17px'; // Увеличиваем размер шрифта
     } else {
       button.style.fontWeight = '800'; // В противном случае ставим нормальный шрифт
       button.style.fontSize = '16px'; // Обычный размер шрифта для других кнопок
