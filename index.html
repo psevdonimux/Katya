@@ -277,13 +277,13 @@ function updateFontWeightAndSize() {
       button.style.fontWeight = '1000'; // Если это тот день, ставим жирный шрифт
       button.style.fontSize = '17px'; // Увеличиваем размер шрифта для кнопки текущего дня
     } else {
-      button.style.fontWeight = '800'; // В противном случае оставляем обычный шрифт
+      button.style.fontWeight = '100'; // В противном случае оставляем обычный шрифт
       button.style.fontSize = '16px'; // Обычный размер шрифта для остальных кнопок
     }
 
     // Если это последняя нажатая кнопка и она не соответствует текущему дню
     if (lastClickedButton === button && buttonDay !== day) {
-      button.style.fontWeight = '100'; // Убираем жирный шрифт для последней нажатой кнопки
+      button.style.fontWeight = '800'; // Убираем жирный шрифт для последней нажатой кнопки
       button.style.fontSize = '16px'; // Восстанавливаем нормальный размер шрифта
     }
   });
