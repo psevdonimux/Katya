@@ -195,12 +195,12 @@
       const startOfDay = new Date().setHours(0, 0, 0, 0);
       const movingLine = document.getElementById('movingLine');
       
-      function displayEvents(day = 0) {
+      function displayEvents(day = -1) {
         const timeline = document.querySelector('.timeline');
         const timelineWidth = timeline.offsetWidth;
         const existingEvents = timeline.querySelectorAll('.event');
         existingEvents.forEach(event => event.remove());
-        const currentDay = day == 0 ? new Date().getDay() : day;
+        const currentDay = day == -1 ? new Date().getDay() : day;
         eventsByDay[currentDay].forEach(event => {
           const eventElement = document.createElement('div');
           eventElement.classList.add('event');
