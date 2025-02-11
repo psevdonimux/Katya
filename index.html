@@ -41,8 +41,6 @@
         color: white;
         border: none;
         background: transparent;
-        font-size: 16px;
-        font-weight: 100;
       }
       .timeline {
         width: 180%;
@@ -166,6 +164,7 @@
     </style>
   </head>
   <body>
+    
     <div class="fixed-nav">
       <button class="button" data-day="1" onclick="setDay(1);">пн</button>
       <button class="button" data-day="2" onclick="setDay(2);">вт</button>
@@ -184,6 +183,7 @@
         </div>
       </div>
     </div>
+    
     <script src="index.js"></script>
     <script>
       const timeZoneOffset = -5;
@@ -194,6 +194,8 @@
       const millisecondsInDay = 24 * 60 * 60 * 1000;
       const startOfDay = new Date().setHours(0, 0, 0, 0);
       const movingLine = document.getElementById('movingLine');
+      const buttons = document.querySelectorAll('.button');
+      let lastClickedButton = null;
       
       function displayEvents(day = -1) {
         const timeline = document.querySelector('.timeline');
@@ -257,60 +259,45 @@
         displayEvents(day);
         updateMovingLine();
       }
-      const buttons = document.querySelectorAll('.button');
-      let lastClickedButton = null;
       function updateFontWeightAndSize() {
-        const day = new Date().getDay(); // Получаем текущий день недели (0 - воскресенье, 6 - суббота)
-
-  // Для каждой кнопки меняем font-weight и font-size в зависимости от day
-  buttons.forEach(button => {
-    const buttonDay = parseInt(button.getAttribute('data-day')); // Читаем значение дня для каждой кнопки
-    
-    if (buttonDay === day) {
-      button.style.fontWeight = '1000'; // Если это тот день, ставим жирный шрифт
-      button.style.fontSize = '17px'; // Увеличиваем размер шрифта для кнопки текущего дня
-    } else {
-      button.style.fontWeight = '100'; // В противном случае оставляем обычный шрифт
-      button.style.fontSize = '16px'; // Обычный размер шрифта для остальных кнопок
-    }
-
-    // Если это последняя нажатая кнопка и она не соответствует текущему дню
-    if (lastClickedButton === button && buttonDay !== day) {
-      button.style.fontWeight = '600'; // Убираем жирный шрифт для последней нажатой кнопки
-      button.style.fontSize = '16px'; // Восстанавливаем нормальный размер шрифта
-    }
-  });
-}
-
-// Обработчик для кликов по кнопкам
-buttons.forEach(button => {
-  button.addEventListener('click', () => {
-    // Сохраняем ссылку на последнюю нажатую кнопку
-    if (lastClickedButton !== button) {
-      if (lastClickedButton) {
-        lastClickedButton.style.fontWeight = '100'; // Убираем жирный шрифт с предыдущей кнопки
-        lastClickedButton.style.fontSize = '16px'; // Восстанавливаем нормальный размер шрифта
+        const day = new Date().getDay();
+        buttons.forEach(button => {
+          const buttonDay = parseInt(button.getAttribute('data-day'));
+          if (buttonDay === day) {
+            button.style.fontWeight = '1000';
+            button.style.fontSize = '17px';
+          } else {
+            button.style.fontWeight = '100';
+            button.style.fontSize = '16px';
+          }
+          if (lastClickedButton === button && buttonDay !== day) {
+            button.style.fontWeight = '600';
+            button.style.fontSize = '16px';
+          }
+        });
       }
-      lastClickedButton = button; // Обновляем ссылку на последнюю нажатую кнопку
-    }
-    // Если кнопка текущего дня, то оставляем ее жирной и увеличиваем размер
-    const day = new Date().getDay();
-    const buttonDay = parseInt(button.getAttribute('data-day'));
-    if (buttonDay === day) {
-      button.style.fontWeight = '1000'; // Если это кнопка текущего дня, оставляем жирный шрифт
-      button.style.fontSize = '17px'; // Увеличиваем размер шрифта
-    } else {
-      button.style.fontWeight = '800'; // В противном случае ставим нормальный шрифт
-      button.style.fontSize = '16px'; // Обычный размер шрифта для других кнопок
-    }
-
-    // Обновляем font-weight и font-size для всех кнопок
-    updateFontWeightAndSize();
-  });
-});
-
-// Вызываем функцию при загрузке страницы
-window.addEventListener('load', updateFontWeightAndSize);
+      buttons.forEach(button => {
+        button.addEventListener('click', () => {
+          if (lastClickedButton !== button) {
+            if (lastClickedButton) {
+              lastClickedButton.style.fontWeight = '100';
+              lastClickedButton.style.fontSize = '16px';
+            }
+            lastClickedButton = button;
+          }
+          const day = new Date().getDay();
+          const buttonDay = parseInt(button.getAttribute('data-day'));
+          if (buttonDay === day) {
+            button.style.fontWeight = '1000';
+            button.style.fontSize = '17px';
+          } else {
+            button.style.fontWeight = '800';
+            button.style.fontSize = '16px';
+          }
+          updateFontWeightAndSize();
+        });
+      });
+      window.addEventListener('load', updateFontWeightAndSize);
       window.addEventListener('resize', function() {
         renderTimeMarkers();
         updateMovingLines();
