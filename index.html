@@ -137,7 +137,7 @@
         top: -43px;
       }
       .event.type4 {
-        background-color: rgba(245, 182, 31, 0.4);;
+        background-color: rgba(245, 182, 31, 0.4);
         height: 19px;
         top: -12px;
       }
@@ -260,11 +260,8 @@
       }
       const buttons = document.querySelectorAll('.button');
       let lastClickedButton = null;
-
-// Функция для обновления font-weight и font-size
-function updateFontWeightAndSize() {
-  // Получаем значение day (можно заменить на логику получения текущего дня)
-  const day = new Date().getDay(); // Получаем текущий день недели (0 - воскресенье, 6 - суббота)
+      function updateFontWeightAndSize() {
+        const day = new Date().getDay(); // Получаем текущий день недели (0 - воскресенье, 6 - суббота)
 
   // Для каждой кнопки меняем font-weight и font-size в зависимости от day
   buttons.forEach(button => {
