@@ -73,13 +73,17 @@
           const hourLabel = document.createElement('div');
           hourLabel.classList.add('hour-label');
           hourLabel.textContent = `${i < 10 ? '0' : ''}${i}:00`;
-          hourLabel.style.left = `${position - 17.5}px`;
+          if (window.innerWidth > window.innerHeight) {
+            hourLabel.style.left = `${position - 23}px`;
+          } else {
+            hourLabel.style.left = `${position - 17.5}px`;
+          }
           const hourLabelOther = document.createElement('div');
           hourLabelOther.classList.add('hour-label-other');
           const adjustedHour = (i + (otherTimeZoneOffset - timeZoneOffset) + 24) % 24;
           hourLabelOther.textContent = `${adjustedHour < 10 ? '0' : ''}${adjustedHour}:00`;
           if (window.innerWidth > window.innerHeight) {
-            hourLabelOther.style.left = `${position - 20}px`;
+            hourLabelOther.style.left = `${position - 23}px`;
           } else {
             hourLabelOther.style.left = `${position - 17.5}px`;
           }
