@@ -272,30 +272,38 @@ function updateFontWeight() {
   // Для каждой кнопки меняем font-weight в зависимости от day
   buttons.forEach(button => {
     const buttonDay = parseInt(button.getAttribute('data-day')); // Читаем значение дня для каждой кнопки
+    
     if (buttonDay === day) {
       button.style.fontWeight = '900'; // Если это тот день, ставим жирный шрифт
     } else {
       button.style.fontWeight = '100'; // В противном случае оставляем обычный шрифт
     }
-  });
 
-  // Если была последняя нажатая кнопка, делаем её жирной
-  if (lastClickedButton) {
-    lastClickedButton.style.fontWeight = '400';
-  }
+    // Если это последняя нажатая кнопка и она не соответствует текущему дню
+    if (lastClickedButton === button && buttonDay !== day) {
+      button.style.fontWeight = '400'; // Убираем жирный шрифт для последней нажатой кнопки
+    }
+  });
 }
 
 // Обработчик для кликов по кнопкам
 buttons.forEach(button => {
   button.addEventListener('click', () => {
-    // Обновляем стиль только для последней нажатой кнопки
+    // Сохраняем ссылку на последнюю нажатую кнопку
     if (lastClickedButton !== button) {
       if (lastClickedButton) {
         lastClickedButton.style.fontWeight = '100'; // Убираем жирный шрифт с предыдущей кнопки
       }
       lastClickedButton = button; // Обновляем ссылку на последнюю нажатую кнопку
     }
-    button.style.fontWeight = '400'; // Делаем текущую кнопку жирной
+    // Если кнопка текущего дня, то оставляем ее жирной
+    const day = new Date().getDay();
+    const buttonDay = parseInt(button.getAttribute('data-day'));
+    if (buttonDay === day) {
+      button.style.fontWeight = '900'; // Если это кнопка текущего дня, оставляем жирный шрифт
+    } else {
+      button.style.fontWeight = '400'; // В противном случае ставим нормальный шрифт
+    }
 
     // Обновляем font-weight для всех кнопок
     updateFontWeight();
