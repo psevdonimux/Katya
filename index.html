@@ -258,11 +258,8 @@
         displayEvents(day);
         updateMovingLine();
       }
-    // Получаем все кнопки
-const buttons = document.querySelectorAll('.button');
-
-// Переменная для хранения последней нажатой кнопки
-let lastClickedButton = null;
+      const buttons = document.querySelectorAll('.button');
+      let lastClickedButton = null;
 
 // Функция для обновления font-weight и font-size
 function updateFontWeightAndSize() {
@@ -283,7 +280,7 @@ function updateFontWeightAndSize() {
 
     // Если это последняя нажатая кнопка и она не соответствует текущему дню
     if (lastClickedButton === button && buttonDay !== day) {
-      button.style.fontWeight = '550'; // Убираем жирный шрифт для последней нажатой кнопки
+      button.style.fontWeight = '600'; // Убираем жирный шрифт для последней нажатой кнопки
       button.style.fontSize = '16px'; // Восстанавливаем нормальный размер шрифта
     }
   });
