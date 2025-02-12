@@ -98,6 +98,13 @@
         const otherTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${otherTimeZoneOffset >= 0 ? '+' : '-'}${Math.abs(otherTimeZoneOffset)}` }));
         const startOfDayLocal = new Date(localTime).setHours(0, 0, 0, 0);           
         movingLine.style.left = (((localTime - startOfDayLocal) / millisecondsInDay) * (document.querySelector('.timeline').offsetWidth)) + 'px';
+        if (movingLineRect.left < 0 || movingLineRect.right > window.innerWidth) {
+        // Если элемент выходит за пределы области видимости, прокручиваем к нему
+        window.scrollTo({
+            left: movingLineRect.left + window.scrollX - 50, // Плавно прокручиваем с небольшим отступом
+            behavior: 'smooth'
+        });
+    }
       }
       function handleResize() {
         displayEvents();
