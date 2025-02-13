@@ -119,6 +119,14 @@ const buttons = document.querySelectorAll('.button');
         });
       });
 
+      if (movingLineRect.left < 0 || movingLineRect.right > window.innerWidth) {
+        // Если элемент выходит за пределы области видимости, прокручиваем к нему
+        window.scrollTo({
+            left: movingLineRect.left + window.scrollX - 50, // Плавно прокручиваем с небольшим отступом
+            behavior: 'smooth'
+        });
+    }
+
 
       
       function handleResize() {
