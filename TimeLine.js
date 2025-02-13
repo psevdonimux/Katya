@@ -7,7 +7,6 @@ class timeLine {
   createTimeMarkers() {
     const stepMinutes = 10;
     const stepHours = 60;
-    
     function renderTimeMarkers() {
         const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
         existingMarkers.forEach(marker => marker.remove());
@@ -46,7 +45,12 @@ class timeLine {
           timeline.appendChild(hourLabelOther);
         }
     }
+    window.addEventListener('resize', function() {
+        renderTimeMarkers();
+    });
+    renderTimeMarkers();
   }
+  
   createRedLine () {
     const startOfDay = new Date().setHours(0, 0, 0, 0);
     function updateMovingLines() {
@@ -55,15 +59,15 @@ class timeLine {
         const otherTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${otherTimeZoneOffset >= 0 ? '+' : '-'}${Math.abs(otherTimeZoneOffset)}` }));
         const startOfDayLocal = new Date(localTime).setHours(0, 0, 0, 0);           
         movingLine.style.left = (((localTime - startOfDayLocal) / millisecondsInDay) * (document.querySelector('.timeline').offsetWidth)) + 'px';
-      
-        if (movingLineRect.left < 0 || movingLineRect.right > window.innerWidth) {
-        // Если элемент выходит за пределы области видимости, прокручиваем к нему
-        window.scrollTo({
-            left: movingLineRect.left + window.scrollX - 50, // Плавно прокручиваем с небольшим отступом
-            behavior: 'smooth'
-        });
-    }
       }
+    function handleResize() {
+      updateMovingLine();
+    }
+    window.addEventListener('resize', function() {
+        updateMovingLines();
+      });
+    setInterval(updateMovingLines, 1000);
+    updateMovingLines();
   }
   
 }
