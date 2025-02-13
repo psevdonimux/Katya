@@ -1,4 +1,7 @@
 const eventsByDay = {
+    0: [ // Воскресенье
+    
+    ],
     1: [ // Понедельник
         { time: new Date().setHours(9, 0), label: 'Разговоры', type: 'type1', duration: 30 * 60 * 1000},
         { time: new Date().setHours(9, 45), label: 'Физ-ра', type: 'type1', duration: 40 * 60 * 1000},
@@ -143,8 +146,5 @@ const eventsByDay = {
     ],
     6: [ // Суббота
        
-    ],
-    0: [ // Воскресенье
-    
     ]
-}
+        };
