@@ -27,17 +27,23 @@
     
     <script src="Schedule.js"></script>
     <script>
-      const timeZoneOffset = -5;
-      const otherTimeZoneOffset = -7;
-      const stepMinutes = 10;
-      const stepHours = 60;
-      const timeline = document.getElementById('timeline');
+      
       const millisecondsInDay = 24 * 60 * 60 * 1000;
-      const startOfDay = new Date().setHours(0, 0, 0, 0);
-      const movingLine = document.getElementById('movingLine');
+      
+      
       const buttons = document.querySelectorAll('.button');
       let lastClickedButton = null;
-      
+
+
+
+
+
+
+
+      const millisecondsInDay = 24 * 60 * 60 * 1000;
+      const startOfDay = new Date().setHours(0, 0, 0, 0);
+
+
       function displayEvents(day = -1) {
         const timeline = document.querySelector('.timeline');
         const timelineWidth = timeline.offsetWidth;
@@ -54,6 +60,21 @@
           timeline.appendChild(eventElement);
         });
       }
+
+
+
+
+
+
+
+
+
+      const stepMinutes = 10;
+      const stepHours = 60;
+      const timeZoneOffset = -5;
+      const otherTimeZoneOffset = -7;
+      const timeline = document.getElementById('timeline');
+      
       function renderTimeMarkers() {
         const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
         existingMarkers.forEach(marker => marker.remove());
@@ -92,6 +113,12 @@
           timeline.appendChild(hourLabelOther);
         }
       }
+
+
+
+      
+      const movingLine = document.getElementById('movingLine');
+      
       function updateMovingLines() {
         const now = new Date();
         const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}`}));
@@ -106,10 +133,12 @@
         });
     }
       }
-      function handleResize() {
-        displayEvents();
-        updateMovingLine();
-      }
+
+
+      
+      
+
+      
       function updateFontWeightAndTextDecoration() {
         const day = new Date().getDay();
         buttons.forEach(button => {
@@ -124,6 +153,8 @@
           }
         });
       }
+
+      
       buttons.forEach(button => {
         button.addEventListener('click', () => {
           if (lastClickedButton !== button) {
@@ -145,7 +176,18 @@
           updateFontWeightAndTextDecoration();
         });
       });
+
+
+      
+      function handleResize() {
+        displayEvents();
+        updateMovingLine();
+      }
+
+      
       window.addEventListener('load', updateFontWeightAndTextDecoration);
+
+      
       window.addEventListener('resize', function() {
         renderTimeMarkers();
         updateMovingLines();
