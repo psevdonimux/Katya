@@ -131,22 +131,19 @@ const buttons = document.querySelectorAll('.button');
       
       function handleResize() {
         displayEvents();
-        updateMovingLine();
+        
       }
 
       
       window.addEventListener('load', updateFontWeightAndTextDecoration);
 
       
-      window.addEventListener('resize', function() {
-        renderTimeMarkers();
-        updateMovingLines();
-      });
+      
       window.addEventListener('resize', handleResize);
       displayEvents();
-      renderTimeMarkers();
-      setInterval(updateMovingLines, 1000);
-      updateMovingLines();
+      
+      
+      
     </script>
   </body>
 </html>
