@@ -3,7 +3,6 @@ const stepMinutes = 10;
       const timeZoneOffset = -5;
       const otherTimeZoneOffset = -7;
       const timeline = document.getElementById('timeline');
-
 const millisecondsInDay = 24 * 60 * 60 * 1000;
       const startOfDay = new Date().setHours(0, 0, 0, 0);
 
