@@ -55,10 +55,10 @@ renderTimeMarkers();
 const movingLine = document.getElementById('movingLine');
       function updateMovingLines() {
         const now = new Date();
-        const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}`}));
-        const otherTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${otherTimeZoneOffset >= 0 ? '+' : '-'}${Math.abs(otherTimeZoneOffset)}` }));
+        const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${this.timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(this.timeZoneOffset)}`}));
+        const otherTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${this.otherTimeZoneOffset >= 0 ? '+' : '-'}${Math.abs(this.otherTimeZoneOffset)}` }));
         const startOfDayLocal = new Date(localTime).setHours(0, 0, 0, 0);           
-        movingLine.style.left = (((localTime - startOfDayLocal) / millisecondsInDay) * (document.querySelector('.timeline').offsetWidth)) + 'px';
+        movingLine.style.left = (((localTime - startOfDayLocal) / this.millisecondsInDay) * (document.querySelector('.timeline').offsetWidth)) + 'px';
       }
 function handleResize() {
         updateMovingLines();
