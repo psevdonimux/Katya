@@ -1,6 +1,5 @@
 class events {
-    createSchedule () {
-        const eventsByDay = {
+        eventsByDay = {
             1: [ // Понедельник
                 { time: new Date().setHours(9, 0), label: 'Разговоры', type: 'type1', duration: 30 * 60 * 1000},
                 { time: new Date().setHours(9, 45), label: 'Физ-ра', type: 'type1', duration: 40 * 60 * 1000},
@@ -150,7 +149,8 @@ class events {
                 
             ]
         };
-    }
+    millisecondsInDay = 24 * 60 * 60 * 1000;
+    startOfDay = new Date().setHours(0, 0, 0, 0);
     createEvents () {
         function displayEvents(day = -1) {
             const timeline = document.querySelector('.timeline');
