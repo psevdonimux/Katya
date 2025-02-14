@@ -4,8 +4,15 @@ class TimeLine {
     timeZoneOffset = -5;
     otherTimeZoneOffset = -7;
     millisecondsInDay = 24 * 60 * 60 * 1000;
-    startOfDay = new Date().setHours(0, 0, 0, 0);
     timeline = document.getElementById('timeline');
+    startOfDay = new Date().setHours(0, 0, 0, 0);
+
+    constructor(timeZoneOffset, otherTimeZoneOffset, millisecondsInDay) {
+        this.timeZoneOffset = timeZoneOffset;
+        this.otherTimeZoneOffset = otherTimeZoneOffset;
+        this.millisecondsInDay = millisecondsInDay;
+    }
+
     createTimeMarkers() {
         const renderTimeMarkers = () => {
             const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
@@ -40,29 +47,29 @@ class TimeLine {
         window.addEventListener('resize', renderTimeMarkers);
         renderTimeMarkers();
     }
-    constructor(timeZoneOffset, otherTimeZoneOffset, millisecondsInDay) {
-        this.timeZoneOffset = timeZoneOffset;
-        this.otherTimeZoneOffset = otherTimeZoneOffset;
-        this.millisecondsInDay = millisecondsInDay;
-    }
+
     createRedLine() {
         const movingLine = document.getElementById('movingLine');
         if (!movingLine) {
             console.error('Element with id "movingLine" not found!');
             return;
         }
+
         const updateMovingLines = () => {
             const now = new Date();
             const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${this.timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(this.timeZoneOffset)}` }));
             const startOfDayLocal = new Date(localTime).setHours(0, 0, 0, 0);
             
-            movingLine.style.left = (((localTime - startOfDayLocal) / this.millisecondsInDay) * (document.querySelector('.timeline').offsetWidth)) + 'px';
+            movingLine.style.position = 'absolute'; // Ensure movingLine has position absolute
+            movingLine.style.left = (((localTime - startOfDayLocal) / this.millisecondsInDay) * (this.timeline.offsetWidth)) + 'px';
         };
+
         const handleResize = () => {
             updateMovingLines();
         };
+
         window.addEventListener('resize', handleResize);
         setInterval(updateMovingLines, 1000);
-        updateMovingLines();
+        updateMovingLines(); // Initial position
     }
 }
