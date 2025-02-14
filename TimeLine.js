@@ -7,7 +7,7 @@ class timeLine {
       millisecondsInDay = 24 * 60 * 60 * 1000;
       startOfDay = new Date().setHours(0, 0, 0, 0);
       createTimeMarkers() {
-function renderTimeMarkers() {
+const renderTimeMarkers = () => {
         const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
         existingMarkers.forEach(marker => marker.remove());
         const width = this.timeline.offsetWidth;            
@@ -53,14 +53,15 @@ renderTimeMarkers();
       
       createRedLine() {
 const movingLine = document.getElementById('movingLine');
-      function updateMovingLines() {
+            const existingTimeLine = document.querySelector('.timeline');
+      const updateMovingLines = () => {
         const now = new Date();
         const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${this.timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(this.timeZoneOffset)}`}));
         const otherTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${this.otherTimeZoneOffset >= 0 ? '+' : '-'}${Math.abs(this.otherTimeZoneOffset)}` }));
         const startOfDayLocal = new Date(localTime).setHours(0, 0, 0, 0);           
         movingLine.style.left = (((localTime - startOfDayLocal) / this.millisecondsInDay) * (document.querySelector('.timeline').offsetWidth)) + 'px';
       }
-function handleResize() {
+function handleResize = () => {
         updateMovingLines();
       }
 window.addEventListener('resize', handleResize);
