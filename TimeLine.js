@@ -1,13 +1,12 @@
-class timeLine {
-  timeline = document.getElementById('timeline');
-  movingLine = document.getElementById('movingLine');
-  timeZoneOffset = -5;
-  otherTimeZoneOffset = -7;
-  
-  createTimeMarkers() {
-    const stepMinutes = 10;
-    const stepHours = 60;
-    function renderTimeMarkers() {
+const timeZoneOffset = -5;
+      const otherTimeZoneOffset = -7;
+      const stepMinutes = 10;
+      const stepHours = 60;
+const timeline = document.getElementById('timeline');
+const millisecondsInDay = 24 * 60 * 60 * 1000;
+      const startOfDay = new Date().setHours(0, 0, 0, 0);
+
+function renderTimeMarkers() {
         const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
         existingMarkers.forEach(marker => marker.remove());
         const width = timeline.offsetWidth;            
@@ -44,30 +43,32 @@ class timeLine {
           timeline.appendChild(hourLabel);
           timeline.appendChild(hourLabelOther);
         }
-    }
-    window.addEventListener('resize', function() {
-        renderTimeMarkers();
-    });
-    renderTimeMarkers();
-  }
-  
-  createRedLine () {
-    const startOfDay = new Date().setHours(0, 0, 0, 0);
-    function updateMovingLines() {
+      }
+
+const movingLine = document.getElementById('movingLine');
+function updateMovingLines() {
         const now = new Date();
         const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}`}));
         const otherTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${otherTimeZoneOffset >= 0 ? '+' : '-'}${Math.abs(otherTimeZoneOffset)}` }));
         const startOfDayLocal = new Date(localTime).setHours(0, 0, 0, 0);           
         movingLine.style.left = (((localTime - startOfDayLocal) / millisecondsInDay) * (document.querySelector('.timeline').offsetWidth)) + 'px';
-      }
-    function handleResize() {
-      updateMovingLine();
+        if (movingLineRect.left < 0 || movingLineRect.right > window.innerWidth) {
+        // Если элемент выходит за пределы области видимости, прокручиваем к нему
+        window.scrollTo({
+            left: movingLineRect.left + window.scrollX - 50, // Плавно прокручиваем с небольшим отступом
+            behavior: 'smooth'
+        });
     }
-    window.addEventListener('resize', function() {
+      }
+
+function handleResize() {
+        updateMovingLine();
+      }
+window.addEventListener('resize', function() {
+        renderTimeMarkers();
         updateMovingLines();
       });
-    setInterval(updateMovingLines, 1000);
-    updateMovingLines();
-  }
-  
-}
+window.addEventListener('resize', handleResize);
+      renderTimeMarkers();
+      setInterval(updateMovingLines, 1000);
+      updateMovingLines();
