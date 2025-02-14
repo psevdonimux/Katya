@@ -23,7 +23,6 @@ class TimeLine {
                 hourMarker.classList.add('hour-marker');
                 const position = (i * (width / 24));
                 hourMarker.style.left = `${position}px`;
-                
                 const hourLabel = document.createElement('div');
                 hourLabel.classList.add('hour-label');
                 hourLabel.textContent = `${i < 10 ? '0' : ''}${i}:00`;
