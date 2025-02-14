@@ -70,4 +70,3 @@ class TimeLine {
             updateMovingLines();
       }
 }
-const timeLine = new TimeLine();
