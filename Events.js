@@ -148,8 +148,8 @@ const eventsByDay = {
     
     ]
 };
-startOfDay = new Date().setHours(0, 0, 0, 0);
-millisecondsInDay = 24 * 60 * 60 * 1000;
+const startOfDay = new Date().setHours(0, 0, 0, 0);
+const millisecondsInDay = 24 * 60 * 60 * 1000;
 function displayEvents(day = -1) {
         const timeline = document.querySelector('.timeline');
         const timelineWidth = timeline.offsetWidth;
