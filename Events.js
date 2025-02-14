@@ -1,5 +1,5 @@
 class events {
-    create schedule () {
+    createSchedule () {
         const eventsByDay = {
             1: [ // Понедельник
                 { time: new Date().setHours(9, 0), label: 'Разговоры', type: 'type1', duration: 30 * 60 * 1000},
