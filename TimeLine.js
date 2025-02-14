@@ -48,39 +48,33 @@ class TimeLine {
         renderTimeMarkers();
     }
 
+    constructor(timeZoneOffset, otherTimeZoneOffset, millisecondsInDay) {
+        this.timeZoneOffset = timeZoneOffset;
+        this.otherTimeZoneOffset = otherTimeZoneOffset;
+        this.millisecondsInDay = millisecondsInDay;
+    }
+
     createRedLine() {
         const movingLine = document.getElementById('movingLine');
-        
+        if (!movingLine) {
+            console.error('Element with id "movingLine" not found!');
+            return;
+        }
+
         const updateMovingLines = () => {
             const now = new Date();
             const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${this.timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(this.timeZoneOffset)}` }));
-            const otherTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${this.otherTimeZoneOffset >= 0 ? '+' : '-'}${Math.abs(this.otherTimeZoneOffset)}` }));
             const startOfDayLocal = new Date(localTime).setHours(0, 0, 0, 0);
-            movingLine.style.left = (((localTime - startOfDayLocal) / this.millisecondsInDay) * (this.timeline.offsetWidth)) + 'px';
+            
+            movingLine.style.left = (((localTime - startOfDayLocal) / this.millisecondsInDay) * (document.querySelector('.timeline').offsetWidth)) + 'px';
         };
 
-        window.addEventListener('resize', updateMovingLines);
-        setInterval(updateMovingLines, 1000);
-        updateMovingLines();
-    }
-}
-      createRedLine () {
-            const movingLine = document.getElementById('movingLine');
-            function updateMovingLines() {
-                  const now = new Date();
-                  const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}`}));
-                  const otherTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${otherTimeZoneOffset >= 0 ? '+' : '-'}${Math.abs(otherTimeZoneOffset)}` }));
-                  const startOfDayLocal = new Date(localTime).setHours(0, 0, 0, 0);           
-                  movingLine.style.left = (((localTime - startOfDayLocal) / millisecondsInDay) * (document.querySelector('.timeline').offsetWidth)) + 'px';
-            }
-            function handleResize() {
-                  updateMovingLine();
-            }
-            window.addEventListener('resize', handleResize);
-            window.addEventListener('resize', function() {
-                  updateMovingLines();
-            });
-            setInterval(updateMovingLines, 1000);
+        const handleResize = () => {
             updateMovingLines();
-      }
+        };
+
+        window.addEventListener('resize', handleResize);
+        setInterval(updateMovingLines, 1000); // Update every second
+        updateMovingLines(); // Initial position
+    }
 }
