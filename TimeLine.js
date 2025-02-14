@@ -7,7 +7,7 @@ class TimeLine {
       startOfDay = new Date().setHours(0, 0, 0, 0);
       timeline = document.getElementById('timeline');
       createTimeMarkers () {
-            renderTimeMarkers() {
+            function renderTimeMarkers() {
                   const existingMarkers = document.querySelectorAll('.marker, .hour-marker, .hour-label, .hour-label-other');
                   existingMarkers.forEach(marker => marker.remove());
                   const width = timeline.offsetWidth;
@@ -52,14 +52,14 @@ class TimeLine {
       }
       createRedLine () {
             const movingLine = document.getElementById('movingLine');
-            updateMovingLines() {
+            function updateMovingLines() {
                   const now = new Date();
                   const localTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${timeZoneOffset >= 0 ? '+' : '-'}${Math.abs(timeZoneOffset)}`}));
                   const otherTime = new Date(now.toLocaleString('en-US', { timeZone: `Etc/GMT${otherTimeZoneOffset >= 0 ? '+' : '-'}${Math.abs(otherTimeZoneOffset)}` }));
                   const startOfDayLocal = new Date(localTime).setHours(0, 0, 0, 0);           
                   movingLine.style.left = (((localTime - startOfDayLocal) / millisecondsInDay) * (document.querySelector('.timeline').offsetWidth)) + 'px';
             }
-            handleResize() {
+            function handleResize() {
                   updateMovingLine();
             }
             window.addEventListener('resize', handleResize);
@@ -70,3 +70,4 @@ class TimeLine {
             updateMovingLines();
       }
 }
+const timeLine = new TimeLine();
