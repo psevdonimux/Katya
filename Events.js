@@ -148,7 +148,7 @@ const eventsByDay = {
     
     ]
 };
-
+startOfDay = new Date().setHours(0, 0, 0, 0);
 function displayEvents(day = -1) {
         const timeline = document.querySelector('.timeline');
         const timelineWidth = timeline.offsetWidth;
