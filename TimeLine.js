@@ -60,7 +60,7 @@ class TimeLine {
                   movingLine.style.left = (((localTime - startOfDayLocal) / millisecondsInDay) * (document.querySelector('.timeline').offsetWidth)) + 'px';
             }
             handleResize() {
-                  updateMovingLine();
+                  updateMovingLines();
             }
             window.addEventListener('resize', handleResize);
             window.addEventListener('resize', function() {
