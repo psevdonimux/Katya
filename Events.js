@@ -165,18 +165,7 @@ function displayEvents(day = -1) {
           timeline.appendChild(eventElement);
         });
       }
-
-
-
-
-      
       function handleResize() {
         displayEvents();
       }
-
-      
-
-      
-
-      window.addEventListener('resize', handleResize);
       displayEvents();
