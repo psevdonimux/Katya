@@ -1,15 +1,17 @@
 class buttons {
-      setTextBoldAndUnderlined() {
+      day = new Date().getDay();
+      buttonDay = parseInt(button.getAttribute('data-day'));
+      setTextBoldAndUnderlined(element, font, decoration) {
+            element.style.fontWeight = font;
+            element.style.textDecoration = decoration;
       }
+      
       changingButtonStates() {
             const buttons = document.querySelectorAll('.button');
-            const day = new Date().getDay();
             let lastClickedButton = null;
             function updateFontWeightAndTextDecoration() {
                   buttons.forEach(button => {
-                        const buttonDay = parseInt(button.getAttribute('data-day'));
-                        button.style.textDecoration = 'none';
-                        button.style.fontWeight = '100';
+                        setTextBoldAndUnderlined(button, '100', 'none')
                         if (buttonDay === day) {
                               button.style.fontWeight = '1000';
                         }
@@ -19,18 +21,14 @@ class buttons {
                         button.addEventListener('click', () => {
                         if (lastClickedButton !== button) {
                               if (lastClickedButton) {
-                                    lastClickedButton.style.fontWeight = '100';
-                                    lastClickedButton.style.textDecoration = 'none';
+                                    setTextBoldAndUnderlined(lastClickedButton, '100', 'none')
                               }
                               lastClickedButton = button;
                         }
-                        const buttonDay = parseInt(button.getAttribute('data-day'));
                         if (buttonDay === day) {
-                              button.style.fontWeight = '1000';
-                              button.style.textDecoration = 'underline';
+                              setTextBoldAndUnderlined(button, '1000', 'underline')
                         } else {
-                              button.style.fontWeight = '100';
-                              button.style.textDecoration = 'none';
+                              setTextBoldAndUnderlined(button, '100', 'none')
                         }
                         updateFontWeightAndTextDecoration();
                   });
