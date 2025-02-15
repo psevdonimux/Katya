@@ -30,10 +30,10 @@ class buttons {
                         } else {
                               this.setTextBoldAndUnderlined(button, '100', 'none');
                         }
+                        updateFontWeightAndTextDecoration();
                   });
                   });
             }
-            updateFontWeightAndTextDecoration();
       }
+      window.addEventListener('load', updateFontWeightAndTextDecoration);
 }
-window.addEventListener('load', updateFontWeightAndTextDecoration);
