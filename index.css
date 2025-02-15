@@ -43,10 +43,11 @@ html, body {
       border: none;
       background: transparent;
       color: white;
+      font-size: 10px;
 }
 .red {
       color: red;
-      font-size: 12px !important;
+      font-size: 14px;
 }
 .timeline {
       width: 180%;
