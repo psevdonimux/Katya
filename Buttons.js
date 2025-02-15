@@ -1,9 +1,10 @@
 class buttons {
+      
       changingButtonStates() {
             const buttons = document.querySelectorAll('.button');
+            const day = new Date().getDay();
             let lastClickedButton = null;
             function updateFontWeightAndTextDecoration() {
-                  const day = new Date().getDay();
                   buttons.forEach(button => {
                         const buttonDay = parseInt(button.getAttribute('data-day'));
                         button.style.textDecoration = 'none';
@@ -25,7 +26,6 @@ class buttons {
                               }
                               lastClickedButton = button;
                         }
-                        const day = new Date().getDay();
                         const buttonDay = parseInt(button.getAttribute('data-day'));
                         if (buttonDay === day) {
                               button.style.fontWeight = '1000';
