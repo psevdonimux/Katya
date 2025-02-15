@@ -1,4 +1,4 @@
-class Buttons {
+class buttonss {
       day = new Date().getDay();
       buttonDay = parseInt(button.getAttribute('data-day'));
       setTextBoldAndUnderlined(element, font, decoration) {
