@@ -11,7 +11,7 @@ class buttons {
             let lastClickedButton = null;
             function updateFontWeightAndTextDecoration() {
                   buttons.forEach(button => {
-                        setTextBoldAndUnderlined(button, '100', 'none')
+                        setTextBoldAndUnderlined(button, '100', 'none');
                         if (buttonDay === day) {
                               button.style.fontWeight = '1000';
                         }
@@ -21,14 +21,14 @@ class buttons {
                         button.addEventListener('click', () => {
                         if (lastClickedButton !== button) {
                               if (lastClickedButton) {
-                                    setTextBoldAndUnderlined(lastClickedButton, '100', 'none')
+                                    setTextBoldAndUnderlined(lastClickedButton, '100', 'none');
                               }
                               lastClickedButton = button;
                         }
                         if (buttonDay === day) {
-                              setTextBoldAndUnderlined(button, '1000', 'underline')
+                              setTextBoldAndUnderlined(button, '1000', 'underline');
                         } else {
-                              setTextBoldAndUnderlined(button, '100', 'none')
+                              setTextBoldAndUnderlined(button, '100', 'none');
                         }
                         updateFontWeightAndTextDecoration();
                   });
