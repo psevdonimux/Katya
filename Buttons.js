@@ -30,9 +30,9 @@ class Buttons {
         } else {
           this.setTextBoldAndUnderlined(button, '100', 'underline');
         }
+        this.displayEvents(buttonDay);
       };
     });
-    this.displayEvents(buttonDay);
   }
   displayEvents(day = -1) {
             const millisecondsInDay = 24 * 60 * 60 * 1000;
