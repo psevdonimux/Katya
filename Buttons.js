@@ -15,8 +15,7 @@ class buttons {
                               button.style.textDecoration = 'underline';
                         }
                   });
-            }
-            buttons.forEach(button => {
+                  buttons.forEach(button => {
                   button.addEventListener('click', () => {
                         if (lastClickedButton !== button) {
                               if (lastClickedButton) {
@@ -37,6 +36,8 @@ class buttons {
                         updateFontWeightAndTextDecoration();
                   });
             });
+            }
+            
       }
 }
 window.addEventListener('load', updateFontWeightAndTextDecoration);
