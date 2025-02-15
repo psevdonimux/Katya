@@ -1,37 +1,40 @@
-class buttonss {
-      day = new Date().getDay();
-      buttonDay = parseInt(button.getAttribute('data-day'));
-      setTextBoldAndUnderlined(element, font, decoration) {
-            element.style.fontWeight = font;
-            element.style.textDecoration = decoration;
+class Buttons {
+  
+    day = new Date().getDay();
+    lastClickedButton = null; 
+
+  setTextBoldAndUnderlined(element, font, decoration) {
+    element.style.fontWeight = font;
+    element.style.textDecoration = decoration;
+  }
+  updateFontWeightAndTextDecoration() {
+    const buttons = document.querySelectorAll('.button');
+    buttons.forEach(button => {
+      const buttonDay = parseInt(button.getAttribute('data-day'));
+      this.setTextBoldAndUnderlined(button, '100', 'none');
+      if (buttonDay === this.day) {
+        button.style.fontWeight = '1000';
       }
-      
-      updateFontWeightAndTextDecoration() {
-            const buttons = document.querySelectorAll('.button');
-            let lastClickedButton = null;
-                  buttons.forEach(button => {
-                        this.setTextBoldAndUnderlined(button, '100', 'none');
-                        if (this.buttonDay === this.day) {
-                              button.style.fontWeight = '1000';
-                        }
-                        if (lastClickedButton === button) {
-                              button.style.textDecoration = 'underline';
-                        }
-                        button.addEventListener('click', () => {
-                        if (lastClickedButton !== button) {
-                              if (lastClickedButton) {
-                                    this.setTextBoldAndUnderlined(lastClickedButton, '100', 'none');
-                              }
-                              lastClickedButton = button;
-                        }
-                        if (this.buttonDay === this.day) {
-                              this.setTextBoldAndUnderlined(button, '1000', 'underline');
-                        } else {
-                              this.setTextBoldAndUnderlined(button, '100', 'none');
-                        }
-                  });
-                  });
-            updateFontWeightAndTextDecoration();
+      if (this.lastClickedButton === button) {
+        button.style.textDecoration = 'underline';
       }
+      button.onclick = () => {
+        if (this.lastClickedButton !== button) {
+          if (this.lastClickedButton) {
+            this.setTextBoldAndUnderlined(this.lastClickedButton, '100', 'none');
+          }
+          this.lastClickedButton = button;
+        }
+        if (buttonDay === this.day) {
+          this.setTextBoldAndUnderlined(button, '1000', 'underline');
+        } else {
+          this.setTextBoldAndUnderlined(button, '100', 'underline');
+        }
+      };
+    });
+  }
 }
-window.addEventListener('load', updateFontWeightAndTextDecoration);
+const but = new Buttons();
+window.addEventListener('load', function () {
+  but.updateFontWeightAndTextDecoration();
+});
