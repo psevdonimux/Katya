@@ -45,10 +45,10 @@ html, body {
       color: white;
       font-size: 16px;
 }
-.red {
+.red {            /* ≡ */
       color: red;
       font-size: 16px;
-} // ≡
+}
 .timeline {
       width: 180%;
       height: 8px;
