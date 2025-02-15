@@ -42,14 +42,11 @@ html, body {
       width: 8vw;
       border: none;
       background: transparent;
+      color: white;
 }
 .red {
       color: red;
       font-size: 12px !important;
-}
-.white {
-      color: white;
-      font-size: 8px !important;
 }
 .timeline {
       width: 180%;
