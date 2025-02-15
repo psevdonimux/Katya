@@ -45,6 +45,12 @@ html, body {
       font-size: 24px;
       color: #FFFFFF;
 }
+.red {
+      color: red;
+}
+.white {
+      color: white;
+}
 .timeline {
       width: 180%;
       height: 8px;
