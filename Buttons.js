@@ -52,6 +52,17 @@ class Buttons {
           timeline.appendChild(eventElement);
         });
       }
+  scrollToRedLine() {
+    const movingLine = document.getElementById('movingLine');
+    const chatgpt = document.getElementById('scroll');
+    scroll.onclick = function() {
+      movingLine.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center'
+      });
+    }
+  } 
 }
 const but = new Buttons();
 but.displayEvents();
