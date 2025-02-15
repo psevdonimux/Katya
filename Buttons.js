@@ -15,10 +15,7 @@ class buttons {
                         if (lastClickedButton === button) {
                               button.style.textDecoration = 'underline';
                         }
-                  });
-            }
-            buttons.forEach(button => {
-                  button.addEventListener('click', () => {
+                        button.addEventListener('click', () => {
                         if (lastClickedButton !== button) {
                               if (lastClickedButton) {
                                     lastClickedButton.style.fontWeight = '100';
@@ -36,7 +33,8 @@ class buttons {
                         }
                         updateFontWeightAndTextDecoration();
                   });
-            });
+                  });
+            }
       }
 }
 window.addEventListener('load', updateFontWeightAndTextDecoration);
