@@ -52,9 +52,6 @@ class Buttons {
           timeline.appendChild(eventElement);
         });
       }
-function handleResize() {
-        displayEvents();
-      }
 window.addEventListener('resize', handleResize);
       displayEvents();
 
