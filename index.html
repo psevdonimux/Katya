@@ -34,9 +34,6 @@
         timeline.createTimeMarkers();
       };
       timeline.createRedLine();
-      window.onresize = () => { 
-          timeline.createRedLine();
-      };
       setInterval(() => {
        timeline.createRedLine();
       }, 1000);
