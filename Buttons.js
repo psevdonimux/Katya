@@ -66,6 +66,7 @@ class Buttons {
 }
 const but = new Buttons();
 but.displayEvents();
+but.scrollToRedLine();
 window.addEventListener('load', function () {
   but.updateFontWeightAndTextDecoration();
 });
