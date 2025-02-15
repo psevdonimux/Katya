@@ -33,5 +33,5 @@ class buttons {
                   });
                   });
       }
-      window.addEventListener('load', updateFontWeightAndTextDecoration);
 }
+window.addEventListener('load', updateFontWeightAndTextDecoration);
