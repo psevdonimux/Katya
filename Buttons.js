@@ -30,7 +30,6 @@ class Buttons {
         } else {
           this.setTextBoldAndUnderlined(button, '100', 'underline');
         }
-        displayEvents(data-day);
       };
     });
   }
