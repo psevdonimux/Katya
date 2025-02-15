@@ -1,5 +1,6 @@
 class buttons {
-      
+      setTextBoldAndUnderlined() {
+      }
       changingButtonStates() {
             const buttons = document.querySelectorAll('.button');
             const day = new Date().getDay();
