@@ -29,9 +29,9 @@ class buttonss {
                         } else {
                               this.setTextBoldAndUnderlined(button, '100', 'none');
                         }
-                        updateFontWeightAndTextDecoration();
                   });
                   });
+            updateFontWeightAndTextDecoration();
       }
 }
 window.addEventListener('load', updateFontWeightAndTextDecoration);
