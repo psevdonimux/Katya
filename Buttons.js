@@ -54,7 +54,7 @@ class Buttons {
       }
 }
 const but = new Buttons();
+but.displayEvents();
 window.addEventListener('load', function () {
   but.updateFontWeightAndTextDecoration();
-  but.displayEvents();
 });
