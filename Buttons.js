@@ -7,7 +7,7 @@ class buttonss {
       }
       
       updateFontWeightAndTextDecoration() {
-            const button = document.querySelectorAll('.button');
+            const buttons = document.querySelectorAll('.button');
             let lastClickedButton = null;
                   buttons.forEach(button => {
                         this.setTextBoldAndUnderlined(button, '100', 'none');
