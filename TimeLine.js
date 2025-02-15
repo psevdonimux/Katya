@@ -96,7 +96,3 @@ class TimeLine {
     movingLine.style.left = (((localTime - startOfDayLocal) / this.millisecondsInDay) * this.width) + 'px';
   }
 }
-
-// Инициализация таймлайна
-const timeline = new TimeLine();
-timeline.init();
