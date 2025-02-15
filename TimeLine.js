@@ -55,3 +55,12 @@ class TimeLine {
                   movingLine.style.left = (((localTime - startOfDayLocal) / this.millisecondsInDay) * (document.querySelector('.timeline').offsetWidth)) + 'px';           
       }
 }
+const timeline = new TimeLine();
+      timeline.createTimeMarkers();
+      window.onresize = () => {
+        timeline.createTimeMarkers();
+      };
+      timeline.createRedLine();
+      setInterval(() => {
+       timeline.createRedLine();
+      }, 1000);
