@@ -6,10 +6,9 @@ class buttons {
             element.style.textDecoration = decoration;
       }
       
-      changingButtonStates() {
+      updateFontWeightAndTextDecoration() {
             const buttons = document.querySelectorAll('.button');
             let lastClickedButton = null;
-            function updateFontWeightAndTextDecoration() {
                   buttons.forEach(button => {
                         this.setTextBoldAndUnderlined(button, '100', 'none');
                         if (this.buttonDay === this.day) {
@@ -33,7 +32,6 @@ class buttons {
                         updateFontWeightAndTextDecoration();
                   });
                   });
-            }
       }
       window.addEventListener('load', updateFontWeightAndTextDecoration);
 }
