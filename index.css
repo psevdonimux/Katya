@@ -45,11 +45,11 @@ html, body {
 }
 .red {
       color: red;
-      font-size: 3em;
+      font-size: 1em;
 }
 .white {
       color: white;
-      font-size: 2em;
+      font-size: 0.5em;
 }
 .timeline {
       width: 180%;
