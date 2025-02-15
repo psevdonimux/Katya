@@ -52,32 +52,25 @@ class Buttons {
           timeline.appendChild(eventElement);
         });
       }
-  function scrollToRedLine() {
+  scrollToRedLine() {
     const movingLine = document.getElementById('movingLine');
     const scrollButton = document.getElementById('scroll');
-    
-    // Прокрутка до элемента movingLine при загрузке страницы
+    function scroll() {
+      if (movingLine) {
+        movingLine.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center',
+          inline: 'center'
+        });
+      }
+    };
     window.onload = function() {
-        if (movingLine) {
-            movingLine.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center',
-                inline: 'center'
-            });
-        }
+      scroll();
     };
-    
-    // Прокрутка до элемента movingLine при нажатии на кнопку
     scrollButton.onclick = function() {
-        if (movingLine) {
-            movingLine.scrollIntoView({
-                behavior: 'smooth',
-                block: 'center',
-                inline: 'center'
-            });
-        }
+        scroll();
     };
-}
+  }
 }
 const but = new Buttons();
 but.displayEvents();
