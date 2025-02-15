@@ -41,7 +41,7 @@ html, body {
       padding: 0;
       width: 8vw;
       border: none;
-      background: transparent;
+      background-image: url('Images/Scroll.webp');
 }
 .timeline {
       width: 180%;
