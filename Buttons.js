@@ -32,7 +32,7 @@ class Buttons {
         }
       };
     });
-    displayEvents(data-day);
+    this.displayEvents(buttonDay);
   }
   displayEvents(day = -1) {
             const millisecondsInDay = 24 * 60 * 60 * 1000;
@@ -52,11 +52,10 @@ class Buttons {
           timeline.appendChild(eventElement);
         });
       }
-window.addEventListener('resize', handleResize);
-      displayEvents();
-
 }
 const but = new Buttons();
+window.addEventListener('resize', handleResize);
 window.addEventListener('load', function () {
   but.updateFontWeightAndTextDecoration();
+  but.displayEvents();
 });
