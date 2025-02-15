@@ -37,6 +37,6 @@ class buttons {
                         updateFontWeightAndTextDecoration();
                   });
             });
-            window.addEventListener('load', updateFontWeightAndTextDecoration);
       }
 }
+window.addEventListener('load', updateFontWeightAndTextDecoration);
