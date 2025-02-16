@@ -16,6 +16,7 @@ class Buttons {
     button.style.textDecoration = (this.lastClickedButton === button) ? 'underline' : 'none';
     this.displayEvents(buttonDay);
   });
+        button.style.fontWeight = (buttonDay === this.day) ? '1000' : '100';
 });
     }
   
