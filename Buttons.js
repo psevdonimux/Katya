@@ -2,26 +2,26 @@ class Buttons {
     day = new Date().getDay();
     lastClickedButton = null; 
 
-  setTextBoldAndUnderlined(button) {
-    const buttons = document.querySelectorAll('.button');
-       buttons.forEach(button => {
-           button.addEventListener('click', () => {
-    if (this.lastClickedButton) {
-            this.lastClickedButton.style.textDecoration = 'none';
-        }
-        this.lastClickedButton = button;
-        const buttonDay = parseInt(button.getAttribute('data-day'));
-        const buttons = document.querySelectorAll('.button');
-        buttons.forEach((btn) => {
-            if (buttonDay === this.day) {
-                btn.style.fontWeight = '1000';
-            } else {
-                btn.style.fontWeight = '100';
-            }
-        });
-       }
-       }
-        button.style.textDecoration = 'underline';
+  setTextBoldAndUnderlined() {
+    buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    const day = new Date().getDay();
+    const buttonDay = parseInt(button.getAttribute('data-day'));
+
+    // Сброс стилей для последней нажатой кнопки
+    if (lastClickedButton && lastClickedButton !== button) {
+      lastClickedButton.style.fontWeight = '100';
+      lastClickedButton.style.textDecoration = 'none';
+    }
+
+    // Обновление стилей для текущей кнопки
+    button.style.fontWeight = (buttonDay === day) ? '1000' : '100';
+    button.style.textDecoration = (lastClickedButton === button) ? 'underline' : 'none';
+
+    // Установка последней нажатой кнопки
+    lastClickedButton = button;
+  });
+});
         this.displayEvents(buttonDay);
     }
   
