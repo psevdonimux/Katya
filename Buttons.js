@@ -24,6 +24,7 @@ class Buttons {
               }
               button.style.fontWeight = buttonDay === this.day ? '1000' : '100';
               button.style.textDecoration = buttonDay === this.day ? 'underline' : 'none'
+              this.setTextBoldAndUnderlined();
           });
       });
   }
