@@ -53,8 +53,6 @@ class Buttons {
           eventElement.textContent = event.label;
           timeline.appendChild(eventElement);
         });
-      window.addEventListener('resize', function() {
-          this.displayEvents();
       });
   }
   
@@ -82,6 +80,10 @@ class Buttons {
 const but = new Buttons();
 but.displayEvents();
 but.scrollToRedLine();
+window.addEventListener('resize', function() {
+  console.log('Ориентация экрана изменилась');
+  but.displayEvents();
+});
 window.addEventListener('load', function () {
   but.setTextBoldAndUnderlined();
   but.init();
