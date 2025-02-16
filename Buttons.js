@@ -12,28 +12,28 @@ class Buttons {
         buttons.forEach(button => {
           button.style.textDecoration = 'none';
           button.style.fontWeight = '100';
-          if (buttonDay === day) {
+          if (this.buttonDay === this.day) {
             button.style.fontWeight = '1000';
           }
-          if (lastClickedButton === button) {
+          if (this.lastClickedButton === button) {
             button.style.textDecoration = 'underline';
           }
         button.addEventListener('click', () => {
-          if (lastClickedButton !== button) {
-            if (lastClickedButton) {
-              lastClickedButton.style.fontWeight = '100';
-              lastClickedButton.style.textDecoration = 'none';
+          if (this.lastClickedButton !== button) {
+            if (this.lastClickedButton) {
+              this.lastClickedButton.style.fontWeight = '100';
+              this.lastClickedButton.style.textDecoration = 'none';
             }
-            lastClickedButton = button;
+            this.lastClickedButton = button;
           }
-          if (buttonDay === day) {
+          if (this.buttonDay === this.day) {
             button.style.fontWeight = '1000';
             button.style.textDecoration = 'underline';
           } else {
             button.style.fontWeight = '100';
             button.style.textDecoration = 'none';
           }
-          setTextBoldAndUnderlined();
+          this.setTextBoldAndUnderlined();
         this.displayEvents(buttonDay);
         });
       });
