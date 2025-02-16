@@ -12,30 +12,32 @@ class Buttons {
         buttons.forEach(button => {
           button.style.textDecoration = 'none';
           button.style.fontWeight = '100';
-          if (this.buttonDay === this.day) {
+          if (buttonDay === day) {
             button.style.fontWeight = '1000';
           }
-          if (this.lastClickedButton === button) {
+          if (lastClickedButton === button) {
             button.style.textDecoration = 'underline';
           }
-        });
-      button.addEventListener('click', () => {
-          if (this.lastClickedButton !== button) {
-            if (this.lastClickedButton) {
-                BoldAndUnderlined(this.lastClickedButton, '100', 'none')
+        button.addEventListener('click', () => {
+          if (lastClickedButton !== button) {
+            if (lastClickedButton) {
+              lastClickedButton.style.fontWeight = '100';
+              lastClickedButton.style.textDecoration = 'none';
             }
-            this.lastClickedButton = button;
+            lastClickedButton = button;
           }
-          if (this.buttonDay === this.day) {
-              BoldAndUnderlined(button, '1000', 'underline')
+          if (buttonDay === day) {
+            button.style.fontWeight = '1000';
+            button.style.textDecoration = 'underline';
           } else {
-              BoldAndUnderlined(button, '100', 'none')
+            button.style.fontWeight = '100';
+            button.style.textDecoration = 'none';
           }
           setTextBoldAndUnderlined();
-          this.displayEvents(buttonDay);
+        this.displayEvents(buttonDay);
         });
-      }
-
+      });
+        }
   
   displayEvents(day = -1) {
             const millisecondsInDay = 24 * 60 * 60 * 1000;
