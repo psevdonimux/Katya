@@ -96,4 +96,5 @@ but.displayEvents();
 but.scrollToRedLine();
 window.addEventListener('load', function () {
   but.setTextBoldAndUnderlined();
+    but.afterClick();
 });
