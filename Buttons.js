@@ -30,7 +30,7 @@ afterClick() {
           if (this.lastClickedButton !== button) {
             if (this.lastClickedButton) {
               this.lastClickedButton.style.fontWeight = '100';
-              this.lastClickedButton.style.textDecoration = 'none';
+              this.lastClickedButton.style.textDecoration = 'underline';
             }
             this.lastClickedButton = button;
           }
