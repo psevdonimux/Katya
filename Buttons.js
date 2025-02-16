@@ -3,51 +3,27 @@ class Buttons {
     lastClickedButton = null; 
 
   setTextBoldAndUnderlined(button) {
+    const buttons = document.querySelectorAll('.button');
+       buttons.forEach(button => {
+           button.addEventListener('click', () => {
     if (this.lastClickedButton) {
             this.lastClickedButton.style.textDecoration = 'none';
         }
-
-        // Запоминаем текущую нажатую кнопку
         this.lastClickedButton = button;
-
-        // Получаем день, связанный с текущей кнопкой
         const buttonDay = parseInt(button.getAttribute('data-day'));
-        
-        // Получаем все кнопки
         const buttons = document.querySelectorAll('.button');
-
-        // Применяем жирное начертание для текущего дня и обычное для остальных
         buttons.forEach((btn) => {
-            const btnDay = parseInt(btn.getAttribute('data-day'));
-            if (btnDay === this.day) {
-                btn.style.fontWeight = 'bold';  // Жирный шрифт для сегодняшней даты
+            if (buttonDay === this.day) {
+                btn.style.fontWeight = '1000';
             } else {
-                btn.style.fontWeight = 'normal';  // Обычный шрифт для других дней
+                btn.style.fontWeight = '100';
             }
         });
-
-        // Подчёркиваем нажатую кнопку
+       }
+       }
         button.style.textDecoration = 'underline';
-
-        // Вызываем метод для отображения событий для выбранной даты
         this.displayEvents(buttonDay);
     }
-
-    // Метод для отображения событий на выбранную дату
-    displayEvents(day) {
-        console.log(`Displaying events for day: ${day}`);
-        // Здесь можно добавить код для отображения событий на выбранную дату
-    }
-}
-
-// Пример использования
-const dateSelector = new DateSelector(16); // Предположим, что сегодня 16 число
-document.querySelectorAll('.button').forEach((button) => {
-    button.addEventListener('click', () => {
-        dateSelector.setTextBoldAndUnderlined(button);
-    });
-});
-  }
   
   displayEvents(day = -1) {
             const millisecondsInDay = 24 * 60 * 60 * 1000;
