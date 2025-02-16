@@ -54,7 +54,7 @@ class Buttons {
       }
   scrollToRedLine() {
     const movingLine = document.getElementById('movingLine');
-    const scrollButton = document.getElementById('scroll');
+    var scrollButton = document.getElementById('scroll');
       if (movingLine) {
         movingLine.scrollIntoView({
           behavior: 'smooth',
