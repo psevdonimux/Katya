@@ -12,15 +12,15 @@ class Buttons {
     this.buttons.forEach(button => {
         const buttonDay = parseInt(button.getAttribute('data-day'));
         if (this.lastClickedButton === button) {
-            BoldAndUnderlined(button, buttonDay === this.day ? '1000' : '100', 'underline');
+            this.BoldAndUnderlined(button, buttonDay === this.day ? '1000' : '100', 'underline');
         } else {
-            BoldAndUnderlined(button, buttonDay === this.day ? '1000' : '100', 'none');
+            this.BoldAndUnderlined(button, buttonDay === this.day ? '1000' : '100', 'none');
         }
         button.addEventListener('click', () => {
             this.displayEvents(buttonDay);
             if (this.lastClickedButton !== button) {
                 if (this.lastClickedButton) {
-                    BoldAndUnderlined(this.lastClickedButton, '100', 'none');
+                    this.BoldAndUnderlined(this.lastClickedButton, '100', 'none');
                 }
                 this.lastClickedButton = button;
             }
