@@ -12,32 +12,20 @@ class Buttons {
     this.buttons.forEach(button => {
         const buttonDay = parseInt(button.getAttribute('data-day'));
         if (this.lastClickedButton === button) {
-            // Сначала применяем стиль underline для последней нажатой кнопки
-            button.style.textDecoration = 'underline';
-            button.style.fontWeight = buttonDay === this.day ? '1000' : '100';  // Или нужный вес для выделенной кнопки
+            BoldAndUnderlined(button, buttonDay === this.day ? '1000' : '100', 'underline');
         } else {
-            button.style.textDecoration = 'none';
-            button.style.fontWeight = buttonDay === this.day ? '1000' : '100';
+            BoldAndUnderlined(button, buttonDay === this.day ? '1000' : '100', 'none');
         }
         button.addEventListener('click', () => {
             this.displayEvents(buttonDay);
             if (this.lastClickedButton !== button) {
                 if (this.lastClickedButton) {
-                    // Сбросить стили для предыдущей кнопки
-                    this.lastClickedButton.style.fontWeight = '100';
-                    this.lastClickedButton.style.textDecoration = 'none';
+                    BoldAndUnderlined(this.lastClickedButton, '100', 'none');
                 }
                 this.lastClickedButton = button;
             }
-
-            // Сразу устанавливаем стили для нажатой кнопки
-            if (buttonDay === this.day) {
-                button.style.fontWeight = '1000';
-                button.style.textDecoration = 'underline';
-            } else {
-                button.style.fontWeight = '100';
-                button.style.textDecoration = 'none';
-            }
+                button.style.fontWeight = buttonDay === this.day ? '1000' : '100';
+                button.style.textDecoration = buttonDay === this.day ? 'underline' : 'none'
             this.setTextBoldAndUnderlined()
     });
     });
