@@ -26,6 +26,7 @@ afterClick() {
     this.buttons.forEach(button => {
         const buttonDay = parseInt(button.getAttribute('data-day'));
         button.addEventListener('click', () => {
+            console.log('тыкаются');
             this.displayEvents();
             if (this.lastClickedButton !== button) {
                 if (this.lastClickedButton) {
