@@ -11,9 +11,9 @@ class Buttons {
       this.lastClickedButton.style.fontWeight = '100';
       this.lastClickedButton.style.textDecoration = 'none';
     }
+    this.lastClickedButton = button;
     button.style.fontWeight = (buttonDay === this.day) ? '1000' : '100';
     button.style.textDecoration = (this.lastClickedButton === button) ? 'underline' : 'none';
-    this.lastClickedButton = button;
     this.displayEvents(buttonDay);
   });
 });
