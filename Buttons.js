@@ -8,22 +8,16 @@ class Buttons {
   button.addEventListener('click', () => {
     const day = new Date().getDay();
     const buttonDay = parseInt(button.getAttribute('data-day'));
-
-    // Сброс стилей для последней нажатой кнопки
     if (lastClickedButton && lastClickedButton !== button) {
       lastClickedButton.style.fontWeight = '100';
       lastClickedButton.style.textDecoration = 'none';
     }
-
-    // Обновление стилей для текущей кнопки
     button.style.fontWeight = (buttonDay === day) ? '1000' : '100';
     button.style.textDecoration = (lastClickedButton === button) ? 'underline' : 'none';
-
-    // Установка последней нажатой кнопки
     lastClickedButton = button;
+    this.displayEvents(buttonDay);
   });
 });
-        this.displayEvents(buttonDay);
     }
   
   displayEvents(day = -1) {
