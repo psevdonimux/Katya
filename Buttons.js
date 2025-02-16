@@ -7,27 +7,32 @@ class Buttons {
         element.style.textDecoration = decoration;
   }
   setTextBoldAndUnderlined() {
-      this.buttons.forEach(button => {
-          const buttonDay = parseInt(button.getAttribute('data-day'));
-          if (this.lastClickedButton === button) {
-              this.BoldAndUnderlined(button, buttonDay === this.day ? '1000' : '100', 'underline');
-          } else {
-              this.BoldAndUnderlined(button, buttonDay === this.day ? '1000' : '100', 'none');
-          }
-          button.addEventListener('click', () => {
-              this.displayEvents(buttonDay);
-              if (this.lastClickedButton !== button) {
-                  if (this.lastClickedButton) {
-                      this.BoldAndUnderlined(this.lastClickedButton, '100', 'none');
-                  }
-                  this.lastClickedButton = button;
-              }
-              button.style.fontWeight = buttonDay === this.day ? '1000' : '100';
-              button.style.textDecoration = buttonDay === this.day ? 'underline' : 'none'
-              this.setTextBoldAndUnderlined();
-          });
-      });
-  }
+        this.buttons.forEach(button => {
+            const buttonDay = parseInt(button.getAttribute('data-day'));
+            if (this.lastClickedButton === button) {
+                this.BoldAndUnderlined(button, buttonDay === this.day ? '1000' : '100', 'underline');
+            } else {
+                this.BoldAndUnderlined(button, buttonDay === this.day ? '1000' : '100', 'none');
+            }
+        });
+    }
+
+    init() {
+        this.setTextBoldAndUnderlined();
+        this.buttons.forEach(button => {
+            const buttonDay = parseInt(button.getAttribute('data-day'));
+            button.addEventListener('click', () => {
+                this.displayEvents(buttonDay);
+                if (this.lastClickedButton !== button) {
+                    if (this.lastClickedButton) {
+                        this.BoldAndUnderlined(this.lastClickedButton, '100', 'none');
+                    }
+                    this.lastClickedButton = button;
+                }
+                this.setTextBoldAndUnderlined();
+            });
+        });
+    }
                          
   displayEvents(day = -1) {
       const millisecondsInDay = 24 * 60 * 60 * 1000;
