@@ -62,9 +62,6 @@ class Buttons {
           inline: 'center'
         });
       }
-    scrollButton.onclick = function() {
-        this.scrollToRedLine();
-    };
   }
 }
 const but = new Buttons();
@@ -76,4 +73,7 @@ but.scrollToRedLine();
 window.addEventListener('load', function () {
   but.updateFontWeightAndTextDecoration();
   but.scrollToRedLine();
+  scrollButton.onclick = function() {
+        this.scrollToRedLine();
+    };
 });
