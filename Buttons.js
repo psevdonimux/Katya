@@ -6,14 +6,14 @@ class Buttons {
       const buttons = document.querySelectorAll('.button');
       buttons.forEach(button => {
           const buttonDay = parseInt(button.getAttribute('data-day'));
-          buttons.style.fontWeight = (buttonDay === this.day) ? '1000' : '100';
+          buttons.style.fontWeight = (buttonDay === this.day) ? '900' : '100';
           button.addEventListener('click', () => {
               if (this.lastClickedButton && this.lastClickedButton !== button) {
                   this.lastClickedButton.style.fontWeight = '100';
                   this.lastClickedButton.style.textDecoration = 'none';
               }
               this.lastClickedButton = button;
-              button.style.fontWeight = (buttonDay === this.day) ? '1000' : '100';
+              button.style.fontWeight = (buttonDay === this.day) ? '900' : '100';
               button.style.textDecoration = (this.lastClickedButton === button) ? 'underline' : 'none';
               this.displayEvents(buttonDay);
           });
