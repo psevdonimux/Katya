@@ -63,7 +63,7 @@ class Buttons {
         });
       }
     scrollButton.onclick = function() {
-        scrollToRedLine();
+        scroll();
     };
   }
 }
