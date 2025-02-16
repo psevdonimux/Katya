@@ -10,7 +10,6 @@ class Buttons {
 
   setTextBoldAndUnderlined() {
     this.buttons.forEach(button => {
-        console.log('gthdjr..');
         const buttonDay = parseInt(button.getAttribute('data-day'));
         if (this.lastClickedButton === button) {
             // Сначала применяем стиль underline для последней нажатой кнопки
@@ -20,15 +19,7 @@ class Buttons {
             button.style.textDecoration = 'none';
             button.style.fontWeight = buttonDay === this.day ? '1000' : '100';
         }
-    });
-}
-
-afterClick() {
-    this.buttons.forEach(button => {
-        console.log('второе..');
-        const buttonDay = parseInt(button.getAttribute('data-day'));
         button.addEventListener('click', () => {
-            console.log('тыкаются');
             this.displayEvents();
             if (this.lastClickedButton !== button) {
                 if (this.lastClickedButton) {
@@ -47,10 +38,10 @@ afterClick() {
                 button.style.fontWeight = '100';
                 button.style.textDecoration = 'none';
             }
-            this.setTextBoldAndUnderlined();
-        });
+            this.setTextBoldAndUnderlined()
     });
 }
+                         
   displayEvents(day = -1) {
             const millisecondsInDay = 24 * 60 * 60 * 1000;
             const startOfDay = new Date().setHours(0, 0, 0, 0);
