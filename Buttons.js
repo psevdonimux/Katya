@@ -1,7 +1,6 @@
 class Buttons {
     day = new Date().getDay();
     lastClickedButton = null;
-    buttonDay = parseInt(button.getAttribute('data-day'));
     buttons = document.querySelectorAll('.button');
 
     BoldAndUnderlined(element, font, decoration) {
@@ -11,9 +10,10 @@ class Buttons {
 
   setTextBoldAndUnderlined() {
         this.buttons.forEach(button => {
+            const buttonDay = parseInt(button.getAttribute('data-day'));
           button.style.textDecoration = 'none';
           button.style.fontWeight = '100';
-          if (this.buttonDay === this.day) {
+          if (buttonDay === this.day) {
             button.style.fontWeight = '1000';
           }
           if (this.lastClickedButton === button) {
@@ -24,6 +24,7 @@ class Buttons {
 
 afterClick() {
       this.buttons.forEach(button => {
+          const buttonDay = parseInt(button.getAttribute('data-day'));
         button.addEventListener('click', () => {
             this.displayEvents();
           if (this.lastClickedButton !== button) {
@@ -33,7 +34,7 @@ afterClick() {
             }
             this.lastClickedButton = button;
           }
-          if (this.buttonDay === this.day) {
+          if (buttonDay === this.day) {
             button.style.fontWeight = '1000';
             button.style.textDecoration = 'underline';
           } else {
