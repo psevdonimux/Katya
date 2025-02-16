@@ -81,7 +81,7 @@ but.displayEvents();
 but.scrollToRedLine();
 window.addEventListener('resize', function() {
   console.log('Ориентация экрана изменилась');
-  but.displayEvents();
+  but.displayEvents(buttonDay);
 });
 window.addEventListener('load', function () {
   but.setTextBoldAndUnderlined();
