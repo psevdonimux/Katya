@@ -10,6 +10,7 @@ class Buttons {
 
   setTextBoldAndUnderlined() {
     this.buttons.forEach(button => {
+        console.log('gthdjr..');
         const buttonDay = parseInt(button.getAttribute('data-day'));
         if (this.lastClickedButton === button) {
             // Сначала применяем стиль underline для последней нажатой кнопки
@@ -24,6 +25,7 @@ class Buttons {
 
 afterClick() {
     this.buttons.forEach(button => {
+        console.log('второе..');
         const buttonDay = parseInt(button.getAttribute('data-day'));
         button.addEventListener('click', () => {
             console.log('тыкаются');
