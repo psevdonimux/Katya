@@ -54,7 +54,8 @@ class Buttons {
       }
   scrollToRedLine() {
     const movingLine = document.getElementById('movingLine');
-    var scrollButton = document.getElementById('scroll');
+    const scrollButton = document.getElementById('scroll');
+    function scroll() {
       if (movingLine) {
         movingLine.scrollIntoView({
           behavior: 'smooth',
@@ -62,18 +63,16 @@ class Buttons {
           inline: 'center'
         });
       }
+    };
+    window.onload = function() {
+      scroll();
+    };
   }
 }
 const but = new Buttons();
 but.displayEvents();
-window.addEventListener("resize", function() {
-    but.displayEvents();
-});
 but.scrollToRedLine();
 window.addEventListener('load', function () {
   but.updateFontWeightAndTextDecoration();
   but.scrollToRedLine();
-  scrollButton.onclick = function() {
-        this.scrollToRedLine();
-    };
 });
