@@ -55,7 +55,6 @@ class Buttons {
   scrollToRedLine() {
     const movingLine = document.getElementById('movingLine');
     const scrollButton = document.getElementById('scroll');
-    function scroll() {
       if (movingLine) {
         movingLine.scrollIntoView({
           behavior: 'smooth',
@@ -63,12 +62,11 @@ class Buttons {
           inline: 'center'
         });
       }
-    };
     window.onload = function() {
-      scroll();
+      this.scrollToRedLine();
     };
     scrollButton.onclick = function() {
-        scroll();
+        this.scrollToRedLine();
     };
   }
 }
