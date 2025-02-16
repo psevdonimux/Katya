@@ -18,6 +18,7 @@ class Buttons {
       if (this.lastClickedButton === button) {
         button.style.textDecoration = 'underline';
       }
+    }
       button.onclick = () => {
         if (this.lastClickedButton !== button) {
           if (this.lastClickedButton) {
