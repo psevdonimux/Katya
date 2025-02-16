@@ -40,6 +40,7 @@ class Buttons {
             }
             this.setTextBoldAndUnderlined()
     });
+    });
 }
                          
   displayEvents(day = -1) {
