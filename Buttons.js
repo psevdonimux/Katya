@@ -46,7 +46,10 @@ class Buttons {
           eventElement.textContent = event.label;
           timeline.appendChild(eventElement);
         });
-      }
+      window.addEventListener('resize', function() {
+          this.displayEvents();
+      });
+  }
   
   scrollToRedLine() {
     const movingLine = document.getElementById('movingLine');
@@ -72,9 +75,6 @@ class Buttons {
 const but = new Buttons();
 but.displayEvents();
 but.scrollToRedLine();
-window.addEventListener('resize', function() {
-    but.displayEvents();
-});
 window.addEventListener('load', function () {
   but.setTextBoldAndUnderlined();
 });
