@@ -4,21 +4,21 @@ class Buttons {
 
   setTextBoldAndUnderlined() {
       const buttons = document.querySelectorAll('.button');
-      const buttonDay = parseInt(button.getAttribute('data-day'));
-    buttons.forEach(button => {
-        buttons.style.fontWeight = (buttonDay === this.day) ? '1000' : '100';
-  button.addEventListener('click', () => {
-    if (this.lastClickedButton && this.lastClickedButton !== button) {
-      this.lastClickedButton.style.fontWeight = '100';
-      this.lastClickedButton.style.textDecoration = 'none';
-    }
-    this.lastClickedButton = button;
-    button.style.fontWeight = (buttonDay === this.day) ? '1000' : '100';
-    button.style.textDecoration = (this.lastClickedButton === button) ? 'underline' : 'none';
-    this.displayEvents(buttonDay);
-  });
-});
-    }
+      buttons.forEach(button => {
+          const buttonDay = parseInt(button.getAttribute('data-day'));
+          buttons.style.fontWeight = (buttonDay === this.day) ? '1000' : '100';
+          button.addEventListener('click', () => {
+              if (this.lastClickedButton && this.lastClickedButton !== button) {
+                  this.lastClickedButton.style.fontWeight = '100';
+                  this.lastClickedButton.style.textDecoration = 'none';
+              }
+              this.lastClickedButton = button;
+              button.style.fontWeight = (buttonDay === this.day) ? '1000' : '100';
+              button.style.textDecoration = (this.lastClickedButton === button) ? 'underline' : 'none';
+              this.displayEvents(buttonDay);
+          });
+      });
+  }
   
   displayEvents(day = -1) {
             const millisecondsInDay = 24 * 60 * 60 * 1000;
