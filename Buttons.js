@@ -62,8 +62,8 @@ class Buttons {
           inline: 'center'
         });
       }
-    scrollButton.onclick = () => {
-        scroll();
+    scrollButton.onclick = function() {
+        scrollToRedLine();
     };
   }
 }
