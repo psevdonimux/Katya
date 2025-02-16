@@ -2,6 +2,7 @@ class Buttons {
     day = new Date().getDay();
     lastClickedButton = null;
     buttonDay = parseInt(button.getAttribute('data-day'));
+    buttons = document.querySelectorAll('.button');
 
     BoldAndUnderlined(element, font, decoration) {
     element.style.fontWeight = font;
@@ -9,49 +10,40 @@ class Buttons {
   }
 
   setTextBoldAndUnderlined() {
-  buttons.forEach(button => {
-    // Сброс всех стилей для кнопок
-    button.style.textDecoration = 'none';
-    button.style.fontWeight = '100';
+        this.buttons.forEach(button => {
+          button.style.textDecoration = 'none';
+          button.style.fontWeight = '100';
+          if (this.buttonDay === this.day) {
+            button.style.fontWeight = '1000';
+          }
+          if (this.lastClickedButton === button) {
+            button.style.textDecoration = 'underline';
+          }
+        });
+      }
 
-    // Установить жирный стиль для кнопки с текущим днем
-    if (this.buttonDay === this.day) {
-      button.style.fontWeight = '1000';
-    }
-
-    // Установить подчеркивание для последней кликнутой кнопки
-    if (this.lastClickedButton === button) {
-      button.style.textDecoration = 'underline';
-    }
-  });
+afterClick() {
+      this.buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            this.displayEvents();
+          if (this.lastClickedButton !== button) {
+            if (this.lastClickedButton) {
+              this.lastClickedButton.style.fontWeight = '100';
+              this.lastClickedButton.style.textDecoration = 'none';
+            }
+            this.lastClickedButton = button;
+          }
+          if (this.buttonDay === this.day) {
+            button.style.fontWeight = '1000';
+            button.style.textDecoration = 'underline';
+          } else {
+            button.style.fontWeight = '100';
+            button.style.textDecoration = 'none';
+          }
+          this.setTextBoldAndUnderlined();
+        });
+      });
 }
-
-    boldAndUnderlinedAfterClick() {
-buttons.forEach(button => {
-  button.addEventListener('click', () => {
-    this.displayEvents(this.buttonDay);
-
-    // Убрать стили у предыдущей кнопки, если она была
-    if (this.lastClickedButton && this.lastClickedButton !== button) {
-      this.lastClickedButton.style.fontWeight = '100';
-      this.lastClickedButton.style.textDecoration = 'none';
-    }
-
-    // Установить стили для новой кнопки
-    this.lastClickedButton = button;
-    if (this.buttonDay === this.day) {
-      button.style.fontWeight = '1000';
-      button.style.textDecoration = 'underline';
-    } else {
-      button.style.fontWeight = '100';
-      button.style.textDecoration = 'none';
-    }
-
-    // Вызываем setTextBoldAndUnderlined для обновления всех кнопок
-    this.setTextBoldAndUnderlined();
-  });
-});
-    }
   
   displayEvents(day = -1) {
             const millisecondsInDay = 24 * 60 * 60 * 1000;
