@@ -20,7 +20,7 @@ class Buttons {
             button.style.fontWeight = buttonDay === this.day ? '1000' : '100';
         }
         button.addEventListener('click', () => {
-            this.displayEvents();
+            this.displayEvents(buttonDay);
             if (this.lastClickedButton !== button) {
                 if (this.lastClickedButton) {
                     // Сбросить стили для предыдущей кнопки
