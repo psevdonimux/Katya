@@ -15,7 +15,7 @@ class Buttons {
         if (this.lastClickedButton === button) {
             // Сначала применяем стиль underline для последней нажатой кнопки
             button.style.textDecoration = 'underline';
-            button.style.fontWeight = '1000';  // Или нужный вес для выделенной кнопки
+            button.style.fontWeight = '100';  // Или нужный вес для выделенной кнопки
         } else {
             button.style.textDecoration = 'none';
             button.style.fontWeight = buttonDay === this.day ? '1000' : '100';
