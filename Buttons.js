@@ -53,8 +53,7 @@ class Buttons {
           eventElement.textContent = event.label;
           timeline.appendChild(eventElement);
         });
-      });
-  }
+      }
   
   scrollToRedLine() {
     const movingLine = document.getElementById('movingLine');
