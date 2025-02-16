@@ -18,7 +18,10 @@ class Buttons {
           if (this.lastClickedButton === button) {
             button.style.textDecoration = 'underline';
           }
+        });
+      buttons.forEach(button => {
         button.addEventListener('click', () => {
+            this.displayEvents(this.buttonDay);
           if (this.lastClickedButton !== button) {
             if (this.lastClickedButton) {
               this.lastClickedButton.style.fontWeight = '100';
@@ -34,9 +37,9 @@ class Buttons {
             button.style.textDecoration = 'none';
           }
           this.setTextBoldAndUnderlined();
-        this.displayEvents(buttonDay);
         });
       });
+
         }
   
   displayEvents(day = -1) {
