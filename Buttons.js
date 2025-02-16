@@ -67,6 +67,9 @@ class Buttons {
     window.onload = function() {
       scroll();
     };
+    scrollButton.onclick = function() {
+        scroll();
+    };
   }
 }
 const but = new Buttons();
@@ -74,5 +77,4 @@ but.displayEvents();
 but.scrollToRedLine();
 window.addEventListener('load', function () {
   but.updateFontWeightAndTextDecoration();
-  but.scrollToRedLine();
 });
