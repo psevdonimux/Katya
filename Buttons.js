@@ -25,7 +25,7 @@ class Buttons {
                 this.displayEvents(buttonDay);
                 if (this.lastClickedButton !== button) {
                     if (this.lastClickedButton) {
-                        this.BoldAndUnderlined(this.lastClickedButton, '100', 'none');
+                        this.BoldAndUnderlined(this.lastClickedButton, '100', "underline");
                     }
                     this.lastClickedButton = button;
                 }
