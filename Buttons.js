@@ -62,9 +62,6 @@ class Buttons {
           inline: 'center'
         });
       }
-    scrollButton.onclick = function() {
-        scroll();
-    };
   }
 }
 const but = new Buttons();
