@@ -4,20 +4,49 @@ class Buttons {
 
   setTextBoldAndUnderlined(button) {
     if (this.lastClickedButton) {
-      this.lastClickedButton.style.textDecoration = "none";
+            this.lastClickedButton.style.textDecoration = 'none';
+        }
+
+        // Запоминаем текущую нажатую кнопку
+        this.lastClickedButton = button;
+
+        // Получаем день, связанный с текущей кнопкой
+        const buttonDay = parseInt(button.getAttribute('data-day'));
+        
+        // Получаем все кнопки
+        const buttons = document.querySelectorAll('.button');
+
+        // Применяем жирное начертание для текущего дня и обычное для остальных
+        buttons.forEach((btn) => {
+            const btnDay = parseInt(btn.getAttribute('data-day'));
+            if (btnDay === this.day) {
+                btn.style.fontWeight = 'bold';  // Жирный шрифт для сегодняшней даты
+            } else {
+                btn.style.fontWeight = 'normal';  // Обычный шрифт для других дней
+            }
+        });
+
+        // Подчёркиваем нажатую кнопку
+        button.style.textDecoration = 'underline';
+
+        // Вызываем метод для отображения событий для выбранной даты
+        this.displayEvents(buttonDay);
     }
-    this.lastClickedButton = button;
-    const buttonDay = parseInt(button.getAttribute('data-day'));
-    const buttons = document.querySelectorAll('.button');
-    buttons.forEach((btn) => {
-      if (buttonDay === this.day) {
-        btn.style.fontWeight = '1000';
-      } else {
-        btn.style.fontWeight = '100';
-      }
+
+    // Метод для отображения событий на выбранную дату
+    displayEvents(day) {
+        console.log(`Displaying events for day: ${day}`);
+        // Здесь можно добавить код для отображения событий на выбранную дату
+    }
+}
+
+// Пример использования
+const dateSelector = new DateSelector(16); // Предположим, что сегодня 16 число
+document.querySelectorAll('.button').forEach((button) => {
+    button.addEventListener('click', () => {
+        dateSelector.setTextBoldAndUnderlined(button);
     });
-    button.style.textDecoration = 'underline';
-    this.displayEvents(buttonDay);
+});
   }
   
   displayEvents(day = -1) {
