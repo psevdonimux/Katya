@@ -26,6 +26,7 @@ class Buttons {
   });
 }
 
+    boldAndUnderlinedAfterClick() {
 buttons.forEach(button => {
   button.addEventListener('click', () => {
     this.displayEvents(this.buttonDay);
@@ -50,6 +51,7 @@ buttons.forEach(button => {
     this.setTextBoldAndUnderlined();
   });
 });
+    }
   
   displayEvents(day = -1) {
             const millisecondsInDay = 24 * 60 * 60 * 1000;
