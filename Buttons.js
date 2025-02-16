@@ -4,9 +4,9 @@ class Buttons {
 
   setTextBoldAndUnderlined() {
       const buttons = document.querySelectorAll('.button');
+      const buttonDay = parseInt(button.getAttribute('data-day'));
     buttons.forEach(button => {
   button.addEventListener('click', () => {
-    const buttonDay = parseInt(button.getAttribute('data-day'));
     if (this.lastClickedButton && this.lastClickedButton !== button) {
       this.lastClickedButton.style.fontWeight = '100';
       this.lastClickedButton.style.textDecoration = 'none';
