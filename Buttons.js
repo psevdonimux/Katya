@@ -10,13 +10,13 @@ class Buttons {
     const buttonDay = parseInt(button.getAttribute('data-day'));
     const buttons = document.querySelectorAll('.button');
     buttons.forEach((btn) => {
-      if (parseInt(buttonDay === this.day) {
+      if (buttonDay === this.day) {
         btn.style.fontWeight = '1000';
       } else {
-        btn.style/fontWeight = '100';
+        btn.style.fontWeight = '100';
       }
     });
-    button.stule.textDecoration = 'underline';
+    button.style.textDecoration = 'underline';
     this.displayEvents(buttonDay);
   }
   
