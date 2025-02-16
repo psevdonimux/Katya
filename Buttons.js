@@ -25,7 +25,7 @@ class Buttons {
             this.setTextBoldAndUnderlined(this.lastClickedButton, '100', 'none');
           }
         }
-          if (this.lastClickedButton == button) {
+          if (this.lastClickedButton === button) {
         if (buttonDay === this.day) {
           this.setTextBoldAndUnderlined(button, '1000', 'underline');
         } else {
