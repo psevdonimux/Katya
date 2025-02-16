@@ -72,7 +72,9 @@ class Buttons {
 const but = new Buttons();
 but.displayEvents();
 but.scrollToRedLine();
-window.addEventListener('resize', but.displayEvents);
+window.addEventListener('resize', function() {
+    but.displayEvents();
+});
 window.addEventListener('load', function () {
   but.setTextBoldAndUnderlined();
 });
