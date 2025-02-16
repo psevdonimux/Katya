@@ -24,7 +24,8 @@ class Buttons {
           if (this.lastClickedButton) {
             this.setTextBoldAndUnderlined(this.lastClickedButton, '100', 'none');
           }
-          if (this.lastClickedButton = button) {
+        }
+          if (this.lastClickedButton == button) {
         if (buttonDay === this.day) {
           this.setTextBoldAndUnderlined(button, '1000', 'underline');
         } else {
@@ -32,8 +33,7 @@ class Buttons {
         }
         }
         this.displayEvents(buttonDay);
-      };
-    });
+    };
   }
   displayEvents(day = -1) {
             const millisecondsInDay = 24 * 60 * 60 * 1000;
