@@ -6,15 +6,14 @@ class Buttons {
       const buttons = document.querySelectorAll('.button');
     buttons.forEach(button => {
   button.addEventListener('click', () => {
-    const day = new Date().getDay();
     const buttonDay = parseInt(button.getAttribute('data-day'));
-    if (lastClickedButton && lastClickedButton !== button) {
-      lastClickedButton.style.fontWeight = '100';
-      lastClickedButton.style.textDecoration = 'none';
+    if (this.lastClickedButton && this.lastClickedButton !== button) {
+      this.lastClickedButton.style.fontWeight = '100';
+      this.lastClickedButton.style.textDecoration = 'none';
     }
-    button.style.fontWeight = (buttonDay === day) ? '1000' : '100';
-    button.style.textDecoration = (lastClickedButton === button) ? 'underline' : 'none';
-    lastClickedButton = button;
+    button.style.fontWeight = (buttonDay === this.day) ? '1000' : '100';
+    button.style.textDecoration = (this.lastClickedButton === button) ? 'underline' : 'none';
+    this.lastClickedButton = button;
     this.displayEvents(buttonDay);
   });
 });
