@@ -3,6 +3,7 @@ class Buttons {
     lastClickedButton = null; 
 
   setTextBoldAndUnderlined() {
+      const buttons = document.querySelectorAll('.button');
     buttons.forEach(button => {
   button.addEventListener('click', () => {
     const day = new Date().getDay();
