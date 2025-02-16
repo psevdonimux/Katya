@@ -6,9 +6,7 @@ class Buttons {
       const buttons = document.querySelectorAll('.button');
       const buttonDay = parseInt(button.getAttribute('data-day'));
     buttons.forEach(button => {
-                button.style.fontWeight = (buttonDay === this.day) ? '1000' : '100';
-    });
-    buttons.forEach(button => {
+        button.style.fontWeight = (buttonDay === this.day) ? '1000' : '100';
   button.addEventListener('click', () => {
     if (this.lastClickedButton && this.lastClickedButton !== button) {
       this.lastClickedButton.style.fontWeight = '100';
