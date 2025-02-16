@@ -1,40 +1,25 @@
 class Buttons {
-  
     day = new Date().getDay();
     lastClickedButton = null; 
 
-  setTextBoldAndUnderlined(element, font, decoration) {
-    element.style.fontWeight = font;
-    element.style.textDecoration = decoration;
-  }
-  updateFontWeightAndTextDecoration() {
-    const buttons = document.querySelectorAll('.button');
-    buttons.forEach(button => {
-      const buttonDay = parseInt(button.getAttribute('data-day'));
-      this.setTextBoldAndUnderlined(button, '100', 'none');
-      if (buttonDay === this.day) {
-        button.style.fontWeight = '1000';
-      }
-      if (this.lastClickedButton === button) {
-        button.style.textDecoration = 'underline';
-      }
+  setTextBoldAndUnderlined(button) {
+    if (this.lastClickedButton) {
+      this.lastClickedButton.style.textDecoration = "none";
     }
-      button.onclick = () => {
-        if (this.lastClickedButton !== button) {
-          if (this.lastClickedButton) {
-            this.setTextBoldAndUnderlined(this.lastClickedButton, '100', 'none');
-          }
-        }
-          if (this.lastClickedButton === button) {
-        if (buttonDay === this.day) {
-          this.setTextBoldAndUnderlined(button, '1000', 'underline');
-        } else {
-          this.setTextBoldAndUnderlined(button, '100', 'underline');
-        }
-        }
-        this.displayEvents(buttonDay);
-    };
+    this.lastClickedButton = button;
+    const buttonDay = parseInt(button.getAttribute('data-day'));
+    const buttons = document.querySelectorAll('.button');
+    buttons.forEach((btn) => {
+      if (parseInt(buttonDay === this.day) {
+        btn.style.fontWeight = '1000';
+      } else {
+        btn.style/fontWeight = '100';
+      }
+    });
+    button.stule.textDecoration = 'underline';
+    this.displayEvents(buttonDay);
   }
+  
   displayEvents(day = -1) {
             const millisecondsInDay = 24 * 60 * 60 * 1000;
             const startOfDay = new Date().setHours(0, 0, 0, 0);
@@ -53,6 +38,7 @@ class Buttons {
           timeline.appendChild(eventElement);
         });
       }
+  
   scrollToRedLine() {
     const movingLine = document.getElementById('movingLine');
     const scrollButton = document.getElementById('scroll');
@@ -73,9 +59,10 @@ class Buttons {
     };
   }
 }
+
 const but = new Buttons();
 but.displayEvents();
 but.scrollToRedLine();
 window.addEventListener('load', function () {
-  but.updateFontWeightAndTextDecoration();
+  but.setTextBoldAndUnderlined();
 });
