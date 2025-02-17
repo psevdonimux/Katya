@@ -19,16 +19,13 @@ class TimeLine {
                         this.timeline.appendChild(marker);
                   }
                   for (let i = 0; i <= 24; i++) {
-                        if(i === 24){
-                              i = 0;
-                        }
                         const hourMarker = document.createElement('div');
                         hourMarker.classList.add('hour-marker');
                         const position = (i * (width / 24));
                         hourMarker.style.left = `${position}px`;
                         const hourLabel = document.createElement('div');
                         hourLabel.classList.add('hour-label');
-                        hourLabel.textContent = `${i < 10 ? '0' : ''}${i}:00`;
+                        hourLabel.textContent = `${i < 10 ? '0' : ''}${i}:00`.replace('24', '00');
                         if (window.innerWidth > window.innerHeight) {
                               hourLabel.style.left = `${position - 21.5}px`;
                         } else {
