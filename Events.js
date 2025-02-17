@@ -148,3 +148,18 @@ const eventsByDay = {
                 
             ]
         };
+const but = new Buttons();
+const timeline = new TimeLine();
+      timeline.createTimeMarkers();
+      window.onresize = () => {
+        timeline.createTimeMarkers();
+        but.displayEvents();
+      };
+      timeline.createRedLine();
+      setInterval(() => {
+       timeline.createRedLine();
+      }, 1000);
+but.displayEvents();
+but.scrollToRedLine();
+but.setTextBoldAndUnderlined();
+but.init();
