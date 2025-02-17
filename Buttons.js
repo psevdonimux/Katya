@@ -75,14 +75,3 @@ class Buttons {
     };
   }
 }
-
-const but = new Buttons();
-but.displayEvents();
-but.scrollToRedLine();
-window.onresize = () => {
- but.displayEvents();
-};
-window.addEventListener('load', function () {
-  but.setTextBoldAndUnderlined();
-  but.init();
-});
