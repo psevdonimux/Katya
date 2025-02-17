@@ -19,6 +19,9 @@ class TimeLine {
                         this.timeline.appendChild(marker);
                   }
                   for (let i = 0; i <= 24; i++) {
+                        if(i === 24){
+                              i = 0;
+                        }
                         const hourMarker = document.createElement('div');
                         hourMarker.classList.add('hour-marker');
                         const position = (i * (width / 24));
